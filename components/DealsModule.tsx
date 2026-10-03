@@ -111,16 +111,33 @@ export const DealsModule: React.FC<DealsModuleProps> = ({
                       </span>
                     </div>
 
-                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                      -%{deal.dropPercentage} İndirim ({formatTL(diff)} Kâr)
-                    </span>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                        -%{deal.dropPercentage} İndirim ({formatTL(diff)} Kâr)
+                      </span>
+                      <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/30 animate-pulse">
+                        🔥 Son {Math.max(2, 8 - Number(deal.id.length || 3))} Adet
+                      </span>
+                    </div>
 
-                    <button
-                      onClick={() => onSelectSystem(matchingSys)}
-                      className="mt-1 text-xs text-cyan-400 hover:text-cyan-300 font-semibold cursor-pointer"
-                    >
-                      Detayları Gör &rarr;
-                    </button>
+                    <div className="flex items-center gap-2 mt-1">
+                      <button
+                        onClick={() => onSelectSystem(matchingSys)}
+                        className="text-xs text-cyan-400 hover:text-cyan-300 font-semibold cursor-pointer"
+                      >
+                        Detaylar
+                      </button>
+
+                      <a
+                        href={matchingSys.directUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-2.5 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-neutral-950 text-xs font-bold flex items-center gap-1 transition-all"
+                      >
+                        <span>Fırsatı Kap</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               );

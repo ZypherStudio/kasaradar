@@ -25,6 +25,7 @@ interface FpsSimulatorModuleProps {
   preselectedSystem?: PrebuiltSystem | null;
   onClearPreselectedSystem: () => void;
   onSelectSystemForPurchase: (system: PrebuiltSystem) => void;
+  onOpenGameSettings?: () => void;
 }
 
 export const FpsSimulatorModule: React.FC<FpsSimulatorModuleProps> = ({
@@ -33,7 +34,8 @@ export const FpsSimulatorModule: React.FC<FpsSimulatorModuleProps> = ({
   systems,
   preselectedSystem,
   onClearPreselectedSystem,
-  onSelectSystemForPurchase
+  onSelectSystemForPurchase,
+  onOpenGameSettings
 }) => {
   const [selectedGameId, setSelectedGameId] = useState<string>("cs2");
   const [resolutionPreset, setResolutionPreset] = useState<ResolutionPreset>("1080p_ultra");
@@ -95,23 +97,35 @@ export const FpsSimulatorModule: React.FC<FpsSimulatorModuleProps> = ({
           </p>
         </div>
 
-        {activeSystemName && (
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30">
-            <div className="text-xs">
-              <span className="text-neutral-400 block text-[10px]">Test Edilen Hazır Kasa:</span>
-              <span className="text-emerald-400 font-bold">{activeSystemName}</span>
-            </div>
+        <div className="flex items-center gap-2 self-start md:self-auto flex-wrap">
+          {onOpenGameSettings && (
             <button
-              onClick={() => {
-                setActiveSystemName("");
-                onClearPreselectedSystem();
-              }}
-              className="text-xs px-2 py-1 rounded bg-neutral-800 hover:bg-neutral-700 text-neutral-300 transition-all cursor-pointer"
+              onClick={onOpenGameSettings}
+              className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-neutral-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-500/20 transition-all cursor-pointer"
             >
-              Sıfırla
+              <Gamepad2 className="w-4 h-4" />
+              <span>🎮 Espor Pro Ayarları &amp; Kodları</span>
             </button>
-          </div>
-        )}
+          )}
+
+          {activeSystemName && (
+            <div className="flex items-center gap-3 p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
+              <div className="text-xs">
+                <span className="text-neutral-400 block text-[10px]">Test Edilen Hazır Kasa:</span>
+                <span className="text-emerald-400 font-bold">{activeSystemName}</span>
+              </div>
+              <button
+                onClick={() => {
+                  setActiveSystemName("");
+                  onClearPreselectedSystem();
+                }}
+                className="text-xs px-2 py-1 rounded bg-neutral-800 hover:bg-neutral-700 text-neutral-300 transition-all cursor-pointer"
+              >
+                Sıfırla
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Game Selector Cards */}

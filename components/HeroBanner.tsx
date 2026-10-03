@@ -8,13 +8,19 @@ interface HeroBannerProps {
   setSearchQuery: (query: string) => void;
   onSelectPreset: (preset: string) => void;
   onGoToFps: () => void;
+  onOpenAdInspector?: () => void;
+  onOpenGameSettings?: () => void;
+  onOpenDiscordBot?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
   searchQuery,
   setSearchQuery,
   onSelectPreset,
-  onGoToFps
+  onGoToFps,
+  onOpenAdInspector,
+  onOpenGameSettings,
+  onOpenDiscordBot
 }) => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 via-neutral-900/60 to-neutral-950 border border-neutral-800 p-6 sm:p-10 mb-8 shadow-2xl">
@@ -44,8 +50,41 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
           karşılaştırıyoruz. Parçaları tek tek toplasan kaç TL, hazır alsan kaç TL kâr edersin anında gör.
         </p>
 
+        {/* KILLER FEATURE QUICK BUTTONS ROW */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1">
+          {onOpenAdInspector && (
+            <button
+              onClick={onOpenAdInspector}
+              className="px-3.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            >
+              <span>🔍 2. El İlan Ekspertizi</span>
+              <span className="text-[10px] bg-amber-500/20 px-1.5 py-0.2 rounded font-normal">Link Yapıştır</span>
+            </button>
+          )}
+
+          {onOpenGameSettings && (
+            <button
+              onClick={onOpenGameSettings}
+              className="px-3.5 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            >
+              <span>🎮 Espor Oyun Ayarları</span>
+              <span className="text-[10px] bg-cyan-500/20 px-1.5 py-0.2 rounded font-normal">CS2 / Valo</span>
+            </button>
+          )}
+
+          {onOpenDiscordBot && (
+            <button
+              onClick={onOpenDiscordBot}
+              className="px-3.5 py-1.5 rounded-xl bg-indigo-500/15 hover:bg-indigo-500/25 text-indigo-300 border border-indigo-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            >
+              <span>🤖 Discord Botu</span>
+              <span className="text-[10px] bg-indigo-500/30 px-1.5 py-0.2 rounded font-mono">!kasa</span>
+            </button>
+          )}
+        </div>
+
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto relative pt-2">
+        <div className="max-w-2xl mx-auto relative pt-1">
           <div className="relative flex items-center">
             <Search className="absolute left-4 w-5 h-5 text-neutral-400" />
             <input

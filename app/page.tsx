@@ -16,6 +16,9 @@ import { ComponentPriceModal, ComponentPriceInfo } from "@/components/ComponentP
 import { AuthModal, UserAccount } from "@/components/AuthModal";
 import { FavoritesDrawer } from "@/components/FavoritesDrawer";
 import { EmailNotificationModal } from "@/components/EmailNotificationModal";
+import { AdInspectorModal } from "@/components/AdInspectorModal";
+import { GameSettingsModal } from "@/components/GameSettingsModal";
+import { DiscordBotModal } from "@/components/DiscordBotModal";
 import { Footer } from "@/components/Footer";
 import {
   PREBUILT_SYSTEMS,
@@ -43,6 +46,12 @@ export default function Home() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
   const [isFavoritesDrawerOpen, setIsFavoritesDrawerOpen] = useState<boolean>(false);
   const [isEmailModalOpen, setIsEmailModalOpen] = useState<boolean>(false);
+
+  // 3 Killer New Features Modals
+  const [isAdInspectorOpen, setIsAdInspectorOpen] = useState<boolean>(false);
+  const [isGameSettingsOpen, setIsGameSettingsOpen] = useState<boolean>(false);
+  const [isDiscordBotOpen, setIsDiscordBotOpen] = useState<boolean>(false);
+
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
     originalPrice: number;
@@ -157,6 +166,7 @@ export default function Home() {
         onOpenFavorites={() => setIsFavoritesDrawerOpen(true)}
         user={user}
         onOpenAuth={() => setIsAuthModalOpen(true)}
+        onOpenDiscordBot={() => setIsDiscordBotOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -167,6 +177,9 @@ export default function Home() {
           setSearchQuery={setSearchQuery}
           onSelectPreset={handleSelectPreset}
           onGoToFps={() => setActiveTab("fps")}
+          onOpenAdInspector={() => setIsAdInspectorOpen(true)}
+          onOpenGameSettings={() => setIsGameSettingsOpen(true)}
+          onOpenDiscordBot={() => setIsDiscordBotOpen(true)}
         />
 
         {/* Tab 1: Hazır Kasalar & F/P Radarı */}
@@ -211,6 +224,7 @@ export default function Home() {
             onSelectSystemForPurchase={(sys) => {
               setSelectedDetailSystem(sys);
             }}
+            onOpenGameSettings={() => setIsGameSettingsOpen(true)}
           />
         )}
 
@@ -246,7 +260,10 @@ export default function Home() {
 
         {/* Tab 5: Sıfır vs 2. El Borsası */}
         {activeTab === "arbitrage" && (
-          <ArbitrageModule hardwareList={HARDWARE_DATABASE} />
+          <ArbitrageModule
+            hardwareList={HARDWARE_DATABASE}
+            onOpenAdInspector={() => setIsAdInspectorOpen(true)}
+          />
         )}
 
         {/* Tab 6: Fırsat Radarı & Alarmlar */}
@@ -269,7 +286,7 @@ export default function Home() {
         onOpenComponentPrice={(comp) => setSelectedComponentForPrice(comp)}
       />
 
-      {/* Component Price Comparison Modal (Multi-Store: Amazon, Hepsiburada, İtopya, Akakçe, Sarı site) */}
+      {/* Component Price Comparison Modal */}
       <ComponentPriceModal
         component={selectedComponentForPrice}
         onClose={() => setSelectedComponentForPrice(null)}
@@ -347,6 +364,25 @@ export default function Home() {
         storeName={emailModalData.storeName}
         directUrl={emailModalData.directUrl}
         userEmail={user?.email || "zypherstudio@gmail.com"}
+      />
+
+      {/* KILLER FEATURE 1: Sarı Site / 2. El İlan Ekspertiz Modalı */}
+      <AdInspectorModal
+        isOpen={isAdInspectorOpen}
+        onClose={() => setIsAdInspectorOpen(false)}
+      />
+
+      {/* KILLER FEATURE 2: Espor Pro Ayarları & Başlatma Kodları Modalı */}
+      <GameSettingsModal
+        isOpen={isGameSettingsOpen}
+        onClose={() => setIsGameSettingsOpen(false)}
+        initialGameId="cs2"
+      />
+
+      {/* KILLER FEATURE 3: Discord Bot Simülatörü & Sunucu Davet Modalı */}
+      <DiscordBotModal
+        isOpen={isDiscordBotOpen}
+        onClose={() => setIsDiscordBotOpen(false)}
       />
 
       {/* Footer */}

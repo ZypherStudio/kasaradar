@@ -17,9 +17,10 @@ import {
 
 interface ArbitrageModuleProps {
   hardwareList: HardwareComponent[];
+  onOpenAdInspector?: () => void;
 }
 
-export const ArbitrageModule: React.FC<ArbitrageModuleProps> = ({ hardwareList }) => {
+export const ArbitrageModule: React.FC<ArbitrageModuleProps> = ({ hardwareList, onOpenAdInspector }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedType, setSelectedType] = useState<"all" | "gpu" | "cpu">("all");
 
@@ -44,11 +45,23 @@ export const ArbitrageModule: React.FC<ArbitrageModuleProps> = ({ hardwareList }
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="p-6 rounded-3xl bg-neutral-900 border border-neutral-800 space-y-2">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-semibold">
-          <Scale className="w-3.5 h-3.5" />
-          <span>Sarı Site &amp; Letgo Canlı Donanım Borsası</span>
+      <div className="p-6 rounded-3xl bg-neutral-900 border border-neutral-800 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-semibold">
+            <Scale className="w-3.5 h-3.5" />
+            <span>Sarı Site &amp; Letgo Canlı Donanım Borsası</span>
+          </div>
+
+          {onOpenAdInspector && (
+            <button
+              onClick={onOpenAdInspector}
+              className="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-neutral-950 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-lg shadow-amber-500/20 self-start sm:self-auto"
+            >
+              <span>🔍 İlan Linki Yapıştır &amp; Ekspertiz Al</span>
+            </button>
+          )}
         </div>
+
         <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
           Sıfır vs. 2. El Fiyat Makası &amp; Kazıklanma Rehberi
         </h2>
