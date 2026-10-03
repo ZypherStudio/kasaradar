@@ -32,13 +32,41 @@ export interface SystemDetailedPart {
   category: "Ekran Kartı" | "İşlemci" | "RAM" | "SSD" | "Anakart" | "Güç Kaynağı" | "Kasa" | "Soğutucu";
   individualNewPrice: number;
   buyUrl: string;
-  store: "Amazon TR" | "Hepsiburada" | "Akakçe" | "İtopya" | "Trendyol" | "Gaming.Gen.TR" | "GameGaraj" | "Tebilon" | "İncehesap" | "Sinerji" | "Vatan Bilgisayar" | "Teknobiyotik";
+  store:
+    | "Amazon TR"
+    | "Hepsiburada"
+    | "Akakçe"
+    | "İtopya"
+    | "Trendyol"
+    | "Gaming.Gen.TR"
+    | "GameGaraj"
+    | "Tebilon"
+    | "İncehesap"
+    | "Sinerji"
+    | "Vatan Bilgisayar"
+    | "Teknobiyotik"
+    | "Gençer Gaming"
+    | "Pckolik"
+    | "QP Bilişim"
+    | "Inventus";
 }
 
 export interface PrebuiltSystem {
   id: string;
   title: string;
-  seller: "İtopya" | "Gaming.Gen.TR" | "GameGaraj" | "Tebilon" | "İncehesap" | "Sinerji" | "Vatan Bilgisayar" | "Teknobiyotik";
+  seller:
+    | "İtopya"
+    | "Gaming.Gen.TR"
+    | "GameGaraj"
+    | "Tebilon"
+    | "İncehesap"
+    | "Sinerji"
+    | "Vatan Bilgisayar"
+    | "Teknobiyotik"
+    | "Gençer Gaming"
+    | "Pckolik"
+    | "QP Bilişim"
+    | "Inventus";
   sellerLogo: string;
   sellerColor: string;
   price: number;

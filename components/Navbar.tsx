@@ -42,91 +42,95 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Navigation Tabs */}
-          <nav className="hidden lg:flex items-center gap-1 bg-neutral-900/90 p-1.5 rounded-xl border border-neutral-800">
+          <nav className="hidden lg:flex items-center gap-1 bg-neutral-900/90 p-1 rounded-xl border border-neutral-800 shrink-0">
             <button
               onClick={() => setActiveTab("systems")}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === "systems"
                   ? "bg-emerald-500 text-neutral-950 shadow-md shadow-emerald-500/20 font-bold"
                   : "text-neutral-300 hover:text-white hover:bg-neutral-800"
               }`}
             >
               <Monitor className="w-3.5 h-3.5" />
-              Hazır Kasalar
+              <span className="hidden xl:inline">Hazır Kasalar</span>
+              <span className="inline xl:hidden">Kasalar</span>
             </button>
 
             <button
               onClick={() => setActiveTab("fps")}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === "fps"
                   ? "bg-emerald-500 text-neutral-950 shadow-md shadow-emerald-500/20 font-bold"
                   : "text-neutral-300 hover:text-white hover:bg-neutral-800"
               }`}
             >
               <Zap className="w-3.5 h-3.5" />
-              FPS Testi
+              <span>FPS Testi</span>
             </button>
 
             <button
               onClick={() => setActiveTab("monitors")}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === "monitors"
                   ? "bg-emerald-500 text-neutral-950 shadow-md shadow-emerald-500/20 font-bold"
                   : "text-neutral-300 hover:text-white hover:bg-neutral-800"
               }`}
             >
               <Headphones className="w-3.5 h-3.5" />
-              Ekipman &amp; Monitör
+              <span className="hidden xl:inline">Ekipman &amp; Monitör</span>
+              <span className="inline xl:hidden">Ekipman</span>
             </button>
 
             <button
               onClick={() => setActiveTab("streamers")}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === "streamers"
                   ? "bg-emerald-500 text-neutral-950 shadow-md shadow-emerald-500/20 font-bold"
                   : "text-neutral-300 hover:text-white hover:bg-neutral-800"
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
-              Yayıncılar
+              <span>Yayıncılar</span>
             </button>
 
             <button
               onClick={() => setActiveTab("arbitrage")}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === "arbitrage"
                   ? "bg-emerald-500 text-neutral-950 shadow-md shadow-emerald-500/20 font-bold"
                   : "text-neutral-300 hover:text-white hover:bg-neutral-800"
               }`}
             >
               <Scale className="w-3.5 h-3.5" />
-              Sıfır vs 2. El
+              <span className="hidden xl:inline">Sıfır vs 2. El</span>
+              <span className="inline xl:hidden">2. El</span>
             </button>
 
             <button
               onClick={() => setActiveTab("deals")}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === "deals"
                   ? "bg-emerald-500 text-neutral-950 shadow-md shadow-emerald-500/20 font-bold"
                   : "text-neutral-300 hover:text-white hover:bg-neutral-800"
               }`}
             >
               <Bell className="w-3.5 h-3.5" />
-              Fırsat Radarı
+              <span className="hidden xl:inline">Fırsat Radarı</span>
+              <span className="inline xl:hidden">Fırsatlar</span>
             </button>
           </nav>
 
           {/* Quick Actions (AI Assistant + Compare + Favorites + User Account) */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Compare Badge Button */}
             {comparisonCount > 0 && (
               <button
                 onClick={onOpenComparison}
-                className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-emerald-400 text-xs font-semibold border border-emerald-500/30 transition-all cursor-pointer"
+                className="relative flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-emerald-400 text-xs font-semibold border border-emerald-500/30 transition-all cursor-pointer"
                 title="Karşılaştırma Sepeti"
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Kıyasla</span>
+                <span className="hidden xl:inline">Kıyasla</span>
                 <span className="flex items-center justify-center w-4 h-4 rounded-full bg-emerald-500 text-neutral-950 text-[10px] font-bold">
                   {comparisonCount}
                 </span>
@@ -160,7 +164,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {onOpenDiscordBot && (
               <button
                 onClick={onOpenDiscordBot}
-                className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#5865F2]/15 hover:bg-[#5865F2]/25 border border-[#5865F2]/30 text-indigo-300 text-xs font-bold transition-all cursor-pointer"
+                className="hidden xl:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#5865F2]/15 hover:bg-[#5865F2]/25 border border-[#5865F2]/30 text-indigo-300 text-xs font-bold transition-all cursor-pointer"
                 title="KasaRadar Discord Botu"
               >
                 <span>🤖 Discord Bot</span>

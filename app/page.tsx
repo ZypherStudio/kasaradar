@@ -19,6 +19,7 @@ import { EmailNotificationModal } from "@/components/EmailNotificationModal";
 import { AdInspectorModal } from "@/components/AdInspectorModal";
 import { GameSettingsModal } from "@/components/GameSettingsModal";
 import { DiscordBotModal } from "@/components/DiscordBotModal";
+import { SponsorsSection } from "@/components/SponsorsSection";
 import { Footer } from "@/components/Footer";
 import {
   PREBUILT_SYSTEMS,
@@ -384,6 +385,9 @@ export default function Home() {
         isOpen={isDiscordBotOpen}
         onClose={() => setIsDiscordBotOpen(false)}
       />
+
+      {/* Sponsors & Brand Partnerships Section */}
+      <SponsorsSection />
 
       {/* Footer */}
       <Footer />

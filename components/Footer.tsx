@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
           {/* Supported Retailers */}
           <div className="space-y-2">
             <span className="text-white font-bold text-xs uppercase tracking-wider block">
-              Taranan 8 Büyük Mağaza
+              Taranan 16+ Büyük Mağaza
             </span>
             <div className="flex flex-wrap gap-1.5 text-[11px]">
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">İtopya</span>
@@ -50,6 +50,14 @@ export const Footer: React.FC = () => {
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">İncehesap</span>
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Sinerji</span>
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Teknobiyotik</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Gençer Gaming</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Pckolik</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">QP Bilişim</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Inventus</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Amazon TR</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Hepsiburada</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Trendyol</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">N11</span>
             </div>
           </div>
         </div>

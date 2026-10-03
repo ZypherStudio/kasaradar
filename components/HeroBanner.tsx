@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Search, Flame, ArrowUpRight, TrendingUp, ShieldCheck, Zap } from "lucide-react";
+import { Search, Flame, ArrowUpRight, TrendingUp, ShieldCheck, Zap, X } from "lucide-react";
 
 interface HeroBannerProps {
   searchQuery: string;
@@ -92,19 +92,20 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Ekran kartı, işlemci veya kasa adı ara (örn: RTX 4060, Ryzen 7500F, ModArt)..."
-              className="w-full pl-12 pr-28 py-3.5 rounded-2xl bg-neutral-950/80 border border-neutral-700/80 text-white placeholder-neutral-500 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-inner"
+              className="w-full pl-12 pr-36 py-3.5 rounded-2xl bg-neutral-950/80 border border-neutral-700/80 text-white placeholder-neutral-500 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-inner"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-24 text-xs text-neutral-400 hover:text-white"
+                className="absolute right-28 top-1/2 -translate-y-1/2 p-1.5 rounded-lg bg-neutral-800/90 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all cursor-pointer"
+                title="Aramayı Temizle"
               >
-                Temizle
+                <X className="w-3.5 h-3.5" />
               </button>
             )}
             <button
               onClick={onGoToFps}
-              className="absolute right-2 top-2 bottom-2 px-3.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-emerald-400 text-xs font-semibold flex items-center gap-1 border border-neutral-700 transition-all cursor-pointer"
+              className="absolute right-2 top-2 bottom-2 px-3.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-emerald-400 text-xs font-semibold flex items-center gap-1.5 border border-neutral-700 transition-all cursor-pointer shrink-0"
             >
               <Zap className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">FPS Testi</span>
@@ -150,8 +151,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               <span>Taranan Mağazalar</span>
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
             </div>
-            <div className="text-lg font-bold text-white">8 Büyük Satıcı</div>
-            <div className="text-[11px] text-neutral-500">İtopya, GamingGen, Vatan, GameGaraj...</div>
+            <div className="text-lg font-bold text-white">16+ Büyük Satıcı</div>
+            <div className="text-[11px] text-neutral-500">İtopya, GamingGen, Vatan, GameGaraj, Gençer...</div>
           </div>
 
           <div className="p-3 rounded-xl bg-neutral-950/60 border border-neutral-800/60 text-left">

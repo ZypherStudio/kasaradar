@@ -53,8 +53,20 @@ export function getStoreSearchUrl(productName: string, store: StoreIdentifier | 
   if (normalizedStore.includes("sahibinden")) {
     return `https://www.sahibinden.com/kelime-ile-arama?query_text=${query}`;
   }
-  if (normalizedStore.includes("akakce")) {
-    return `https://www.akakce.com/arama/?q=${query}&utm_source=kasaradar`;
+  if (normalizedStore.includes("gencer")) {
+    return `https://www.gencergaming.com/?s=${query}&ref=kasaradar`;
+  }
+  if (normalizedStore.includes("pckolik")) {
+    return `https://pckolik.com/arama?q=${query}&ref=kasaradar`;
+  }
+  if (normalizedStore.includes("qp")) {
+    return `https://www.qp.com.tr/catalogsearch/result/?q=${query}&ref=kasaradar`;
+  }
+  if (normalizedStore.includes("inventus")) {
+    return `https://inventus.com.tr/mi_products/ProductList.aspx?DT=${query}`;
+  }
+  if (normalizedStore.includes("n11")) {
+    return `https://www.n11.com/arama?q=${query}&utm_source=kasaradar`;
   }
 
   return `https://www.google.com/search?q=${query}+fiyat`;

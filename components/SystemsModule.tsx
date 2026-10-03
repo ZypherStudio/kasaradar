@@ -73,7 +73,24 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
   // Community votes state
   const [userVotes, setUserVotes] = useState<Record<string, "yes" | "no">>({});
 
-  const sellers = useMemo(() => ["all", "İtopya", "Gaming.Gen.TR", "GameGaraj", "Vatan Bilgisayar", "Tebilon", "İncehesap", "Sinerji", "Teknobiyotik"], []);
+  const sellers = useMemo(
+    () => [
+      "all",
+      "İtopya",
+      "Gaming.Gen.TR",
+      "GameGaraj",
+      "Vatan Bilgisayar",
+      "Tebilon",
+      "İncehesap",
+      "Sinerji",
+      "Teknobiyotik",
+      "Gençer Gaming",
+      "Pckolik",
+      "QP Bilişim",
+      "Inventus"
+    ],
+    []
+  );
   const gpus = useMemo(() => ["all", "RTX 3050", "RTX 4060", "RTX 4060 Ti", "RTX 4070", "RTX 4070 SUPER", "RTX 4080 SUPER", "RX 7700 XT", "RX 7800 XT", "RX 6600"], []);
 
   const filteredSystems = useMemo(() => {
@@ -147,7 +164,7 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
     setTimeout(() => {
       setIsScanning(false);
       setLastScanTime("Az önce");
-      setScanToast("✅ 8 Mağaza taranarak tüm hazır kasa stokları ve fiyatları güncellendi!");
+      setScanToast("✅ Tüm mağazalar taranarak hazır kasa stokları ve fiyatları güncellendi!");
       setTimeout(() => setScanToast(null), 4000);
     }, 850);
   };
@@ -169,7 +186,7 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
               </span>
             </div>
             <p className="text-[11px] text-neutral-400 mt-0.5">
-              8 Türk teknoloji mağazası taranıyor • Son kontrol: <span className="text-neutral-200 font-semibold">{lastScanTime}</span>
+              12+ Türk teknoloji mağazası taranıyor • Son kontrol: <span className="text-neutral-200 font-semibold">{lastScanTime}</span>
             </p>
           </div>
         </div>
@@ -197,7 +214,7 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
       {/* Quick Category Selector Pills */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
         {[
-          { id: "all", label: "Tüm Kasalar (10)" },
+          { id: "all", label: `Tüm Kasalar (${systems.length})` },
           { id: "today", label: "🔥 Son 24 Saat (Bugün)" },
           { id: "amd_cpu", label: "🔴 Sadece AMD Ryzen" },
           { id: "intel_cpu", label: "🔵 Sadece Intel Core" },
@@ -384,27 +401,46 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
                 </div>
               </div>
 
-              {/* PC Case Visual Banner */}
+              {/* Hardware Architecture & Chassis Specs (Görsel yerine Gerçek Donanım Kartı) */}
               <div
                 onClick={() => onOpenDetail(system)}
-                className="relative h-40 mx-4 mt-3 rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800/80 cursor-pointer group-hover:border-emerald-500/40 transition-all"
+                className="mx-4 mt-3 p-3.5 rounded-xl bg-gradient-to-br from-neutral-950 via-neutral-900/95 to-neutral-950 border border-neutral-800 group-hover:border-emerald-500/40 transition-all cursor-pointer relative overflow-hidden space-y-2.5 shadow-sm"
               >
-                <img
-                  src={system.imageUrl}
-                  alt={system.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
+                <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-xl pointer-events-none" />
 
-                <div className="absolute bottom-2 left-2 flex items-center gap-1.5 flex-wrap">
-                  <span className="px-2 py-0.5 rounded bg-neutral-900/90 backdrop-blur-md text-[10px] text-neutral-300 font-bold border border-neutral-700">
-                    {system.targetResolution}
+                <div className="space-y-1.5 relative z-10">
+                  <div className="flex items-center gap-1.5 text-xs text-neutral-200">
+                    <span className="text-emerald-400 text-sm">🖥️</span>
+                    <span className="truncate" title={system.caseModel}>
+                      Kasa: <strong className="text-white font-bold">{system.caseModel}</strong>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] text-neutral-400">
+                    <span className="text-cyan-400 text-xs">❄️</span>
+                    <span className="truncate" title={system.cooling}>
+                      Soğutma: <span className="text-neutral-300 font-medium">{system.cooling}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] text-neutral-400">
+                    <span className="text-amber-400 text-xs">⚡</span>
+                    <span className="truncate" title={system.psu}>
+                      PSU: <span className="text-neutral-300 font-medium">{system.psu}</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 flex-wrap pt-2 border-t border-neutral-800/80 relative z-10">
+                  <span className="px-2 py-0.5 rounded bg-neutral-900 text-[10px] text-cyan-300 font-bold border border-cyan-500/30">
+                    🎯 {system.targetResolution}
                   </span>
                   {system.installmentsText && (
-                    <span className="px-2 py-0.5 rounded bg-neutral-900/90 backdrop-blur-md text-[10px] text-emerald-400 font-bold border border-emerald-500/30">
+                    <span className="px-2 py-0.5 rounded bg-neutral-900 text-[10px] text-emerald-400 font-bold border border-emerald-500/30">
                       💳 {system.installmentsText.split(":")[0]}
                     </span>
                   )}
+                  <span className="ml-auto text-[10px] text-neutral-400 group-hover:text-emerald-400 flex items-center gap-0.5 font-bold transition-colors">
+                    Detaylı İncele &rarr;
+                  </span>
                 </div>
               </div>
 

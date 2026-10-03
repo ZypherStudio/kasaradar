@@ -160,29 +160,50 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
           </div>
         </div>
 
-        {/* Case Image & Installments Banner */}
-        <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center p-4 rounded-2xl bg-neutral-950 border border-neutral-800">
-          <div className="sm:col-span-5 h-44 rounded-xl overflow-hidden bg-neutral-900 border border-neutral-800 relative">
-            <img
-              src={system.imageUrl}
-              alt={system.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent" />
-            <span className="absolute bottom-2 left-2 text-[10px] px-2 py-0.5 rounded bg-neutral-900/90 text-white font-bold border border-neutral-700">
-              {system.caseModel}
-            </span>
+        {/* Chassis, Cooling Architecture & Installments Banner */}
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-stretch p-4 rounded-2xl bg-neutral-950 border border-neutral-800">
+          <div className="sm:col-span-6 p-4 rounded-xl bg-neutral-900/90 border border-neutral-800 space-y-2.5">
+            <div className="flex items-center gap-1.5 text-cyan-400 font-bold uppercase tracking-wider text-[11px]">
+              <Cpu className="w-4 h-4" />
+              <span>Kasa, Soğutma &amp; Güç Mimarisi</span>
+            </div>
+            <div className="space-y-2 text-xs">
+              <div className="flex items-center justify-between text-neutral-300">
+                <span className="text-neutral-400">Kasa Modeli:</span>
+                <span className="font-bold text-white text-right max-w-[220px] truncate" title={system.caseModel}>
+                  {system.caseModel}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-neutral-300">
+                <span className="text-neutral-400">İşlemci Soğutucu:</span>
+                <span className="font-semibold text-cyan-300 text-right max-w-[220px] truncate" title={system.cooling}>
+                  {system.cooling}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-neutral-300">
+                <span className="text-neutral-400">Güç Kaynağı (PSU):</span>
+                <span className="font-semibold text-neutral-200 text-right max-w-[220px] truncate" title={system.psu}>
+                  {system.psu}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-neutral-300">
+                <span className="text-neutral-400">Güç Tüketimi (TDP):</span>
+                <span className="font-bold text-amber-400">{system.tdpWatts || 350}W</span>
+              </div>
+            </div>
           </div>
 
-          <div className="sm:col-span-7 space-y-2.5 text-xs">
-            <div className="flex items-center gap-1.5 text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
-              <DollarSign className="w-4 h-4" />
-              <span>Finansman &amp; Taksit Seçenekleri</span>
+          <div className="sm:col-span-6 p-4 rounded-xl bg-neutral-900/90 border border-neutral-800 flex flex-col justify-between space-y-2.5 text-xs">
+            <div>
+              <div className="flex items-center gap-1.5 text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+                <DollarSign className="w-4 h-4" />
+                <span>Finansman &amp; Taksit Seçenekleri</span>
+              </div>
+              <p className="text-neutral-300 font-semibold leading-relaxed mt-1">
+                {system.installmentsText || "Peşin Fiyatına 3 - 6 Taksit İmkanı: Axess, Maximum, World, Bonus, Paraf"}
+              </p>
             </div>
-            <p className="text-neutral-300 font-semibold leading-relaxed">
-              {system.installmentsText || "Peşin Fiyatına 3 - 6 Taksit İmkanı: Axess, Maximum, World, Bonus, Paraf"}
-            </p>
-            <div className="grid grid-cols-2 gap-2 text-[11px] text-neutral-400 pt-1 border-t border-neutral-800/80">
+            <div className="grid grid-cols-2 gap-2 text-[11px] text-neutral-400 pt-2 border-t border-neutral-800/80">
               <div>
                 3 Taksit: <strong className="text-white">{formatTL(Math.round(customizedPrice / 3))} / Ay</strong>
               </div>
