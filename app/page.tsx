@@ -18,6 +18,7 @@ import { FavoritesDrawer } from "@/components/FavoritesDrawer";
 import { EmailNotificationModal } from "@/components/EmailNotificationModal";
 import { AdInspectorModal } from "@/components/AdInspectorModal";
 import { GameSettingsModal } from "@/components/GameSettingsModal";
+import { GamifiedRewardsModal } from "@/components/GamifiedRewardsModal";
 import { SponsorsSection } from "@/components/SponsorsSection";
 import { Footer } from "@/components/Footer";
 import {
@@ -47,9 +48,10 @@ export default function Home() {
   const [isFavoritesDrawerOpen, setIsFavoritesDrawerOpen] = useState<boolean>(false);
   const [isEmailModalOpen, setIsEmailModalOpen] = useState<boolean>(false);
 
-  // 2 Killer New Features Modals
+  // Modals
   const [isAdInspectorOpen, setIsAdInspectorOpen] = useState<boolean>(false);
   const [isGameSettingsOpen, setIsGameSettingsOpen] = useState<boolean>(false);
+  const [isRewardsModalOpen, setIsRewardsModalOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -165,6 +167,7 @@ export default function Home() {
         onOpenFavorites={() => setIsFavoritesDrawerOpen(true)}
         user={user}
         onOpenAuth={() => setIsAuthModalOpen(true)}
+        onOpenRewardsModal={() => setIsRewardsModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -177,6 +180,7 @@ export default function Home() {
           onGoToFps={() => setActiveTab("fps")}
           onOpenAdInspector={() => setIsAdInspectorOpen(true)}
           onOpenGameSettings={() => setIsGameSettingsOpen(true)}
+          onOpenRewardsModal={() => setIsRewardsModalOpen(true)}
         />
 
         {/* Tab 1: Hazır Kasalar & F/P Radarı */}
@@ -374,6 +378,12 @@ export default function Home() {
         isOpen={isGameSettingsOpen}
         onClose={() => setIsGameSettingsOpen(false)}
         initialGameId="cs2"
+      />
+
+      {/* Gamified Rewards & Telegram Case Opening Modal */}
+      <GamifiedRewardsModal
+        isOpen={isRewardsModalOpen}
+        onClose={() => setIsRewardsModalOpen(false)}
       />
 
       {/* Sponsors & Brand Partnerships Section */}

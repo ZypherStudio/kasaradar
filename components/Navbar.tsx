@@ -17,6 +17,7 @@ interface NavbarProps {
   onOpenFavorites: () => void;
   user: UserAccount | null;
   onOpenAuth: () => void;
+  onOpenRewardsModal?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -28,7 +29,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   favoritesCount,
   onOpenFavorites,
   user,
-  onOpenAuth
+  onOpenAuth,
+  onOpenRewardsModal
 }) => {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-neutral-950/85 border-b border-neutral-800/80">
@@ -157,6 +159,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Sparkles className="w-3.5 h-3.5" />
               <span>Sistem AI</span>
             </button>
+
+            {/* Gamified Rewards / Case Opening Button */}
+            {onOpenRewardsModal && (
+              <button
+                onClick={onOpenRewardsModal}
+                className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-xs font-bold transition-all cursor-pointer"
+                title="Günün Kasasını Aç & Ödül Kazan"
+              >
+                <span>🎁</span>
+                <span className="hidden xl:inline">Kasa Aç</span>
+              </button>
+            )}
 
             {/* User Account / Profile Button */}
             <button

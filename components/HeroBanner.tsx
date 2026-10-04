@@ -10,6 +10,7 @@ interface HeroBannerProps {
   onGoToFps: () => void;
   onOpenAdInspector?: () => void;
   onOpenGameSettings?: () => void;
+  onOpenRewardsModal?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -18,7 +19,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onSelectPreset,
   onGoToFps,
   onOpenAdInspector,
-  onOpenGameSettings
+  onOpenGameSettings,
+  onOpenRewardsModal
 }) => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 via-neutral-900/60 to-neutral-950 border border-neutral-800 p-6 sm:p-10 mb-8 shadow-2xl">
@@ -79,6 +81,16 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             <span>📢 Telegram Fırsat Kanalı</span>
             <span className="text-[10px] bg-sky-500/30 px-1.5 py-0.2 rounded font-semibold">Canlı Radar</span>
           </a>
+
+          {onOpenRewardsModal && (
+            <button
+              onClick={onOpenRewardsModal}
+              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-yellow-500/20 hover:from-amber-500/30 hover:to-yellow-500/30 text-amber-300 border border-amber-500/40 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-sm animate-pulse"
+            >
+              <span>🎁 Günlük Kasa Aç</span>
+              <span className="text-[10px] bg-amber-500/30 px-1.5 py-0.2 rounded font-mono">Steam Kodu</span>
+            </button>
+          )}
         </div>
 
         {/* Search Bar */}
