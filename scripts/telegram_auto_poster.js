@@ -17,9 +17,34 @@
 const fs = require("fs");
 const path = require("path");
 
-// Ortam değişkenleri veya varsayılanlar
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
-const CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID || ""; // Örn: "@kasaradartr" veya "-100234567890"
+// .env.local veya .env dosyasını otomatik yükle
+function loadEnv() {
+  const envPaths = [
+    path.join(__dirname, "../.env.local"),
+    path.join(__dirname, "../.env"),
+    path.join(process.cwd(), ".env.local"),
+    path.join(process.cwd(), ".env")
+  ];
+  for (const envPath of envPaths) {
+    if (fs.existsSync(envPath)) {
+      const content = fs.readFileSync(envPath, "utf-8");
+      const lines = content.split("\n");
+      for (const line of lines) {
+        const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
+        if (match) {
+          const key = match[1];
+          let value = match[2] || "";
+          value = value.trim().replace(/^['"]|['"]$/g, "");
+          if (!process.env[key]) process.env[key] = value;
+        }
+      }
+    }
+  }
+}
+loadEnv();
+
+let BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
+let CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID || "https://t.me/+Voua-sJ4TVJiZjc8";
 
 // KasaRadar Sıcak Fırsat & Hazır Kasa Veritabanı
 const DEALS_QUEUE = [
@@ -131,12 +156,30 @@ function formatTelegramMessage(item) {
  * Telegram API üzerinden kanala mesaj gönderir
  */
 async function sendToTelegram(messageHtml) {
-  if (!BOT_TOKEN || !CHANNEL_ID) {
-    console.log("[SIMÜLASYON MODU] Bot Token veya Kanal ID girilmedi.");
+  if (!BOT_TOKEN) {
+    console.log("[SIMÜLASYON MODU] Bot Token girilmedi.");
     console.log("Gönderilecek Mesaj Taslağı:\n");
     console.log(messageHtml);
     console.log("\n✅ Otomasyon motoru hazır! Canlıya almak için token belirleyin.");
     return { ok: true, simulated: true };
+  }
+
+  // Eğer channel_id invite link ise getUpdates ile gerçek ID'yi otomatik bul
+  if (!CHANNEL_ID || CHANNEL_ID.startsWith("https://t.me/")) {
+    try {
+      const updatesRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getUpdates`);
+      const updatesData = await updatesRes.json();
+      if (updatesData.ok && updatesData.result) {
+        for (const upd of updatesData.result) {
+          const chat = upd.my_chat_member?.chat || upd.channel_post?.chat || upd.message?.chat;
+          if (chat && (chat.type === "channel" || chat.type === "supergroup")) {
+            CHANNEL_ID = chat.id.toString();
+            console.log(`[OTOMATİK KANAL BULUNDU] Kanal ID: ${CHANNEL_ID}`);
+            break;
+          }
+        }
+      }
+    } catch (e) {}
   }
 
   const endpoint = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;

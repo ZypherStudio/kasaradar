@@ -18,7 +18,6 @@ interface NavbarProps {
   user: UserAccount | null;
   onOpenAuth: () => void;
   onOpenRewardsModal?: () => void;
-  onOpenTelegramAdmin?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -31,8 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenFavorites,
   user,
   onOpenAuth,
-  onOpenRewardsModal,
-  onOpenTelegramAdmin
+  onOpenRewardsModal
 }) => {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-neutral-950/85 border-b border-neutral-800/80">
@@ -171,18 +169,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <span>🎁</span>
                 <span className="hidden xl:inline">Kasa Aç</span>
-              </button>
-            )}
-
-            {/* Telegram Bot Admin Panel Button */}
-            {onOpenTelegramAdmin && (
-              <button
-                onClick={onOpenTelegramAdmin}
-                className="hidden xl:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-300 text-xs font-bold transition-all cursor-pointer"
-                title="Telegram Bot & İlan Yayıncı Paneli"
-              >
-                <Bot className="w-3.5 h-3.5" />
-                <span>Bot Paneli</span>
               </button>
             )}
 

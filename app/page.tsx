@@ -170,7 +170,6 @@ export default function Home() {
         user={user}
         onOpenAuth={() => setIsAuthModalOpen(true)}
         onOpenRewardsModal={() => setIsRewardsModalOpen(true)}
-        onOpenTelegramAdmin={() => setIsTelegramAdminOpen(true)}
       />
 
       {/* Main Content Area */}
