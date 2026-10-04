@@ -18,7 +18,6 @@ import { FavoritesDrawer } from "@/components/FavoritesDrawer";
 import { EmailNotificationModal } from "@/components/EmailNotificationModal";
 import { AdInspectorModal } from "@/components/AdInspectorModal";
 import { GameSettingsModal } from "@/components/GameSettingsModal";
-import { DiscordBotModal } from "@/components/DiscordBotModal";
 import { SponsorsSection } from "@/components/SponsorsSection";
 import { Footer } from "@/components/Footer";
 import {
@@ -48,10 +47,9 @@ export default function Home() {
   const [isFavoritesDrawerOpen, setIsFavoritesDrawerOpen] = useState<boolean>(false);
   const [isEmailModalOpen, setIsEmailModalOpen] = useState<boolean>(false);
 
-  // 3 Killer New Features Modals
+  // 2 Killer New Features Modals
   const [isAdInspectorOpen, setIsAdInspectorOpen] = useState<boolean>(false);
   const [isGameSettingsOpen, setIsGameSettingsOpen] = useState<boolean>(false);
-  const [isDiscordBotOpen, setIsDiscordBotOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -167,7 +165,6 @@ export default function Home() {
         onOpenFavorites={() => setIsFavoritesDrawerOpen(true)}
         user={user}
         onOpenAuth={() => setIsAuthModalOpen(true)}
-        onOpenDiscordBot={() => setIsDiscordBotOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -180,7 +177,6 @@ export default function Home() {
           onGoToFps={() => setActiveTab("fps")}
           onOpenAdInspector={() => setIsAdInspectorOpen(true)}
           onOpenGameSettings={() => setIsGameSettingsOpen(true)}
-          onOpenDiscordBot={() => setIsDiscordBotOpen(true)}
         />
 
         {/* Tab 1: Hazır Kasalar & F/P Radarı */}
@@ -378,12 +374,6 @@ export default function Home() {
         isOpen={isGameSettingsOpen}
         onClose={() => setIsGameSettingsOpen(false)}
         initialGameId="cs2"
-      />
-
-      {/* KILLER FEATURE 3: Discord Bot Simülatörü & Sunucu Davet Modalı */}
-      <DiscordBotModal
-        isOpen={isDiscordBotOpen}
-        onClose={() => setIsDiscordBotOpen(false)}
       />
 
       {/* Sponsors & Brand Partnerships Section */}

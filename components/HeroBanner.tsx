@@ -10,7 +10,6 @@ interface HeroBannerProps {
   onGoToFps: () => void;
   onOpenAdInspector?: () => void;
   onOpenGameSettings?: () => void;
-  onOpenDiscordBot?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -19,8 +18,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onSelectPreset,
   onGoToFps,
   onOpenAdInspector,
-  onOpenGameSettings,
-  onOpenDiscordBot
+  onOpenGameSettings
 }) => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 via-neutral-900/60 to-neutral-950 border border-neutral-800 p-6 sm:p-10 mb-8 shadow-2xl">
@@ -72,15 +70,15 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             </button>
           )}
 
-          {onOpenDiscordBot && (
-            <button
-              onClick={onOpenDiscordBot}
-              className="px-3.5 py-1.5 rounded-xl bg-indigo-500/15 hover:bg-indigo-500/25 text-indigo-300 border border-indigo-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
-            >
-              <span>🤖 Discord Botu</span>
-              <span className="text-[10px] bg-indigo-500/30 px-1.5 py-0.2 rounded font-mono">!kasa</span>
-            </button>
-          )}
+          <a
+            href="https://t.me/kasaradar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 py-1.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+          >
+            <span>📢 Telegram Fırsat Kanalı</span>
+            <span className="text-[10px] bg-sky-500/30 px-1.5 py-0.2 rounded font-semibold">Canlı Radar</span>
+          </a>
         </div>
 
         {/* Search Bar */}

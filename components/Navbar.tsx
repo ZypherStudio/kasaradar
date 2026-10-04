@@ -17,7 +17,6 @@ interface NavbarProps {
   onOpenFavorites: () => void;
   user: UserAccount | null;
   onOpenAuth: () => void;
-  onOpenDiscordBot?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -29,8 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   favoritesCount,
   onOpenFavorites,
   user,
-  onOpenAuth,
-  onOpenDiscordBot
+  onOpenAuth
 }) => {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-neutral-950/85 border-b border-neutral-800/80">
@@ -159,17 +157,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Sparkles className="w-3.5 h-3.5" />
               <span>Sistem AI</span>
             </button>
-
-            {/* Discord Bot Button */}
-            {onOpenDiscordBot && (
-              <button
-                onClick={onOpenDiscordBot}
-                className="hidden xl:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#5865F2]/15 hover:bg-[#5865F2]/25 border border-[#5865F2]/30 text-indigo-300 text-xs font-bold transition-all cursor-pointer"
-                title="KasaRadar Discord Botu"
-              >
-                <span>🤖 Discord Bot</span>
-              </button>
-            )}
 
             {/* User Account / Profile Button */}
             <button
