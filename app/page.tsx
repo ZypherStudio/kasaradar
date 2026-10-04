@@ -19,6 +19,7 @@ import { EmailNotificationModal } from "@/components/EmailNotificationModal";
 import { AdInspectorModal } from "@/components/AdInspectorModal";
 import { GameSettingsModal } from "@/components/GameSettingsModal";
 import { GamifiedRewardsModal } from "@/components/GamifiedRewardsModal";
+import { TelegramAdminModal } from "@/components/TelegramAdminModal";
 import { SponsorsSection } from "@/components/SponsorsSection";
 import { Footer } from "@/components/Footer";
 import {
@@ -52,6 +53,7 @@ export default function Home() {
   const [isAdInspectorOpen, setIsAdInspectorOpen] = useState<boolean>(false);
   const [isGameSettingsOpen, setIsGameSettingsOpen] = useState<boolean>(false);
   const [isRewardsModalOpen, setIsRewardsModalOpen] = useState<boolean>(false);
+  const [isTelegramAdminOpen, setIsTelegramAdminOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -168,6 +170,7 @@ export default function Home() {
         user={user}
         onOpenAuth={() => setIsAuthModalOpen(true)}
         onOpenRewardsModal={() => setIsRewardsModalOpen(true)}
+        onOpenTelegramAdmin={() => setIsTelegramAdminOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -384,6 +387,12 @@ export default function Home() {
       <GamifiedRewardsModal
         isOpen={isRewardsModalOpen}
         onClose={() => setIsRewardsModalOpen(false)}
+      />
+
+      {/* Telegram Bot Admin & Instant Broadcast Modal */}
+      <TelegramAdminModal
+        isOpen={isTelegramAdminOpen}
+        onClose={() => setIsTelegramAdminOpen(false)}
       />
 
       {/* Sponsors & Brand Partnerships Section */}
