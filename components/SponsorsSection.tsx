@@ -13,31 +13,10 @@ import {
   Zap,
   Building2,
   BellRing,
-  ExternalLink
+  ExternalLink,
+  PlusCircle,
+  Clock
 } from "lucide-react";
-
-interface BrandPartner {
-  name: string;
-  category: string;
-  tagline: string;
-  color: string;
-  badge: string;
-}
-
-const BRAND_PARTNERS: BrandPartner[] = [
-  { name: "ASUS ROG", category: "Anakart & Ekran Kartı", tagline: "For Those Who Dare", color: "#ef4444", badge: "Global Partner" },
-  { name: "MSI", category: "Ekran Kartı & Monitör", tagline: "True Gaming", color: "#dc2626", badge: "Resmi Donanım" },
-  { name: "Gigabyte AORUS", category: "Donanım & Kasa", tagline: "Team Up. Fight On.", color: "#f97316", badge: "Espor Sponsoru" },
-  { name: "Sapphire Tech", category: "Radeon Ekran Kartları", tagline: "Pure Gaming Performance", color: "#0ea5e9", badge: "F/P Partneri" },
-  { name: "Kingston FURY", category: "RAM & Gen5 NVMe", tagline: "Unleash the Power", color: "#e11d48", badge: "Yüksek Hız" },
-  { name: "Corsair", category: "Kasa, PSU & Sıvı Soğutma", tagline: "Born to Game", color: "#eab308", badge: "Elit Donanım" },
-  { name: "DeepCool", category: "İşlemci Soğutma", tagline: "Keep It Cool", color: "#10b981", badge: "F/P Soğutma" },
-  { name: "ZOTAC Gaming", category: "GeForce RTX Serisi", tagline: "Live to Game", color: "#06b6d4", badge: "RTX Partneri" },
-  { name: "Thermaltake", category: "Kasa & Güç Kaynağı", tagline: "Coolall Your Life", color: "#6366f1", badge: "Tier-A PSU" },
-  { name: "Cooler Master", category: "Termal Çözümler", tagline: "Make It Yours", color: "#a855f7", badge: "Sıvı Soğutma" },
-  { name: "Razer", category: "Espor Ekipmanları", tagline: "For Gamers. By Gamers.", color: "#22c55e", badge: "Espor Partneri" },
-  { name: "SteelSeries", category: "Klavye, Kulaklık & Mouse", tagline: "For Glory", color: "#fb923c", badge: "Resmi Ekipman" },
-];
 
 export const SponsorsSection: React.FC = () => {
   const [companyName, setCompanyName] = useState("");
@@ -61,196 +40,149 @@ export const SponsorsSection: React.FC = () => {
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold">
             <Award className="w-4 h-4 text-amber-400" />
-            <span>Marka &amp; Mağaza Sponsorlukları</span>
+            <span>Sponsorluk &amp; Reklam Rezervasyonu</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Donanım Ekosistemi &amp; Sponsorluk Ortakları
+            Sponsorluk &amp; Reklam Alanı
           </h2>
           <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-            Türkiye&apos;nin en aktif hazır sistem ve donanım radarı KasaRadar&apos;da ürünlerinizi günde on binlerce bilinçli oyuncuya doğrudan sergileyin.
+            Bu bölüm hazır sistem mağazaları, e-ticaret siteleri ve donanım distribütörleri için ayrılmıştır. Markanızı her gün binlerce bilinçli oyuncuya ulaştırmak için ilk sponsor olarak yerinizi ayırtın.
           </p>
         </div>
 
-        {/* Brand Grid Showcase */}
+        {/* Reserved Sponsor Slots (Ayrılmış Boş Sponsorluk Alanları) */}
         <div>
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider flex items-center gap-1.5">
               <Cpu className="w-4 h-4 text-emerald-400" />
-              Taranan Donanım Markaları &amp; Global Ekosistem
+              Ayrılmış Sponsorluk Yuvaları (Rezervasyona Açık)
             </span>
-            <span className="text-[11px] text-emerald-400 font-semibold">
-              12+ Resmi Üretici Marka
+            <span className="text-[11px] text-emerald-400 font-bold flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              3 Yuva Boş • İlk Başvuran Yer Alır
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-            {BRAND_PARTNERS.map((brand) => (
-              <div
-                key={brand.name}
-                className="p-3.5 rounded-xl bg-neutral-900/80 border border-neutral-800 hover:border-neutral-700 transition-all group flex flex-col justify-between space-y-2 hover:bg-neutral-900"
-              >
-                <div className="flex items-center justify-between">
-                  <span
-                    className="text-[10px] px-1.5 py-0.5 rounded font-bold"
-                    style={{ backgroundColor: `${brand.color}20`, color: brand.color }}
-                  >
-                    {brand.badge}
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: brand.color }} />
-                </div>
-
-                <div>
-                  <div className="font-extrabold text-white text-xs group-hover:text-emerald-400 transition-colors truncate">
-                    {brand.name}
-                  </div>
-                  <div className="text-[10px] text-neutral-400 truncate">
-                    {brand.category}
-                  </div>
-                </div>
-
-                <div className="text-[9px] text-neutral-500 font-mono italic truncate border-t border-neutral-800/80 pt-1.5">
-                  &quot;{brand.tagline}&quot;
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Slot 1: Haftanın Sponsor Kasası */}
+            <div className="p-5 rounded-2xl bg-neutral-900/60 border-2 border-dashed border-neutral-700 hover:border-emerald-500/60 transition-all flex flex-col justify-between space-y-4 group">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  BOŞ • REZERVASYONA AÇIK
+                </span>
+                <span className="text-xs font-mono text-neutral-500">YUVA #1</span>
               </div>
-            ))}
+
+              <div className="space-y-2 py-2">
+                <div className="w-12 h-12 rounded-xl bg-neutral-800/80 border border-neutral-700 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <h3 className="font-extrabold text-white text-base group-hover:text-emerald-400 transition-colors">
+                  Haftanın Sponsor Kasası
+                </h3>
+                <p className="text-xs text-neutral-400 leading-relaxed">
+                  Bu alan anlaşma sağlandığında ilgili mağazanın hazır sistemiyle doldurulacaktır. Ana sayfanın en üstünde sabit altın rozetli vitrin hakkı.
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-neutral-800 flex items-center justify-between text-xs">
+                <span className="text-neutral-500 text-[11px]">Günde 25.000+ Oyuncu</span>
+                <button
+                  onClick={() => {
+                    setSelectedPackage("haftanin-kasasi");
+                    document.getElementById("sponsor-application-form")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-400 hover:text-neutral-950 font-bold transition-all cursor-pointer flex items-center gap-1"
+                >
+                  <PlusCircle className="w-3.5 h-3.5" />
+                  <span>Sponsor Ol</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Slot 2: Telegram & Flaş Bildirim */}
+            <div className="p-5 rounded-2xl bg-neutral-900/60 border-2 border-dashed border-neutral-700 hover:border-cyan-500/60 transition-all flex flex-col justify-between space-y-4 group">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 font-bold flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  BOŞ • REZERVASYONA AÇIK
+                </span>
+                <span className="text-xs font-mono text-neutral-500">YUVA #2</span>
+              </div>
+
+              <div className="space-y-2 py-2">
+                <div className="w-12 h-12 rounded-xl bg-neutral-800/80 border border-neutral-700 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                  <BellRing className="w-6 h-6" />
+                </div>
+                <h3 className="font-extrabold text-white text-base group-hover:text-cyan-400 transition-colors">
+                  Telegram &amp; Flaş Alarm Bildirimi
+                </h3>
+                <p className="text-xs text-neutral-400 leading-relaxed">
+                  Kampanyalı sistem stoğunuz veya indirim kuponunuz Telegram kanalımızdaki binlerce aktif donanım takipçisine anlık push mesaj olarak ulaştırılır.
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-neutral-800 flex items-center justify-between text-xs">
+                <span className="text-neutral-500 text-[11px]">Anlık Push &amp; E-Posta</span>
+                <button
+                  onClick={() => {
+                    setSelectedPackage("telegram-flas");
+                    document.getElementById("sponsor-application-form")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="px-3 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500 text-cyan-400 hover:text-neutral-950 font-bold transition-all cursor-pointer flex items-center gap-1"
+                >
+                  <PlusCircle className="w-3.5 h-3.5" />
+                  <span>Sponsor Ol</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Slot 3: Benchmark & Espor Sponsoru */}
+            <div className="p-5 rounded-2xl bg-neutral-900/60 border-2 border-dashed border-neutral-700 hover:border-amber-500/60 transition-all flex flex-col justify-between space-y-4 group">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 font-bold flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  BOŞ • REZERVASYONA AÇIK
+                </span>
+                <span className="text-xs font-mono text-neutral-500">YUVA #3</span>
+              </div>
+
+              <div className="space-y-2 py-2">
+                <div className="w-12 h-12 rounded-xl bg-neutral-800/80 border border-neutral-700 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h3 className="font-extrabold text-white text-base group-hover:text-amber-400 transition-colors">
+                  FPS Benchmark &amp; Donanım Sponsoru
+                </h3>
+                <p className="text-xs text-neutral-400 leading-relaxed">
+                  25 popüler oyunda FPS simülatöründe ve yayıncı setup modülünde donanımınız &quot;Resmi Test Donanımı&quot; olarak önerilir.
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-neutral-800 flex items-center justify-between text-xs">
+                <span className="text-neutral-500 text-[11px]">Resmi Donanım Etiketi</span>
+                <button
+                  onClick={() => {
+                    setSelectedPackage("benchmark-sponsor");
+                    document.getElementById("sponsor-application-form")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-400 hover:text-neutral-950 font-bold transition-all cursor-pointer flex items-center gap-1"
+                >
+                  <PlusCircle className="w-3.5 h-3.5" />
+                  <span>Sponsor Ol</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* 3 Strategic Sponsorship Packages */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <span className="text-xs font-bold text-white uppercase tracking-wider">
-              Sponsorluk &amp; Reklam Modelleri
-            </span>
-            <p className="text-xs text-neutral-400 mt-0.5">
-              Hazır sistem mağazaları ve donanım distribütörleri için yüksek dönüşümlü vitrinler
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Paket 1 */}
-            <div className="p-6 rounded-2xl bg-neutral-900/90 border border-emerald-500/40 relative flex flex-col justify-between space-y-4 shadow-xl shadow-emerald-500/5">
-              <div className="absolute top-4 right-4">
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-black uppercase">
-                  En Popüler
-                </span>
-              </div>
-
-              <div className="space-y-2">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <h3 className="text-base font-bold text-white">Haftanın Sponsor Kasası</h3>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  Hazır sisteminiz ana sayfanın en üstünde &quot;Sponsorlu Vitrin&quot; etiketiyle sabitlenir. Günde 25.000+ görüntüleme ve doğrudan satın alım linki.
-                </p>
-              </div>
-
-              <ul className="space-y-2 text-xs text-neutral-300 border-t border-neutral-800 pt-4">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>En üst sırada sabit sistem kartı</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>Doğrudan mağaza sepeti affiliate linki</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>Özel &quot;F/P Sponsor&quot; altın rozeti</span>
-                </li>
-              </ul>
-
-              <button
-                onClick={() => {
-                  setSelectedPackage("haftanin-kasasi");
-                  const formEl = document.getElementById("sponsor-application-form");
-                  formEl?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-black text-xs transition-all cursor-pointer"
-              >
-                Bu Paketi Seç &amp; Başvur
-              </button>
-            </div>
-
-            {/* Paket 2 */}
-            <div className="p-6 rounded-2xl bg-neutral-900/90 border border-neutral-800 hover:border-neutral-700 transition-all flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-                  <BellRing className="w-5 h-5" />
-                </div>
-                <h3 className="text-base font-bold text-white">Telegram &amp; Flaş Alarm</h3>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  İndirimli kasanız veya yeni stok açılışınız Telegram kanalımızdaki 45.000+ aktif donanım avcısına push bildirim olarak anında gönderilir.
-                </p>
-              </div>
-
-              <ul className="space-y-2 text-xs text-neutral-300 border-t border-neutral-800 pt-4">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                  <span>Fiyat Alarmı e-posta &amp; Telegram bülteni</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                  <span>Stok bitene kadar anlık takip</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                  <span>Özel indirim kuponu tanımlama desteği</span>
-                </li>
-              </ul>
-
-              <button
-                onClick={() => {
-                  setSelectedPackage("telegram-flas");
-                  const formEl = document.getElementById("sponsor-application-form");
-                  formEl?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="w-full py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-cyan-300 border border-cyan-500/30 font-bold text-xs transition-all cursor-pointer"
-              >
-                Bu Paketi Seç &amp; Başvur
-              </button>
-            </div>
-
-            {/* Paket 3 */}
-            <div className="p-6 rounded-2xl bg-neutral-900/90 border border-neutral-800 hover:border-neutral-700 transition-all flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
-                  <Zap className="w-5 h-5" />
-                </div>
-                <h3 className="text-base font-bold text-white">Benchmark &amp; Espor Sponsorluğu</h3>
-                <p className="text-xs text-neutral-400 leading-relaxed">
-                  FPS Test Motorunda 25+ oyunda ekran kartı veya donanımınız &quot;Resmi Test Donanımı&quot; olarak önerilir. Yayıncı setup sayfalarında vitrin hakkı.
-                </p>
-              </div>
-
-              <ul className="space-y-2 text-xs text-neutral-300 border-t border-neutral-800 pt-4">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>FPS simülasyonunda resmi donanım etiketi</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>Yayıncı Setup modülünde &quot;Önerilen Parça&quot; rozeti</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>Aylık detaylı tıklama &amp; dönüşüm analizi</span>
-                </li>
-              </ul>
-
-              <button
-                onClick={() => {
-                  setSelectedPackage("benchmark-sponsor");
-                  const formEl = document.getElementById("sponsor-application-form");
-                  formEl?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="w-full py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-amber-300 border border-amber-500/30 font-bold text-xs transition-all cursor-pointer"
-              >
-                Bu Paketi Seç &amp; Başvur
-              </button>
-            </div>
-          </div>
+        {/* Information Callout */}
+        <div className="p-4 rounded-2xl bg-neutral-900/80 border border-neutral-800 flex items-center gap-3 text-xs text-neutral-300">
+          <Clock className="w-5 h-5 text-amber-400 shrink-0" />
+          <span>
+            <strong>Sponsorluk Süreci:</strong> Şu anda sponsorluk alanlarımız açık rezervasyondadır. Yeni marka veya mağaza iş birliği sağlandıkça onaylanan logolar ve resmi ilanlar buraya anlık olarak eklenecektir.
+          </span>
         </div>
 
         {/* Application Form & Direct Producer Card */}
@@ -260,10 +192,10 @@ export const SponsorsSection: React.FC = () => {
             <div>
               <h3 className="text-lg font-black text-white flex items-center gap-2">
                 <Building2 className="w-5 h-5 text-emerald-400" />
-                Sponsorluk &amp; İş Birliği Başvuru Formu
+                Sponsorluk &amp; Reklam Rezervasyon Formu
               </h3>
               <p className="text-xs text-neutral-400 mt-1">
-                Aşağıdaki formu doldurarak teklifinizi iletin. ZYPHERSTUDIO ekibi en geç 2 saat içinde dönüş yapacaktır.
+                Boş sponsor yuvalarından birinde yer almak için aşağıdaki bilgileri doldurun. ZYPHERSTUDIO yapımcı ekibi teklifinizi inceleyip dönüş yapacaktır.
               </p>
             </div>
 
@@ -272,10 +204,10 @@ export const SponsorsSection: React.FC = () => {
                 <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h4 className="text-sm font-bold text-white">Başvurunuz Başarıyla Alındı!</h4>
+                <h4 className="text-sm font-bold text-white">Rezervasyon Başvurunuz Alındı!</h4>
                 <p className="text-xs text-neutral-300 max-w-md mx-auto leading-relaxed">
                   Sayın <strong>{contactName || companyName}</strong> yetkilisi, sponsorluk talebiniz <strong className="text-emerald-400">ZYPHERSTUDIO</strong> yapımcı ekibine iletildi.
-                  Detaylı medya kiti ve fiyatlandırma teklifi <strong>{email}</strong> adresinize gönderilecektir.
+                  Detaylı medya kiti ve sponsorluk şartları <strong>{email}</strong> adresinize gönderilecektir.
                 </p>
                 <div className="pt-2 text-[11px] text-neutral-400 font-mono">
                   İletişim: <span className="text-cyan-400 font-semibold">zypherstudio@gmail.com</span>
@@ -299,7 +231,7 @@ export const SponsorsSection: React.FC = () => {
                       required
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
-                      placeholder="Örn: Gaming.Gen.TR, ASUS, İtopya..."
+                      placeholder="Örn: Gaming.Gen.TR, İtopya, ASUS..."
                       className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-xs focus:outline-none focus:border-emerald-500"
                     />
                   </div>
@@ -349,29 +281,29 @@ export const SponsorsSection: React.FC = () => {
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-neutral-300">
-                    İlgilendiğiniz Sponsorluk Paketi
+                    İlgilendiğiniz Sponsorluk Alanı
                   </label>
                   <select
                     value={selectedPackage}
                     onChange={(e) => setSelectedPackage(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-xs focus:outline-none focus:border-emerald-500"
                   >
-                    <option value="haftanin-kasasi">Haftanın Sponsor Kasası (Ana Sayfa Vitrin)</option>
-                    <option value="telegram-flas">Telegram &amp; Flaş Alarm Bildirimi</option>
-                    <option value="benchmark-sponsor">Benchmark &amp; Espor Donanım Sponsorluğu</option>
-                    <option value="ozel-proje">Özel İş Birliği / Ortak Kampanya</option>
+                    <option value="haftanin-kasasi">Yuva #1: Haftanın Sponsor Kasası (Ana Sayfa Vitrin)</option>
+                    <option value="telegram-flas">Yuva #2: Telegram &amp; Flaş Alarm Bildirimi</option>
+                    <option value="benchmark-sponsor">Yuva #3: FPS Benchmark &amp; Espor Donanım Sponsorluğu</option>
+                    <option value="ozel-proje">Özel Sponsorluk &amp; Ortak Kampanya</option>
                   </select>
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-neutral-300">
-                    Mesaj &amp; Tanıtmak İstediğiniz Sistem / Donanım
+                    Mesaj &amp; Tanıtmak İstediğiniz Sistem / Marka
                   </label>
                   <textarea
                     rows={3}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Sistemin linki, bütçe veya hedeflenen kampanya süresi hakkında bilgi verin..."
+                    placeholder="Sistemin linki, bütçe veya kampanya detayları hakkında bilgi verin..."
                     className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-xs focus:outline-none focus:border-emerald-500"
                   />
                 </div>
@@ -407,7 +339,7 @@ export const SponsorsSection: React.FC = () => {
               </div>
 
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Form doldurmak yerine doğrudan yapımcı ve geliştirici ekibimize e-posta göndererek hızlı teklif alabilirsiniz.
+                Form doldurmak yerine doğrudan yapımcı ve geliştirici ekibimize e-posta göndererek hızlı teklif ve medya kiti alabilirsiniz.
               </p>
 
               <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800/80 space-y-2">
