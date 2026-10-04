@@ -236,13 +236,15 @@ export const DealsModule: React.FC<DealsModuleProps> = ({
               <p className="text-[11px] text-neutral-400 leading-relaxed">
                 4.200&apos;den fazla donanımcı ve al-satçının olduğu kanala katıl, gece düşen kelepir ilanları herkesten önce yakala.
               </p>
-              <button
-                onClick={() => alert("KasaRadar VIP Telegram Kanalına Yönlendiriliyorsunuz! (Simülasyon)")}
-                className="w-full py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-cyan-300 text-xs font-semibold border border-cyan-500/30 transition-all cursor-pointer flex items-center justify-center gap-1.5"
+              <a
+                href="https://t.me/+Voua-sJ4TVJiZjc8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-neutral-950 text-xs font-black transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-md shadow-sky-500/20"
               >
                 <span>Telegram Kanalına Katıl</span>
-                <ExternalLink className="w-3 h-3" />
-              </button>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
         </div>

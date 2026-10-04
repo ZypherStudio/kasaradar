@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Logo } from "./Logo";
-import { ShieldCheck, Heart, Mail, ExternalLink, Cpu, Terminal } from "lucide-react";
+import { ShieldCheck, Heart, Mail, ExternalLink, Cpu, Terminal, Send } from "lucide-react";
 
 export const Footer: React.FC = () => {
   return (
@@ -87,6 +87,16 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2 text-xs">
+            <a
+              href="https://t.me/+Voua-sJ4TVJiZjc8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-1.5 px-3 rounded-xl bg-sky-500/20 hover:bg-sky-500 text-sky-300 hover:text-neutral-950 font-bold flex items-center gap-1.5 border border-sky-500/30 transition-all"
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>Telegram Kanalı</span>
+            </a>
+
             <a
               href="mailto:zypherstudio@gmail.com"
               className="py-1.5 px-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-semibold flex items-center gap-1.5 border border-neutral-700 transition-all"

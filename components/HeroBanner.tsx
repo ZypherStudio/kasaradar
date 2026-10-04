@@ -71,7 +71,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
           )}
 
           <a
-            href="https://t.me/kasaradar"
+            href="https://t.me/+Voua-sJ4TVJiZjc8"
             target="_blank"
             rel="noopener noreferrer"
             className="px-3.5 py-1.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
