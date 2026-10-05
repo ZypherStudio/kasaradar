@@ -226,17 +226,17 @@ export function loginWithProvider(
 
   const defaultEmail =
     provider === "google"
-      ? "erdalalp@gmail.com"
+      ? "zypher.radar@gmail.com"
       : provider === "apple"
-      ? "erdalalp@icloud.com"
-      : "erdalalp#1337@discord.gg";
+      ? "zypher@icloud.com"
+      : "zypher#1337@discord.gg";
 
   const defaultName =
     provider === "google"
-      ? "Erdal Alp"
+      ? "KasaRadar Üyesi"
       : provider === "apple"
-      ? "Erdal Alp"
-      : "Erdal";
+      ? "Apple Kullanıcısı"
+      : "ZypherGamer";
 
   const email = (customAccount?.email || defaultEmail).trim().toLowerCase();
   const name = customAccount?.name?.trim() || defaultName;
