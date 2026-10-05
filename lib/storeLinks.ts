@@ -68,6 +68,33 @@ export function getStoreSearchUrl(productName: string, store: StoreIdentifier | 
   if (normalizedStore.includes("n11")) {
     return `https://www.n11.com/arama?q=${query}&utm_source=kasaradar`;
   }
+  if (normalizedStore.includes("mediamarkt")) {
+    return `https://www.mediamarkt.com.tr/tr/search.html?query=${query}`;
+  }
+  if (normalizedStore.includes("teknosa")) {
+    return `https://www.teknosa.com/arama?s=${query}`;
+  }
+  if (normalizedStore.includes("molekul") || normalizedStore.includes("molekül")) {
+    return `https://molekulpc.com/arama?q=${query}`;
+  }
+  if (normalizedStore.includes("novabilgisayar") || normalizedStore.includes("nova")) {
+    return `https://www.novabilgisayar.com/arama.asp?kelime=${query}`;
+  }
+  if (normalizedStore.includes("dfs")) {
+    return `https://www.dfsbilgisayar.com/arama?q=${query}`;
+  }
+  if (normalizedStore.includes("webdenal")) {
+    return `https://www.webdenal.com/arama?q=${query}`;
+  }
+  if (normalizedStore.includes("bizdehesapli") || normalizedStore.includes("bizdehesaplı")) {
+    return `https://www.bizdehesapli.com/arama?q=${query}`;
+  }
+  if (normalizedStore.includes("elmacik") || normalizedStore.includes("elmacık")) {
+    return `https://www.elmacik.com/arama?q=${query}`;
+  }
+  if (normalizedStore.includes("adeks")) {
+    return `https://www.adeksstore.com/arama?q=${query}`;
+  }
 
   return `https://www.google.com/search?q=${query}+fiyat`;
 }

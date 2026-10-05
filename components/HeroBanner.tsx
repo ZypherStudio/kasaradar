@@ -81,16 +81,6 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             <span>📢 Telegram Fırsat Kanalı</span>
             <span className="text-[10px] bg-sky-500/30 px-1.5 py-0.2 rounded font-semibold">Canlı Radar</span>
           </a>
-
-          {onOpenRewardsModal && (
-            <button
-              onClick={onOpenRewardsModal}
-              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-yellow-500/20 hover:from-amber-500/30 hover:to-yellow-500/30 text-amber-300 border border-amber-500/40 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-sm animate-pulse"
-            >
-              <span>🎁 Günlük Kasa Aç</span>
-              <span className="text-[10px] bg-amber-500/30 px-1.5 py-0.2 rounded font-mono">Steam Kodu</span>
-            </button>
-          )}
         </div>
 
         {/* Search Bar */}
@@ -161,8 +151,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               <span>Taranan Mağazalar</span>
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
             </div>
-            <div className="text-lg font-bold text-white">16+ Büyük Satıcı</div>
-            <div className="text-[11px] text-neutral-500">İtopya, GamingGen, Vatan, GameGaraj, Gençer...</div>
+            <div className="text-lg font-bold text-white">22+ Büyük Mağaza</div>
+            <div className="text-[11px] text-neutral-500">İtopya, GamingGen, Vatan, Tebilon, QP, Inventus, Nova...</div>
           </div>
 
           <div className="p-3 rounded-xl bg-neutral-950/60 border border-neutral-800/60 text-left">

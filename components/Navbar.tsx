@@ -160,18 +160,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>Sistem AI</span>
             </button>
 
-            {/* Gamified Rewards / Case Opening Button */}
-            {onOpenRewardsModal && (
-              <button
-                onClick={onOpenRewardsModal}
-                className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-xs font-bold transition-all cursor-pointer"
-                title="Günün Kasasını Aç & Ödül Kazan"
-              >
-                <span>🎁</span>
-                <span className="hidden xl:inline">Kasa Aç</span>
-              </button>
-            )}
-
             {/* User Account / Profile Button */}
             <button
               onClick={onOpenAuth}

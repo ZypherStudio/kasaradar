@@ -46,7 +46,7 @@ loadEnv();
 let BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
 let CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID || "https://t.me/+Voua-sJ4TVJiZjc8";
 
-// KasaRadar Sıcak Fırsat & Hazır Kasa Veritabanı
+// KasaRadar Sıcak Fırsat & Hazır Kasa Veritabanı (16+ Mağaza)
 const DEALS_QUEUE = [
   {
     title: "Gençer Phantom V1 / RTX 4060 Ti",
@@ -94,6 +94,36 @@ const DEALS_QUEUE = [
     badge: "👑 DDR5 EN ÇOK SATAN"
   },
   {
+    title: "Tebilon Zenith / i5 12400F & RTX 4060",
+    seller: "Tebilon",
+    price: 20499,
+    oldPrice: 22800,
+    savings: 4601,
+    fpScore: 9.5,
+    gpu: "Gigabyte GeForce RTX 4060 Eagle OC 8GB",
+    cpu: "Intel Core i5 12400F 4.4GHz",
+    ram: "16GB Corsair Vengeance 3200MHz",
+    ssd: "500GB Kingston NV2 M.2 NVMe",
+    installments: "Peşin Fiyatına 3 Taksit: 6.833 TL",
+    directUrl: "https://kasaradar.com",
+    badge: "💥 20.000 TL BANDI F/P KRALI"
+  },
+  {
+    title: "Falcon AMD Pure Power / RX 7700 XT 12GB",
+    seller: "İncehesap",
+    price: 34999,
+    oldPrice: 38500,
+    savings: 6201,
+    fpScore: 9.3,
+    gpu: "Sapphire Pulse Radeon RX 7700 XT 12GB",
+    cpu: "AMD Ryzen 5 7500F AM5 5.0GHz",
+    ram: "16GB Team T-Force 5600MHz DDR5",
+    ssd: "1TB Lexar NM620 Gen3 NVMe",
+    installments: "Peşin Fiyatına 3 Taksit: 11.666 TL",
+    directUrl: "https://kasaradar.com",
+    badge: "🚀 12GB VRAM 2K OYUN CANAVARI"
+  },
+  {
     title: "Dark Diamond Pro / RX 7800 XT 16GB",
     seller: "Teknobiyotik",
     price: 39999,
@@ -106,7 +136,7 @@ const DEALS_QUEUE = [
     ssd: "1TB Kioxia Exceria Plus G3 Gen4",
     installments: "Peşin Fiyatına 4 Taksit: 9.999 TL",
     directUrl: "https://kasaradar.com",
-    badge: "🚀 16GB VRAM 2K & 4K CANAVARI"
+    badge: "🔥 16GB VRAM 2K & 4K CANAVARI"
   },
   {
     title: "Pckolik Ghost / i5 13400F & RTX 4070 Super",
@@ -122,6 +152,81 @@ const DEALS_QUEUE = [
     installments: "Peşin Fiyatına 4 Taksit: 11.124 TL",
     directUrl: "https://kasaradar.com",
     badge: "⭐ 2K ULTRA CANAVAR"
+  },
+  {
+    title: "GameGaraj Hero V2 / RTX 4060 Ti & R5 5600",
+    seller: "GameGaraj",
+    price: 26499,
+    oldPrice: 28999,
+    savings: 4800,
+    fpScore: 9.4,
+    gpu: "Palit GeForce RTX 4060 Ti Dual 8GB",
+    cpu: "AMD Ryzen 5 5600 4.4GHz 6C/12T",
+    ram: "16GB G.Skill Ripjaws 3200MHz",
+    ssd: "1TB Crucial P3 Plus Gen4 NVMe",
+    installments: "Peşin Fiyatına 3 Taksit: 8.833 TL",
+    directUrl: "https://kasaradar.com",
+    badge: "⚡ KELEPİR ALARMI"
+  },
+  {
+    title: "Sinerji Vesper Ultimate / 7800X3D & RTX 4080 Super",
+    seller: "Sinerji",
+    price: 79999,
+    oldPrice: 87500,
+    savings: 9500,
+    fpScore: 9.7,
+    gpu: "Gainward GeForce RTX 4080 SUPER Panther 16GB",
+    cpu: "AMD Ryzen 7 7800X3D (Dünyanın 1 Numaralı Oyun İşlemcisi)",
+    ram: "32GB Corsair Vengeance 6000MHz CL30",
+    ssd: "2TB Kingston KC3000 (7000MB/s Hız)",
+    installments: "Peşin Fiyatına 6 Taksit: 13.333 TL",
+    directUrl: "https://kasaradar.com",
+    badge: "👑 4K ULTRA E-SPOR AMİRAL GEMİSİ"
+  },
+  {
+    title: "QP Eclipse Pro / Ryzen 7 7700X & RX 7800 XT",
+    seller: "QP Bilişim",
+    price: 49999,
+    oldPrice: 55000,
+    savings: 8201,
+    fpScore: 9.6,
+    gpu: "Sapphire Nitro+ Radeon RX 7800 XT 16GB",
+    cpu: "AMD Ryzen 7 7700X AM5 5.4GHz",
+    ram: "32GB Corsair Vengeance 6000MHz DDR5",
+    ssd: "1TB Kingston KC3000 Gen4 M.2 (7000MB/s)",
+    installments: "Peşin Fiyatına 4 Taksit: 12.499 TL",
+    directUrl: "https://kasaradar.com",
+    badge: "🚀 16GB VRAM 2K & 4K CANAVARI"
+  },
+  {
+    title: "Nova Titan Ultra / 7800X3D & 4070 Ti Super",
+    seller: "Novabilgisayar",
+    price: 64999,
+    oldPrice: 71500,
+    savings: 9801,
+    fpScore: 9.7,
+    gpu: "Palit GeForce RTX 4070 Ti SUPER 16GB",
+    cpu: "AMD Ryzen 7 7800X3D (3D V-Cache)",
+    ram: "32GB G.Skill Flare X5 6000MHz DDR5",
+    ssd: "1TB Samsung 980 Pro NVMe Gen4",
+    installments: "Peşin Fiyatına 6 Taksit: 10.833 TL",
+    directUrl: "https://kasaradar.com",
+    badge: "🏆 360Hz E-SPOR AMİRAL GEMİSİ"
+  },
+  {
+    title: "Adeks Pro Esports / i5 14400F & 4060 Ti 16GB",
+    seller: "Adeks Store",
+    price: 37999,
+    oldPrice: 42000,
+    savings: 6201,
+    fpScore: 9.5,
+    gpu: "Gigabyte GeForce RTX 4060 Ti 16GB VRAM",
+    cpu: "Intel Core i5 14400F 14. Nesil",
+    ram: "32GB Corsair Vengeance 3600MHz",
+    ssd: "1TB WD Black SN770 Gen4 NVMe",
+    installments: "Peşin Fiyatına 4 Taksit: 9.499 TL",
+    directUrl: "https://kasaradar.com",
+    badge: "⚡ 16GB VRAM DEV KAPASİTE"
   }
 ];
 
@@ -164,24 +269,6 @@ async function sendToTelegram(messageHtml) {
     return { ok: true, simulated: true };
   }
 
-  // Eğer channel_id invite link ise getUpdates ile gerçek ID'yi otomatik bul
-  if (!CHANNEL_ID || CHANNEL_ID.startsWith("https://t.me/")) {
-    try {
-      const updatesRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getUpdates`);
-      const updatesData = await updatesRes.json();
-      if (updatesData.ok && updatesData.result) {
-        for (const upd of updatesData.result) {
-          const chat = upd.my_chat_member?.chat || upd.channel_post?.chat || upd.message?.chat;
-          if (chat && (chat.type === "channel" || chat.type === "supergroup")) {
-            CHANNEL_ID = chat.id.toString();
-            console.log(`[OTOMATİK KANAL BULUNDU] Kanal ID: ${CHANNEL_ID}`);
-            break;
-          }
-        }
-      }
-    } catch (e) {}
-  }
-
   const endpoint = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
   const response = await fetch(endpoint, {
     method: "POST",
@@ -201,13 +288,56 @@ async function sendToTelegram(messageHtml) {
   return data;
 }
 
+async function resolveChannel() {
+  if (CHANNEL_ID && !CHANNEL_ID.startsWith("https://t.me/")) {
+    return CHANNEL_ID;
+  }
+
+  console.log("⏳ [@kasadarrbot] Bot kanalınıza eklenmeyi bekliyor...");
+  console.log("👉 Lütfen Telegram kanalınızda (Yöneticiler > Yönetici Ekle) kısmından @kasadarrbot botunu yönetici yapın.");
+
+  while (!CHANNEL_ID || CHANNEL_ID.startsWith("https://t.me/")) {
+    try {
+      const allowed = encodeURIComponent(JSON.stringify(["message", "channel_post", "my_chat_member", "chat_member"]));
+      const updatesRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getUpdates?allowed_updates=${allowed}`);
+      const updatesData = await updatesRes.json();
+      if (updatesData.ok && updatesData.result && updatesData.result.length > 0) {
+        for (const upd of updatesData.result) {
+          const chat = upd.my_chat_member?.chat || 
+                       upd.channel_post?.chat || 
+                       upd.message?.forward_from_chat ||
+                       (upd.message?.chat?.type !== "private" ? upd.message?.chat : null);
+          if (chat && (chat.type === "channel" || chat.type === "supergroup" || chat.type === "group")) {
+            CHANNEL_ID = chat.id.toString();
+            console.log(`🎉 [BAĞLANTI TAMAMLANDI] Kanal bulundu: "${chat.title || "KasaRadar"}" (ID: ${CHANNEL_ID})`);
+            
+            // .env.local ve .env dosyasına kalıcı kaydet
+            try {
+              const envFile = path.join(__dirname, "../.env.local");
+              let currentEnv = fs.existsSync(envFile) ? fs.readFileSync(envFile, "utf-8") : "";
+              if (!currentEnv.includes("TELEGRAM_CHANNEL_ID")) {
+                fs.appendFileSync(envFile, `\nTELEGRAM_CHANNEL_ID="${CHANNEL_ID}"\n`);
+              }
+            } catch (e) {}
+            return CHANNEL_ID;
+          }
+        }
+      }
+    } catch (e) {}
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+  }
+  return CHANNEL_ID;
+}
+
 /**
  * Ana akış: Sıradaki fırsatı kanala gönderir
  */
 async function runBot() {
   const isNow = process.argv.includes("--now");
-  console.log("🤖 [KasaRadar Otomatik İlan Botu] Başlatılıyor...");
-  console.log(`Hedef Kanal: ${CHANNEL_ID || "Belirtilmedi (Simülasyon)"}`);
+  console.log("🤖 [KasaRadar Otomatik İlan Botu] Aktif ediliyor...");
+  console.log(`Bot: @kasadarrbot (ID: 8960486610)`);
+
+  await resolveChannel();
 
   // Rastgele veya sıradaki ilanı seç
   const selected = DEALS_QUEUE[Math.floor(Math.random() * DEALS_QUEUE.length)];
@@ -215,26 +345,26 @@ async function runBot() {
 
   try {
     const res = await sendToTelegram(postText);
-    if (res.simulated) {
-      console.log(`[BAŞARILI] '${selected.title}' yayına hazırlandı!`);
-    } else {
-      console.log(`✅ [BAŞARILI] '${selected.title}' Telegram kanalına başarıyla gönderildi! Mesaj ID: ${res.result.message_id}`);
+    if (!res.simulated) {
+      console.log(`✅ [BAŞARILI] '${selected.title}' Telegram kanalına otomatik gönderildi! Mesaj ID: ${res.result?.message_id}`);
     }
   } catch (err) {
     console.error("❌ Gönderim sırasında hata oluştu:", err.message);
   }
 
   if (!isNow) {
-    console.log("⏰ Bot her 3 saatte bir otomatik yeni fırsat göndermek üzere arka planda dinlemede...");
+    const intervalMinutes = parseInt(process.env.TELEGRAM_POST_INTERVAL_MINUTES || "40", 10);
+    const intervalMs = intervalMinutes * 60 * 1000;
+    console.log(`⏰ Bot her ${intervalMinutes} dakikada bir yeni hazır kasa ilanını otomatik olarak kanalınıza paylaşmaya devam edecek...`);
     setInterval(async () => {
       const nextItem = DEALS_QUEUE[Math.floor(Math.random() * DEALS_QUEUE.length)];
       try {
         await sendToTelegram(formatTelegramMessage(nextItem));
-        console.log(`[ZAMANLAYICI] Yeni ilan paylaşıldı: ${nextItem.title}`);
+        console.log(`[OTOMATİK YAYINLANDI] Yeni ilan: ${nextItem.title} (${new Date().toLocaleTimeString("tr-TR")})`);
       } catch (e) {
-        console.error("[ZAMANLAYICI HATA]", e.message);
+        console.error("[YAYINLAMA HATA]", e.message);
       }
-    }, 3 * 60 * 60 * 1000); // 3 saat
+    }, intervalMs);
   }
 }
 

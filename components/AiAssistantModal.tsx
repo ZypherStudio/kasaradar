@@ -49,24 +49,36 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleAnalyze = (overridePrompt?: string) => {
+  const handleAnalyze = async (overridePrompt?: string) => {
     setAiThinking(true);
     const query = overridePrompt || customPrompt;
 
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/ai-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: query,
+          budget,
+          useCase,
+          resolution
+        })
+      });
+
+      const data = await res.json();
       setAiThinking(false);
       setAnalyzed(true);
 
-      if (query.toLowerCase().includes("valorant") || query.toLowerCase().includes("cs2") || query.toLowerCase().includes("espor")) {
-        setAiNote("İşlemcinin L3 önbellek mimarisi rekabetçi oyunlarda 1% ve 0.1% low FPS değerlerini stabilize eder. Bu sistem 240Hz+ monitörler için sıfır gecikme sağlar.");
-      } else if (query.toLowerCase().includes("gta") || query.toLowerCase().includes("cyberpunk") || query.toLowerCase().includes("4k") || query.toLowerCase().includes("2k")) {
-        setAiNote("12GB+ GDDR6X VRAM ve DLSS 3 Kare Oluşturma teknolojisiyle yeni nesil ağır grafik motorlarında Ray Tracing açıkken bile akıcı deneyim sunar.");
-      } else if (query.toLowerCase().includes("yayın") || query.toLowerCase().includes("render") || query.toLowerCase().includes("premier")) {
-        setAiNote("Nvidia NVENC çift donanımsal video kodlayıcı ve 32GB RAM kapasitesiyle aynı anda hem oyun oynayıp hem 1080p60fps yayın yapabilirsiniz.");
+      if (data.reply) {
+        setAiNote(data.reply);
       } else {
         setAiNote("Bütçene göre tek tek toplamaya kıyasla en yüksek net kâr marjını veren, parça uyumu onaylanmış en mantıklı hazır kasa seçildi.");
       }
-    }, 600);
+    } catch (e) {
+      setAiThinking(false);
+      setAnalyzed(true);
+      setAiNote("Bütçene göre tek tek toplamaya kıyasla en yüksek net kâr marjını veren, parça uyumu onaylanmış en mantıklı hazır kasa seçildi.");
+    }
   };
 
   // AI Matching algorithm

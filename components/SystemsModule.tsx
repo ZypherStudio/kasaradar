@@ -44,6 +44,7 @@ interface SystemsModuleProps {
 }
 
 type QuickCategory = "all" | "today" | "amd_cpu" | "intel_cpu" | "nvidia_gpu" | "amd_gpu" | "fp_champ" | "high_end";
+type BudgetTier = "all" | "tier_entry" | "tier_mid" | "tier_high" | "tier_ultra";
 
 export const SystemsModule: React.FC<SystemsModuleProps> = ({
   systems,
@@ -59,6 +60,7 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
   onRequireAuth
 }) => {
   const [selectedQuickCategory, setSelectedQuickCategory] = useState<QuickCategory>("all");
+  const [selectedBudgetTier, setSelectedBudgetTier] = useState<BudgetTier>("all");
   const [selectedSeller, setSelectedSeller] = useState<string>("all");
   const [selectedGpu, setSelectedGpu] = useState<string>("all");
   const [selectedRamType, setSelectedRamType] = useState<string>("all");
@@ -87,7 +89,16 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
       "Gençer Gaming",
       "Pckolik",
       "QP Bilişim",
-      "Inventus"
+      "Inventus",
+      "Molekül PC",
+      "Novabilgisayar",
+      "DFS Bilgisayar",
+      "Adeks Store",
+      "Hepsiburada",
+      "Amazon TR",
+      "Trendyol",
+      "Mediamarkt",
+      "Teknosa"
     ],
     []
   );
@@ -113,6 +124,12 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
         } else if (selectedQuickCategory === "high_end") {
           if (s.targetResolution !== "1440p 2K" && s.targetResolution !== "4K Gaming") return false;
         }
+
+        // Budget Tier filter
+        if (selectedBudgetTier === "tier_entry" && s.price > 25000) return false;
+        if (selectedBudgetTier === "tier_mid" && (s.price < 25000 || s.price > 40000)) return false;
+        if (selectedBudgetTier === "tier_high" && (s.price < 40000 || s.price > 60000)) return false;
+        if (selectedBudgetTier === "tier_ultra" && s.price < 60000) return false;
 
         // Secondary dropdown filters
         if (selectedSeller !== "all" && s.seller !== selectedSeller) return false;
@@ -238,6 +255,48 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
             </button>
           );
         })}
+      </div>
+
+      {/* Quick Budget Tier Selector */}
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+        <span className="text-[11px] font-bold text-neutral-400 shrink-0">Bütçe Aralığı:</span>
+        {[
+          { id: "all", label: "Tüm Bütçeler" },
+          { id: "tier_entry", label: "🟢 15.000 - 25.000 ₺ (F/P Giriş)" },
+          { id: "tier_mid", label: "🟡 25.000 - 40.000 ₺ (Popüler Orta)" },
+          { id: "tier_high", label: "🟣 40.000 - 60.000 ₺ (2K Canavarı)" },
+          { id: "tier_ultra", label: "👑 60.000 ₺+ (4K Üst Düzey)" }
+        ].map((b) => (
+          <button
+            key={b.id}
+            onClick={() => setSelectedBudgetTier(b.id as BudgetTier)}
+            className={`px-3 py-1.5 rounded-xl font-bold transition-all shrink-0 cursor-pointer ${
+              selectedBudgetTier === b.id
+                ? "bg-amber-400 text-neutral-950 shadow-md shadow-amber-400/20 font-black"
+                : "bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-800"
+            }`}
+          >
+            {b.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Quick Top Store Selector Pills */}
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+        <span className="text-[11px] font-bold text-neutral-400 shrink-0">Popüler Mağaza:</span>
+        {["all", "İtopya", "Gaming.Gen.TR", "GameGaraj", "Tebilon", "Sinerji", "İncehesap", "Vatan Bilgisayar"].map((store) => (
+          <button
+            key={store}
+            onClick={() => setSelectedSeller(store)}
+            className={`px-2.5 py-1 rounded-lg font-semibold transition-all shrink-0 cursor-pointer text-[11px] ${
+              selectedSeller === store
+                ? "bg-emerald-500 text-neutral-950 font-black shadow-sm"
+                : "bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-white"
+            }`}
+          >
+            {store === "all" ? "Tüm Mağazalar" : store}
+          </button>
+        ))}
       </div>
 
       {/* Filters Card */}

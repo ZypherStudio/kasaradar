@@ -73,9 +73,6 @@ export const Logo: React.FC<LogoProps> = ({ size = "md", className = "" }) => {
           <span className={`${textSizes[size]} font-black tracking-tight text-white leading-none`}>
             KASA<span className="text-emerald-400">RADAR</span>
           </span>
-          <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-            PRO
-          </span>
         </div>
         <span className="text-[10px] text-neutral-400 font-medium tracking-tight mt-0.5">
           Hazır Sistem &amp; Donanım Borsası

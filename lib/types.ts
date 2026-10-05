@@ -32,41 +32,13 @@ export interface SystemDetailedPart {
   category: "Ekran Kartı" | "İşlemci" | "RAM" | "SSD" | "Anakart" | "Güç Kaynağı" | "Kasa" | "Soğutucu";
   individualNewPrice: number;
   buyUrl: string;
-  store:
-    | "Amazon TR"
-    | "Hepsiburada"
-    | "Akakçe"
-    | "İtopya"
-    | "Trendyol"
-    | "Gaming.Gen.TR"
-    | "GameGaraj"
-    | "Tebilon"
-    | "İncehesap"
-    | "Sinerji"
-    | "Vatan Bilgisayar"
-    | "Teknobiyotik"
-    | "Gençer Gaming"
-    | "Pckolik"
-    | "QP Bilişim"
-    | "Inventus";
+  store: string;
 }
 
 export interface PrebuiltSystem {
   id: string;
   title: string;
-  seller:
-    | "İtopya"
-    | "Gaming.Gen.TR"
-    | "GameGaraj"
-    | "Tebilon"
-    | "İncehesap"
-    | "Sinerji"
-    | "Vatan Bilgisayar"
-    | "Teknobiyotik"
-    | "Gençer Gaming"
-    | "Pckolik"
-    | "QP Bilişim"
-    | "Inventus";
+  seller: string;
   sellerLogo: string;
   sellerColor: string;
   price: number;
@@ -94,7 +66,7 @@ export interface PrebuiltSystem {
   fpScore: number; // 1.0 - 10.0 calculated score
   individualZeroPrice: number; // If bought piece by piece brand new
   individualSecondHandPrice: number; // If bought piece by piece 2nd hand
-  badge?: "En Çok Satan" | "Haftanın Fırsatı" | "F/P Kralı" | "Üst Düzey Güç" | "Fiyatı Düştü";
+  badge?: string;
   highlight: string;
   targetResolution: "1080p Ultra" | "1440p 2K" | "4K Gaming" | "E-Spor 240Hz";
   warranty: string;
@@ -127,9 +99,9 @@ export interface GameRequirement {
 export interface HardwareComponent {
   id: string;
   name: string;
-  type: "gpu" | "cpu" | "ram" | "ssd";
+  type: "gpu" | "cpu" | "ram" | "ssd" | "gear" | "monitor" | string;
   tier: number; // 1-100
-  brand: "Nvidia" | "AMD" | "Intel" | "DDR4" | "DDR5" | "NVMe";
+  brand: string;
   newPriceAvg: number;
   secondHandAvg: number;
   dealPriceThreshold: number; // Price under this is a steal
@@ -144,7 +116,7 @@ export interface StreamerSetup {
   id: string;
   name: string;
   alias: string;
-  platform: "Twitch / YouTube" | "Kick / YouTube" | "Pro Espor";
+  platform: string;
   avatar: string;
   banner: string;
   description: string;

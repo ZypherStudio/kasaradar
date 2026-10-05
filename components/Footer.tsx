@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Logo } from "./Logo";
-import { ShieldCheck, Heart, Mail, ExternalLink, Cpu, Terminal, Send } from "lucide-react";
+import { ShieldCheck, Heart, Mail, ExternalLink, Cpu, Terminal, Send, ShieldAlert } from "lucide-react";
 
 export const Footer: React.FC = () => {
   return (
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
           {/* Supported Retailers */}
           <div className="space-y-2">
             <span className="text-white font-bold text-xs uppercase tracking-wider block">
-              Taranan 16+ Büyük Mağaza
+              Taranan 22+ Büyük Mağaza
             </span>
             <div className="flex flex-wrap gap-1.5 text-[11px]">
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">İtopya</span>
@@ -54,9 +54,15 @@ export const Footer: React.FC = () => {
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Pckolik</span>
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">QP Bilişim</span>
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Inventus</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Molekül PC</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Novabilgisayar</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">DFS Bilgisayar</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Adeks Store</span>
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Amazon TR</span>
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Hepsiburada</span>
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Trendyol</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Mediamarkt</span>
+              <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">Teknosa</span>
               <span className="px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">N11</span>
             </div>
           </div>
@@ -105,6 +111,20 @@ export const Footer: React.FC = () => {
               <span>E-Posta Gönder</span>
             </a>
           </div>
+        </div>
+
+        {/* Legal Disclaimer / Yasal Sorumluluk Reddi Beyanı */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800 text-[11px] text-neutral-400 space-y-2 leading-relaxed">
+          <div className="flex items-center gap-2 text-white font-bold text-xs">
+            <ShieldAlert className="w-4 h-4 text-amber-400 shrink-0" />
+            <span>Yasal Bilgilendirme &amp; Sorumluluk Reddi Beyanı</span>
+          </div>
+          <p>
+            <strong className="text-neutral-200">KasaRadar bir e-ticaret platformu, pazaryeri veya doğrudan ürün satıcısı DEĞİLDİR.</strong> KasaRadar, Türkiye&apos;deki donanım mağazalarının (İtopya, Gaming.Gen.TR, GameGaraj, Tebilon, Sinerji, Vatan vb.) ve ilan platformlarının halka açık verilerini tarafsız algoritmalarla derleyerek tüketicilere fiyat karşılaştırması ve F/P ekspertizi sunan bağımsız bir araştırma aracıdır.
+          </p>
+          <p className="text-neutral-500">
+            Platformda listelenen tüm hazır sistemlerin ve donanımların satışı, stok takibi, faturalandırılması, kargolanması, garanti ve iade süreçleri doğrudan ilgili satıcı mağazanın sorumluluğundadır. KasaRadar üzerinden yönlendirilen sitelerdeki olası anlık fiyat, stok veya donanım revizyonu değişikliklerinden KasaRadar doğrudan veya dolaylı olarak hukuki ve mali sorumluluk kabul etmez. İkinci el alım-satımlarda kullanıcıların kendi güvenlik önlemlerini (Param Güvende, elden teslim, donanım stres testleri) almaları önerilir.
+          </p>
         </div>
 
         {/* Disclaimer & Copyright */}

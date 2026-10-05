@@ -41,7 +41,7 @@ export const FavoritesDrawer: React.FC<FavoritesDrawerProps> = ({
   if (!isOpen) return null;
 
   const handleTestTelegramNotification = (system: PrebuiltSystem) => {
-    const handle = user?.telegram || "@erdalalp";
+    const handle = user?.telegram || "@KasaRadarUyesi";
     setTelegramSimulatedAlert(
       `🔔 KasaRadar Bot Bildirimi (${handle}):\n"${system.title}" için gece indirimi başladı! Fiyat ${formatTL(
         system.price + 2500

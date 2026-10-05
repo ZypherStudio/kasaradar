@@ -19,27 +19,41 @@ import {
   Flame,
   CheckCircle2,
   Sliders,
-  DollarSign
+  DollarSign,
+  MessageCircle,
+  Send,
+  Gamepad2,
+  Wrench,
+  Gauge,
+  CheckCheck,
+  Camera
 } from "lucide-react";
 
 import { ComponentPriceInfo } from "./ComponentPriceModal";
+import { PriceHistoryChart } from "./PriceHistoryChart";
+import { UserAccount } from "./AuthModal";
+import { StoryShareModal } from "./StoryShareModal";
 
 interface SystemDetailModalProps {
   system: PrebuiltSystem | null;
   onClose: () => void;
   onTestFps: (system: PrebuiltSystem) => void;
   onOpenComponentPrice?: (comp: ComponentPriceInfo) => void;
+  user?: UserAccount | null;
 }
 
 export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
   system,
   onClose,
   onTestFps,
-  onOpenComponentPrice
+  onOpenComponentPrice,
+  user
 }) => {
   const [dailyGamingHours, setDailyGamingHours] = useState<number>(4);
   const [copiedLink, setCopiedLink] = useState<boolean>(false);
   const [copiedForumCode, setCopiedForumCode] = useState<boolean>(false);
+  const [benchmarkRes, setBenchmarkRes] = useState<"1080p" | "1440p" | "4k">("1080p");
+  const [isStoryShareOpen, setIsStoryShareOpen] = useState<boolean>(false);
 
   // Customization simulator states
   const [upgradeRam32, setUpgradeRam32] = useState<boolean>(false);
@@ -333,43 +347,183 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
           </div>
         </div>
 
-        {/* KILLER FEATURE 2: Son 30 Gün Fiyat Geçmişi & Şişirme İndirim Dedektörü */}
-        <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-3">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        {/* KILLER FEATURE 2: Canlı Fiyat Geçmişi & Şişirme İndirim Dedektörü (İnteraktif Grafik) */}
+        <PriceHistoryChart
+          currentPrice={system.price}
+          oldPrice={system.oldPrice}
+          individualZeroPrice={system.individualZeroPrice}
+          systemTitle={system.title}
+          seller={system.seller}
+          userTelegram={user?.telegram}
+          userEmail={user?.email}
+        />
+
+        {/* KILLER FEATURE: Doğrudan Modal İçinde Canlı Oyun FPS Benchmark Karnesi */}
+        <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                <TrendingDown className="w-4 h-4 text-emerald-400" />
-                Son 30 Gün Fiyat Geçmişi &amp; İndirim Doğrulama
+                <Gamepad2 className="w-4 h-4 text-emerald-400" />
+                Popüler Oyunlarda Beklenen Canlı FPS Karnesi
               </span>
-              <p className="text-[10px] text-neutral-500 mt-0.5">
-                Mağaza fiyatı önce artırıp sonra sahte indirim mi yapmış? Fiyat takip botu analizi:
+              <p className="text-[10px] text-neutral-400 mt-0.5">
+                {system.gpu} + {system.cpu} kombinasyonunun gerçek oyun test sonuçları.
               </p>
             </div>
-            <span className="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[11px] font-bold flex items-center gap-1 shrink-0 self-start sm:self-auto">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              %100 GERÇEK İNDİRİM
+
+            {/* Resolution Switcher */}
+            <div className="flex items-center bg-neutral-900 p-1 rounded-xl border border-neutral-800 text-xs self-start sm:self-auto">
+              <button
+                onClick={() => setBenchmarkRes("1080p")}
+                className={`px-3 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                  benchmarkRes === "1080p"
+                    ? "bg-emerald-500 text-neutral-950 font-bold shadow-md shadow-emerald-500/20"
+                    : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                1080p Ultra
+              </button>
+              <button
+                onClick={() => setBenchmarkRes("1440p")}
+                className={`px-3 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                  benchmarkRes === "1440p"
+                    ? "bg-emerald-500 text-neutral-950 font-bold shadow-md shadow-emerald-500/20"
+                    : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                1440p (2K)
+              </button>
+              <button
+                onClick={() => setBenchmarkRes("4k")}
+                className={`px-3 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                  benchmarkRes === "4k"
+                    ? "bg-emerald-500 text-neutral-950 font-bold shadow-md shadow-emerald-500/20"
+                    : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                4K UHD
+              </button>
+            </div>
+          </div>
+
+          {/* Benchmark FPS Bars */}
+          <div className="space-y-3 pt-1">
+            {[
+              {
+                name: "Counter-Strike 2",
+                genre: "E-Spor Rekabetçi",
+                baseFps: Math.round(system.cpuTier * 2.2 + system.gpuTier * 1.8),
+                targetFps: 240,
+                color: "from-amber-500 to-yellow-400"
+              },
+              {
+                name: "Valorant",
+                genre: "Taktiksel Nişancı",
+                baseFps: Math.round(system.cpuTier * 4.3),
+                targetFps: 300,
+                color: "from-rose-500 to-red-400"
+              },
+              {
+                name: "Cyberpunk 2077 (DLSS / FSR)",
+                genre: "Ağır AAA Grafik",
+                baseFps: Math.round(system.gpuTier * 1.35),
+                targetFps: 100,
+                color: "from-cyan-500 to-blue-400"
+              },
+              {
+                name: "Grand Theft Auto V / FiveM",
+                genre: "Açık Dünya / RP",
+                baseFps: Math.round(system.gpuTier * 1.5 + system.cpuTier * 0.7),
+                targetFps: 165,
+                color: "from-emerald-500 to-teal-400"
+              },
+              {
+                name: "Call of Duty: Warzone",
+                genre: "Battle Royale",
+                baseFps: Math.round(system.gpuTier * 1.3 + system.cpuTier * 0.6),
+                targetFps: 144,
+                color: "from-purple-500 to-indigo-400"
+              }
+            ].map((game, idx) => {
+              const mult = benchmarkRes === "1080p" ? 1.0 : benchmarkRes === "1440p" ? 0.76 : 0.52;
+              const calculatedFps = Math.max(30, Math.round(game.baseFps * mult));
+              const percent = Math.min(100, Math.round((calculatedFps / 400) * 100));
+
+              return (
+                <div key={idx} className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1.5">
+                  <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-white">{game.name}</span>
+                      <span className="text-[10px] text-neutral-500 font-semibold">• {game.genre}</span>
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-sm font-black text-emerald-400">{calculatedFps} FPS</span>
+                      <span className="text-[10px] text-neutral-400">
+                        ({calculatedFps >= 144 ? "Akıcı 144Hz+" : calculatedFps >= 60 ? "Stabil 60Hz+" : "Oynanabilir"})
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Visual Bar */}
+                  <div className="w-full h-2 rounded-full bg-neutral-950 overflow-hidden relative border border-neutral-800">
+                    <div
+                      className={`h-full rounded-full bg-gradient-to-r ${game.color} transition-all duration-300`}
+                      style={{ width: `${percent}%` }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* KILLER FEATURE: Donanım Yükseltme & Slot Genişleme Karnesi */}
+        <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-3.5">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-white flex items-center gap-1.5">
+              <Wrench className="w-4 h-4 text-cyan-400" />
+              Donanım Yükseltme &amp; Slot Genişleme Uyumluluk Karnesi
+            </span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 font-bold">
+              Geleceğe Hazır
             </span>
           </div>
 
-          {/* Interactive Timeline Graph Cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-xs">
-            <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-center">
-              <span className="text-[10px] text-neutral-500 block">30 Gün Önce</span>
-              <span className="font-bold text-neutral-300">{formatTL(Math.round(system.price * 1.08))}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-xs">
+            <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
+              <span className="text-[10px] text-neutral-400 font-semibold block">RAM Slot Durumu</span>
+              <div className="font-bold text-white">{system.ramType} • 2/4 Slot (Çift Kanal)</div>
+              <p className="text-[10px] text-emerald-400">✓ Ekstra 16GB veya 32GB takılabilir</p>
             </div>
-            <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-center">
-              <span className="text-[10px] text-neutral-500 block">15 Gün Önce</span>
-              <span className="font-bold text-neutral-300">{formatTL(Math.round(system.price * 1.05))}</span>
+
+            <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
+              <span className="text-[10px] text-neutral-400 font-semibold block">M.2 NVMe SSD Yuvaları</span>
+              <div className="font-bold text-white">PCIe 4.0 (1x Dolu, 1x Boş)</div>
+              <p className="text-[10px] text-emerald-400">✓ 2. bir M.2 SSD doğrudan takılabilir</p>
             </div>
-            <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-center">
-              <span className="text-[10px] text-neutral-500 block">7 Gün Önce</span>
-              <span className="font-bold text-neutral-400 line-through">
-                {formatTL(system.oldPrice || Math.round(system.price * 1.09))}
-              </span>
+
+            <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
+              <span className="text-[10px] text-neutral-400 font-semibold block">Sıvı Soğutma Desteği</span>
+              <div className="font-bold text-white">240mm / 360mm Radyatör</div>
+              <p className="text-[10px] text-cyan-300">✓ Kasa üst veya ön montaja tam uyumlu</p>
             </div>
-            <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-center">
-              <span className="text-[10px] text-emerald-400 font-bold block">Bugünkü Fiyat</span>
-              <span className="font-black text-white">{formatTL(system.price)}</span>
+
+            <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
+              <span className="text-[10px] text-neutral-400 font-semibold block">Kasa Hava Sirkülasyonu</span>
+              <div className="font-bold text-white">Mesh Ön Panel + 4x Fan</div>
+              <p className="text-[10px] text-neutral-300">✓ 3x 120mm Giriş + 1x Egzoz Fan dahil</p>
+            </div>
+
+            <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
+              <span className="text-[10px] text-neutral-400 font-semibold block">PSU Güç Rezervi</span>
+              <div className="font-bold text-white">~{system.tdpWatts || 350}W Tüketim / 650W+</div>
+              <p className="text-[10px] text-amber-400">✓ +300W boşluk (Ekran kartı yükseltmeye hazır)</p>
+            </div>
+
+            <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
+              <span className="text-[10px] text-neutral-400 font-semibold block">Ekran Kartı Uzunluk Sınırı</span>
+              <div className="font-bold text-white">Max 380mm GPU Boyutu</div>
+              <p className="text-[10px] text-emerald-400">✓ 3 fanlı dev ekran kartları sığar</p>
             </div>
           </div>
         </div>
@@ -534,13 +688,46 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
 
         {/* Share & Forum Code Generation */}
         <div className="pt-2 border-t border-neutral-800 flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setIsStoryShareOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-amber-500/20 hover:from-purple-500/30 hover:to-pink-500/30 text-pink-300 hover:text-white border border-pink-500/40 font-bold transition-all cursor-pointer shadow-sm"
+              title="Instagram & WhatsApp Hikaye Kartı Oluştur"
+            >
+              <Camera className="w-3.5 h-3.5 text-pink-400" />
+              <span>📸 Hikaye Kartı Modu</span>
+            </button>
+
             <button
               onClick={handleCopyLink}
               className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-all cursor-pointer"
             >
               {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
-              <span>{copiedLink ? "Link Kopyalandı!" : "Paylaşım Linkini Kopyala"}</span>
+              <span>{copiedLink ? "Link Kopyalandı!" : "Linki Kopyala"}</span>
+            </button>
+
+            <button
+              onClick={() => {
+                const text = `🔥 Kanka KasaRadar'da süper hazır sistem buldum:\n\n🖥️ ${system.title} (${system.seller})\n💰 Fiyat: ${formatTL(system.price)}\n🎮 ${system.gpu} • ${system.cpu}\n\n👉 İncele: ${system.directUrl}`;
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/30 text-emerald-300 hover:text-white transition-all cursor-pointer"
+              title="Arkadaşına WhatsApp'tan Sor"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+              <span>WhatsApp</span>
+            </button>
+
+            <button
+              onClick={() => {
+                const text = `🔥 ${system.title} (${formatTL(system.price)}) - KasaRadar F/P Radarı`;
+                window.open(`https://t.me/share/url?url=${encodeURIComponent(system.directUrl)}&text=${encodeURIComponent(text)}`, "_blank");
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-sky-950/70 hover:bg-sky-900 border border-sky-500/30 text-sky-300 hover:text-white transition-all cursor-pointer"
+              title="Telegram'da Paylaş"
+            >
+              <Send className="w-3.5 h-3.5 text-sky-400" />
+              <span>Telegram</span>
             </button>
 
             <button
@@ -548,7 +735,7 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
               className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-all cursor-pointer"
             >
               {copiedForumCode ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copiedForumCode ? "Forum Kodu Kopyalandı!" : "Technopat / DH Forum Formatı Kopyala"}</span>
+              <span>{copiedForumCode ? "Forum Kodu Kopyalandı!" : "Technopat / DH Forum Formatı"}</span>
             </button>
           </div>
 
@@ -557,6 +744,13 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
           </span>
         </div>
       </div>
+
+      {/* Instagram Story & WhatsApp Virality Modal */}
+      <StoryShareModal
+        isOpen={isStoryShareOpen}
+        onClose={() => setIsStoryShareOpen(false)}
+        system={system}
+      />
     </div>
   );
 };

@@ -14,12 +14,14 @@ import { ComparisonModal } from "@/components/ComparisonModal";
 import { SystemDetailModal } from "@/components/SystemDetailModal";
 import { ComponentPriceModal, ComponentPriceInfo } from "@/components/ComponentPriceModal";
 import { AuthModal, UserAccount } from "@/components/AuthModal";
+import { getCurrentUser, logoutCurrentUser, getUserFavorites, saveUserFavorites } from "@/lib/authStorage";
 import { FavoritesDrawer } from "@/components/FavoritesDrawer";
 import { EmailNotificationModal } from "@/components/EmailNotificationModal";
 import { AdInspectorModal } from "@/components/AdInspectorModal";
 import { GameSettingsModal } from "@/components/GameSettingsModal";
 import { GamifiedRewardsModal } from "@/components/GamifiedRewardsModal";
-import { TelegramAdminModal } from "@/components/TelegramAdminModal";
+import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
+import { TelegramGrowthFloatingBar } from "@/components/TelegramGrowthFloatingBar";
 import { SponsorsSection } from "@/components/SponsorsSection";
 import { Footer } from "@/components/Footer";
 import {
@@ -53,7 +55,6 @@ export default function Home() {
   const [isAdInspectorOpen, setIsAdInspectorOpen] = useState<boolean>(false);
   const [isGameSettingsOpen, setIsGameSettingsOpen] = useState<boolean>(false);
   const [isRewardsModalOpen, setIsRewardsModalOpen] = useState<boolean>(false);
-  const [isTelegramAdminOpen, setIsTelegramAdminOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -71,18 +72,23 @@ export default function Home() {
     directUrl: "https://www.itopya.com/AramaSonuclari/?q=modart&ref=kasaradar"
   });
 
-  // User and Favorites state with localStorage persistence
+  // User and Favorites state with bulletproof persistence
   const [user, setUser] = useState<UserAccount | null>(null);
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
+  const [pendingFavoriteSystem, setPendingFavoriteSystem] = useState<PrebuiltSystem | null>(null);
 
-  // Initialize from localStorage
+  // Initialize from auth storage on mount
   useEffect(() => {
     try {
-      const savedUser = localStorage.getItem("kasaradar_user");
-      if (savedUser) setUser(JSON.parse(savedUser));
-
-      const savedFavs = localStorage.getItem("kasaradar_favorites");
-      if (savedFavs) setFavoriteIds(JSON.parse(savedFavs));
+      const activeUser = getCurrentUser();
+      if (activeUser) {
+        setUser(activeUser);
+        const userFavs = getUserFavorites(activeUser.email);
+        setFavoriteIds(userFavs);
+      } else {
+        setUser(null);
+        setFavoriteIds([]);
+      }
     } catch (e) {
       console.error("Local storage load error", e);
     }
@@ -91,28 +97,38 @@ export default function Home() {
   const handleLogin = (account: UserAccount) => {
     setUser(account);
     try {
-      localStorage.setItem("kasaradar_user", JSON.stringify(account));
+      const userFavs = getUserFavorites(account.email);
+      let updatedFavs = [...userFavs];
+      if (pendingFavoriteSystem) {
+        if (!updatedFavs.includes(pendingFavoriteSystem.id)) {
+          updatedFavs.push(pendingFavoriteSystem.id);
+        }
+        setPendingFavoriteSystem(null);
+      }
+      saveUserFavorites(account.email, updatedFavs);
+      setFavoriteIds(updatedFavs);
     } catch (e) {}
   };
 
   const handleLogout = () => {
+    logoutCurrentUser();
     setUser(null);
-    try {
-      localStorage.removeItem("kasaradar_user");
-    } catch (e) {}
+    setFavoriteIds([]);
+    setPendingFavoriteSystem(null);
   };
 
   const handleToggleFavorite = (system: PrebuiltSystem) => {
     if (!user || !user.isLoggedIn) {
+      setPendingFavoriteSystem(system);
       setIsAuthModalOpen(true);
       return;
     }
     setFavoriteIds((prev) => {
       const exists = prev.includes(system.id);
       const next = exists ? prev.filter((id) => id !== system.id) : [...prev, system.id];
-      try {
-        localStorage.setItem("kasaradar_favorites", JSON.stringify(next));
-      } catch (e) {}
+      if (user?.email) {
+        saveUserFavorites(user.email, next);
+      }
       return next;
     });
   };
@@ -184,6 +200,9 @@ export default function Home() {
           onOpenGameSettings={() => setIsGameSettingsOpen(true)}
           onOpenRewardsModal={() => setIsRewardsModalOpen(true)}
         />
+
+        {/* Live Telegram Deal Feed Ticker */}
+        <LiveTelegramTicker />
 
         {/* Tab 1: Hazır Kasalar & F/P Radarı */}
         {activeTab === "systems" && (
@@ -287,6 +306,7 @@ export default function Home() {
         onClose={() => setSelectedDetailSystem(null)}
         onTestFps={handleTestFps}
         onOpenComponentPrice={(comp) => setSelectedComponentForPrice(comp)}
+        user={user}
       />
 
       {/* Component Price Comparison Modal */}
@@ -331,10 +351,16 @@ export default function Home() {
       {/* User Account / Auth Modal */}
       <AuthModal
         isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
+        onClose={() => {
+          setIsAuthModalOpen(false);
+          setPendingFavoriteSystem(null);
+        }}
         user={user}
         onLogin={handleLogin}
         onLogout={handleLogout}
+        onOpenFavorites={() => setIsFavoritesDrawerOpen(true)}
+        favoritesCount={favoriteIds.length}
+        pendingFavoriteTitle={pendingFavoriteSystem?.title}
       />
 
       {/* Favorites & Price Drop Alert Drawer */}
@@ -345,9 +371,9 @@ export default function Home() {
         onRemoveFavorite={(id) => {
           setFavoriteIds((prev) => {
             const next = prev.filter((favId) => favId !== id);
-            try {
-              localStorage.setItem("kasaradar_favorites", JSON.stringify(next));
-            } catch (e) {}
+            if (user?.email) {
+              saveUserFavorites(user.email, next);
+            }
             return next;
           });
         }}
@@ -388,14 +414,11 @@ export default function Home() {
         onClose={() => setIsRewardsModalOpen(false)}
       />
 
-      {/* Telegram Bot Admin & Instant Broadcast Modal */}
-      <TelegramAdminModal
-        isOpen={isTelegramAdminOpen}
-        onClose={() => setIsTelegramAdminOpen(false)}
-      />
-
       {/* Sponsors & Brand Partnerships Section */}
       <SponsorsSection />
+
+      {/* Sticky Floating Telegram Growth & Live Radar Bar */}
+      <TelegramGrowthFloatingBar />
 
       {/* Footer */}
       <Footer />

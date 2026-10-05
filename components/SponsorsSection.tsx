@@ -50,6 +50,71 @@ export const SponsorsSection: React.FC = () => {
           </p>
         </div>
 
+        {/* 22+ Monitored Stores & Verified Partners Showcase */}
+        <div>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+            <div>
+              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                KasaRadar Canlı Taranan Mağazalar (22+ Büyük Mağaza Ağı)
+              </span>
+              <p className="text-xs text-neutral-400 mt-0.5">
+                Yapay zeka botumuz Türkiye&apos;nin en güvenilir donanım ve hazır sistem satıcılarını 7/24 tarar, fiyat düşüşlerini anlık yakalar.
+              </p>
+            </div>
+            <span className="text-xs font-mono text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full shrink-0 w-fit">
+              22 Mağaza Aktif Takipte
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {[
+              { name: "İtopya", tag: "Resmi Donanım Devi", rating: "4.9/5", color: "#f97316", count: "35+ Kasa" },
+              { name: "Gaming.Gen.TR", tag: "F/P Şampiyonu", rating: "4.9/5", color: "#10b981", count: "42+ Kasa" },
+              { name: "Vatan PC", tag: "Yaygın Servis Ağı", rating: "4.8/5", color: "#0284c7", count: "28+ OEM" },
+              { name: "GameGaraj", tag: "Özelleştirilebilir PC", rating: "4.8/5", color: "#ef4444", count: "50+ Kasa" },
+              { name: "Tebilon", tag: "Hızlı Kargo & Güven", rating: "4.9/5", color: "#3b82f6", count: "24+ Kasa" },
+              { name: "İncehesap", tag: "Gaming Gecesi", rating: "4.8/5", color: "#a855f7", count: "30+ Kasa" },
+              { name: "Sinerji PC", tag: "High-End Sistemler", rating: "4.8/5", color: "#f59e0b", count: "25+ Kasa" },
+              { name: "Teknobiyotik", tag: "AMD & Soğutma", rating: "4.7/5", color: "#64748b", count: "20+ Kasa" },
+              { name: "Gençer Gaming", tag: "Kelepir Fırsat Radarı", rating: "4.8/5", color: "#22c55e", count: "18+ Kasa" },
+              { name: "Pckolik", tag: "Espor & Gamer Serisi", rating: "4.8/5", color: "#8b5cf6", count: "22+ Kasa" },
+              { name: "QP Bilişim", tag: "Özel Tasarım Canavarlar", rating: "4.9/5", color: "#dc2626", count: "16+ Kasa" },
+              { name: "Inventus", tag: "24h Stres Testli", rating: "4.9/5", color: "#2563eb", count: "14+ Kasa" },
+              { name: "Molekül PC", tag: "AM5 & DDR5 Uzmanı", rating: "4.8/5", color: "#06b6d4", count: "15+ Kasa" },
+              { name: "Novabilgisayar", tag: "Ekstrem İş İstasyonu", rating: "4.8/5", color: "#eab308", count: "18+ Kasa" },
+              { name: "DFS Bilgisayar", tag: "Bütçe Dostu F/P", rating: "4.7/5", color: "#14b8a6", count: "12+ Kasa" },
+              { name: "Adeks Store", tag: "Espor Kulüp Donanımı", rating: "4.9/5", color: "#f43f5e", count: "15+ Kasa" },
+              { name: "Amazon TR", tag: "Prime Hızlı Teslimat", rating: "5.0/5", color: "#facc15", count: "100+ Parça" },
+              { name: "Hepsiburada", tag: "Resmi Mağaza Garantisi", rating: "4.9/5", color: "#ea580c", count: "80+ Parça" },
+              { name: "Trendyol", tag: "Geniş Ekipman Kataloğu", rating: "4.8/5", color: "#f97316", count: "70+ Parça" },
+              { name: "Mediamarkt", tag: "Mağazadan Anında Teslim", rating: "4.7/5", color: "#dc2626", count: "20+ PC" },
+              { name: "Teknosa", tag: "Kurumsal Güvence", rating: "4.7/5", color: "#f59e0b", count: "18+ PC" },
+              { name: "N11", tag: "Doğrulanmış Satıcılar", rating: "4.7/5", color: "#7c3aed", count: "50+ Parça" }
+            ].map((store, idx) => (
+              <div
+                key={idx}
+                className="p-3 rounded-2xl bg-neutral-900/70 border border-neutral-800 hover:border-emerald-500/50 hover:bg-neutral-900 transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: store.color }}></span>
+                    <span className="text-[10px] font-mono text-neutral-500">{store.rating}</span>
+                  </div>
+                  <h4 className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors truncate">
+                    {store.name}
+                  </h4>
+                  <p className="text-[10px] text-neutral-400 truncate mt-0.5">{store.tag}</p>
+                </div>
+                <div className="pt-2 mt-2 border-t border-neutral-800/60 flex items-center justify-between text-[10px]">
+                  <span className="text-emerald-400 font-semibold">{store.count}</span>
+                  <span className="text-neutral-500">Canlı</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Reserved Sponsor Slots (Ayrılmış Boş Sponsorluk Alanları) */}
         <div>
           <div className="flex items-center justify-between mb-4">
