@@ -92,12 +92,12 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Ekran kartı, işlemci veya kasa adı ara (örn: RTX 4060, Ryzen 7500F, ModArt)..."
-              className="w-full pl-12 pr-36 py-3.5 rounded-2xl bg-neutral-950/80 border border-neutral-700/80 text-white placeholder-neutral-500 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-inner"
+              className="w-full pl-11 sm:pl-12 pr-20 sm:pr-36 py-3.5 rounded-2xl bg-neutral-950/80 border border-neutral-700/80 text-white placeholder-neutral-500 text-xs sm:text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-inner"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-28 top-1/2 -translate-y-1/2 p-1.5 rounded-lg bg-neutral-800/90 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all cursor-pointer"
+                className="absolute right-12 sm:right-28 top-1/2 -translate-y-1/2 p-1.5 rounded-lg bg-neutral-800/90 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all cursor-pointer"
                 title="Aramayı Temizle"
               >
                 <X className="w-3.5 h-3.5" />
@@ -105,7 +105,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             )}
             <button
               onClick={onGoToFps}
-              className="absolute right-2 top-2 bottom-2 px-3.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-emerald-400 text-xs font-semibold flex items-center gap-1.5 border border-neutral-700 transition-all cursor-pointer shrink-0"
+              className="absolute right-2 top-2 bottom-2 px-2.5 sm:px-3.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-emerald-400 text-xs font-semibold flex items-center gap-1.5 border border-neutral-700 transition-all cursor-pointer shrink-0"
             >
               <Zap className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">FPS Testi</span>
