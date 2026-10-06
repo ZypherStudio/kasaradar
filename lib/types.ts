@@ -94,6 +94,11 @@ export interface GameRequirement {
   gpuWeight: number; // 0.0 - 1.0 (How GPU heavy is it)
   ramWeight: number;
   baseFps1080pLow: number;
+  // Dynamic / Store metadata
+  steamAppId?: number;
+  platform?: "steam" | "epic" | "riot" | "ea" | "battle.net" | "all";
+  isLiveAdded?: boolean;
+  officialUrl?: string;
 }
 
 export interface HardwareComponent {
