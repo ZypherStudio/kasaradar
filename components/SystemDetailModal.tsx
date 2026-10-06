@@ -87,7 +87,32 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
 
   // Copy forum BBCode for Technopat / DonanımHaber
   const handleCopyForumCode = () => {
-    const bbCode = `[B]${system.title}[/B] - ${system.seller} (${formatTL(system.price)})\nGPU: ${system.gpu}\nCPU: ${system.cpu}\nRAM: ${system.ram}\nSSD: ${system.ssd}\nİnceleme: https://kasaradar.com/kasa/${system.id}`;
+    const savings = system.individualZeroPrice - system.price;
+    const cs2Fps = Math.round(system.cpuTier * 2.2 + system.gpuTier * 1.8);
+    const valoFps = Math.round(system.cpuTier * 4.3);
+    const cpFps = Math.round(system.gpuTier * 1.35);
+
+    const bbCode = `[B][SIZE=4]🔥 ${system.title} (${system.seller}) - F/P Analizi[/SIZE][/B]
+[B]💰 Fiyat:[/B] ${formatTL(system.price)} (Ayrı toplamaya göre +${formatTL(savings)} kâr)
+[B]🎯 F/P Skoru:[/B] ${system.fpScore} / 10 • ${system.targetResolution}
+
+[B]📌 Donanım Özellikleri:[/B]
+• [B]Ekran Kartı:[/B] ${system.gpu}
+• [B]İşlemci:[/B] ${system.cpu}
+• [B]RAM:[/B] ${system.ram}
+• [B]Depolama (SSD):[/B] ${system.ssd}
+• [B]Anakart:[/B] ${system.motherboard}
+• [B]Kasa & Soğutma:[/B] ${system.caseModel} • ${system.cooling}
+• [B]Güç Kaynağı (PSU):[/B] ${system.psu}
+
+[B]🎮 Tahmini Oyun Performansı:[/B]
+• CS2: ~${cs2Fps} FPS
+• Valorant: ~${valoFps} FPS
+• Cyberpunk 2077: ~${cpFps} FPS
+
+[B]👉 KasaRadar Detaylı İnceleme:[/B] https://kasaradar.com/kasa/${system.id}
+[B]🛒 Mağaza Doğrudan Linki:[/B] ${system.directUrl}`;
+
     navigator.clipboard.writeText(bbCode);
     setCopiedForumCode(true);
     setTimeout(() => setCopiedForumCode(false), 3000);
@@ -707,15 +732,12 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
             </button>
 
             <button
-              onClick={() => {
-                const text = `🔥 Kanka KasaRadar'da süper hazır sistem buldum:\n\n🖥️ ${system.title} (${system.seller})\n💰 Fiyat: ${formatTL(system.price)}\n🎮 ${system.gpu} • ${system.cpu}\n\n👉 İncele: ${system.directUrl}`;
-                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
-              }}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/30 text-emerald-300 hover:text-white transition-all cursor-pointer"
-              title="Arkadaşına WhatsApp'tan Sor"
+              onClick={() => setIsStoryShareOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 hover:from-pink-500/30 hover:to-purple-500/30 border border-pink-500/40 text-pink-300 hover:text-white transition-all cursor-pointer font-bold"
+              title="Instagram & TikTok Hikayesinde Paylaş"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-              <span>WhatsApp</span>
+              <Camera className="w-3.5 h-3.5 text-pink-400" />
+              <span>Instagram / TikTok</span>
             </button>
 
             <button

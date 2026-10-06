@@ -151,3 +151,25 @@ export interface DealAlert {
   timeAgo: string;
   systemId: string;
 }
+
+export interface SecondHandDealItem {
+  id: string;
+  title: string;
+  platform: "sahibinden" | "dolap" | "letgo" | "dhforum";
+  platformName: string;
+  platformColor: string;
+  category: "gpu" | "cpu" | "system" | "monitor" | "gear";
+  categoryLabel: string;
+  askingPrice: number;
+  newPrice: number;
+  savingsTL: number;
+  savingsPercent: number;
+  city: string;
+  timeAgo: string;
+  trustBadge: string;
+  condition: string;
+  specsSummary: string;
+  imageUrl?: string;
+  searchQuery: string;
+}
+

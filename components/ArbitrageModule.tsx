@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { HardwareComponent } from "@/lib/types";
+import { HardwareComponent, SecondHandDealItem } from "@/lib/types";
 import { formatTL } from "@/lib/calculator";
+import { SECOND_HAND_LIVE_DEALS } from "@/lib/data";
 import {
   Scale,
   ShieldAlert,
@@ -21,7 +22,13 @@ import {
   Tv,
   HardDrive,
   Headphones,
-  Check
+  Check,
+  Flame,
+  Clock,
+  MapPin,
+  Tag,
+  Filter,
+  Monitor
 } from "lucide-react";
 
 interface ArbitrageModuleProps {
@@ -40,6 +47,16 @@ export const ArbitrageModule: React.FC<ArbitrageModuleProps> = ({ hardwareList, 
   // Interactive valuation tool states
   const [calcComponentId, setCalcComponentId] = useState<string>(hardwareList[0].id);
   const [calcAdPrice, setCalcAdPrice] = useState<number>(hardwareList[0].secondHandAvg);
+
+  // Live Second-Hand Deals Filtering
+  const [selectedPlatform, setSelectedPlatform] = useState<"all" | "sahibinden" | "dolap" | "letgo" | "dhforum">("all");
+  const [selectedShCategory, setSelectedShCategory] = useState<"all" | "gpu" | "cpu" | "system" | "monitor" | "gear">("all");
+
+  const filteredSecondHandDeals = SECOND_HAND_LIVE_DEALS.filter((deal) => {
+    if (selectedPlatform !== "all" && deal.platform !== selectedPlatform) return false;
+    if (selectedShCategory !== "all" && deal.category !== selectedShCategory) return false;
+    return true;
+  });
 
   const filteredHardware = hardwareList.filter((item) => {
     if (selectedType !== "all" && item.type !== selectedType) return false;
@@ -217,6 +234,195 @@ export const ArbitrageModule: React.FC<ArbitrageModuleProps> = ({ hardwareList, 
             </p>
           </div>
         </div>
+      </div>
+
+      {/* OTOMATİK CANLI 2. EL KELEPİR İLANLAR & PLATFORM FİLTRESİ */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-neutral-950 border border-neutral-800 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-bold mb-2">
+              <Flame className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Canlı 2. El Radarı ({filteredSecondHandDeals.length} Aktif İlan)</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              Otomatik Kelepir İlan Akışı &amp; Platform Filtresi
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+              Sahibinden, Dolap, Letgo ve DonanımHaber forumundaki piyasanın altında düşen sıcak ilanlar.
+            </p>
+          </div>
+        </div>
+
+        {/* PLATFORM FILTERS (Sadece Sahibinden, Sadece Dolap, Letgo veya Tümü) */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-xs font-bold text-neutral-400 uppercase tracking-wider">
+            <Filter className="w-3.5 h-3.5 text-amber-400" />
+            <span>Platform Filtrele:</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            {[
+              { id: "all", label: "🌐 Tüm Platformlar", count: SECOND_HAND_LIVE_DEALS.length },
+              { id: "sahibinden", label: "🟡 Sahibinden (Sarı Site)", count: SECOND_HAND_LIVE_DEALS.filter(d => d.platform === "sahibinden").length, activeColor: "bg-amber-400 text-neutral-950 font-black shadow-lg shadow-amber-400/20" },
+              { id: "dolap", label: "🟣 Sadece Dolap", count: SECOND_HAND_LIVE_DEALS.filter(d => d.platform === "dolap").length, activeColor: "bg-purple-600 text-white font-black shadow-lg shadow-purple-600/20" },
+              { id: "letgo", label: "🔴 Sadece Letgo", count: SECOND_HAND_LIVE_DEALS.filter(d => d.platform === "letgo").length, activeColor: "bg-rose-500 text-white font-black shadow-lg shadow-rose-500/20" },
+              { id: "dhforum", label: "🔵 DH 2. El Forum", count: SECOND_HAND_LIVE_DEALS.filter(d => d.platform === "dhforum").length, activeColor: "bg-blue-600 text-white font-black shadow-lg shadow-blue-600/20" }
+            ].map((p) => {
+              const isActive = selectedPlatform === p.id;
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => setSelectedPlatform(p.id as any)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
+                    isActive
+                      ? p.activeColor || "bg-white text-neutral-950 font-black shadow-lg"
+                      : "bg-neutral-900 hover:bg-neutral-800 text-neutral-300 border border-neutral-800"
+                  }`}
+                >
+                  <span>{p.label}</span>
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${isActive ? "bg-black/20 text-current" : "bg-neutral-800 text-neutral-400"}`}>
+                    {p.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* CATEGORY FILTERS (GPU, CPU, Hazır Kasa, Monitör, Ekipman) */}
+        <div className="space-y-3 pt-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-neutral-400 uppercase tracking-wider">
+            <Tag className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Kategori Seç:</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            {[
+              { id: "all", label: "Tüm Parçalar" },
+              { id: "gpu", label: "⚡ Ekran Kartı (GPU)" },
+              { id: "cpu", label: "🧠 İşlemci (CPU)" },
+              { id: "system", label: "🖥️ Hazır Kasa Sistem" },
+              { id: "monitor", label: "🖥️ Oyuncu Monitörü" },
+              { id: "gear", label: "🎧 Oyuncu Ekipmanı" }
+            ].map((c) => {
+              const isActive = selectedShCategory === c.id;
+              return (
+                <button
+                  key={c.id}
+                  onClick={() => setSelectedShCategory(c.id as any)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    isActive
+                      ? "bg-cyan-500 text-neutral-950 font-black shadow-md shadow-cyan-500/20"
+                      : "bg-neutral-900/80 hover:bg-neutral-850 text-neutral-400 hover:text-white border border-neutral-800"
+                  }`}
+                >
+                  {c.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* LIVE DEALS GRID */}
+        {filteredSecondHandDeals.length === 0 ? (
+          <div className="text-center py-12 rounded-2xl bg-neutral-900/40 border border-neutral-800 space-y-2">
+            <AlertCircle className="w-8 h-8 text-neutral-500 mx-auto" />
+            <p className="text-sm font-bold text-white">Seçilen filtrede ilan bulunamadı</p>
+            <p className="text-xs text-neutral-400">Lütfen farklı bir kategori veya platform seçin.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-1">
+            {filteredSecondHandDeals.map((deal) => {
+              const platformClick = () => {
+                if (deal.platform === "sahibinden") openSahibinden(deal.searchQuery);
+                else if (deal.platform === "dolap") openDolap(deal.searchQuery);
+                else if (deal.platform === "letgo") openLetgo(deal.searchQuery);
+                else openDhForum(deal.searchQuery);
+              };
+
+              return (
+                <div
+                  key={deal.id}
+                  className="rounded-2xl bg-neutral-900/90 border border-neutral-800 hover:border-neutral-700 p-4 flex flex-col justify-between space-y-3 transition-all hover:shadow-xl group"
+                >
+                  <div className="space-y-2.5">
+                    {/* Top Row: Platform Badge & Savings Badge */}
+                    <div className="flex items-center justify-between gap-2">
+                      <span
+                        className="text-[10px] font-black px-2.5 py-1 rounded-lg text-neutral-950 flex items-center gap-1 shadow-sm"
+                        style={{ backgroundColor: deal.platformColor }}
+                      >
+                        {deal.platform === "sahibinden" && "🟡"}
+                        {deal.platform === "dolap" && "🟣"}
+                        {deal.platform === "letgo" && "🔴"}
+                        {deal.platform === "dhforum" && "🔵"}
+                        <span>{deal.platformName}</span>
+                      </span>
+
+                      <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                        +{formatTL(deal.savingsTL)} KÂR (%{deal.savingsPercent})
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <div>
+                      <h4 className="text-xs font-black text-white group-hover:text-amber-300 transition-colors line-clamp-2">
+                        {deal.title}
+                      </h4>
+                      <p className="text-[11px] text-neutral-400 mt-1 line-clamp-1">
+                        {deal.specsSummary}
+                      </p>
+                    </div>
+
+                    {/* Price Block */}
+                    <div className="p-2.5 rounded-xl bg-neutral-950/80 border border-neutral-800 flex items-center justify-between">
+                      <div>
+                        <span className="text-[9px] text-neutral-500 uppercase font-bold block">İlan Fiyatı</span>
+                        <div className="text-base font-black text-white">
+                          {formatTL(deal.askingPrice)}
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[9px] text-neutral-500 uppercase font-bold block">Sıfır Fiyatı</span>
+                        <div className="text-xs font-semibold text-neutral-400 line-through">
+                          {formatTL(deal.newPrice)}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Location, Date & Trust Badge */}
+                    <div className="flex flex-wrap items-center justify-between gap-1 text-[10px] text-neutral-400 pt-1 border-t border-neutral-800/60">
+                      <div className="flex items-center gap-1 text-neutral-400">
+                        <MapPin className="w-3 h-3 text-neutral-500" />
+                        <span>{deal.city}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-neutral-500">
+                        <Clock className="w-3 h-3" />
+                        <span>{deal.timeAgo}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between text-[10px] pt-0.5">
+                      <span className="px-2 py-0.5 rounded bg-emerald-950/50 text-emerald-300 border border-emerald-500/20 font-medium">
+                        🛡️ {deal.trustBadge}
+                      </span>
+                      <span className="text-neutral-500 text-[9px] font-mono">
+                        {deal.condition}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Action Button */}
+                  <button
+                    onClick={platformClick}
+                    className="w-full py-2 px-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer border border-neutral-700 group-hover:border-amber-400/50"
+                  >
+                    <span>{deal.platformName}&apos;de İlanı / Benzerini İncele</span>
+                    <ExternalLink className="w-3 h-3 text-amber-400" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Interactive Deal Valuation Calculator */}
