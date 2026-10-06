@@ -35,7 +35,74 @@ interface FpsSimulatorModuleProps {
   onOpenGameSettings?: () => void;
 }
 
-type GameCategoryFilter = "all" | "popular" | "esports" | "aaa" | "new" | "custom";
+type GameCategoryFilter = "all" | "indie" | "popular" | "esports" | "aaa" | "sim" | "custom";
+
+const INDIE_GAME_IDS = new Set([
+  "lethalcompany",
+  "liarsbar",
+  "chainedtogether",
+  "phasmophobia",
+  "amongus",
+  "contentwarning",
+  "buckshot",
+  "balatro",
+  "hades",
+  "hades2",
+  "hollowknight",
+  "terraria",
+  "stardewvalley",
+  "vampiresurvivors",
+  "projectzomboid",
+  "deeprockgalactic",
+  "valheim",
+  "subnautica",
+  "seaofthieves",
+  "theforest",
+  "raft",
+  "slaythespire",
+  "deadcells",
+  "satisfactory",
+  "factorio",
+  "cuphead",
+  "celeste",
+  "undertale",
+  "isaac",
+  "ultrakill",
+  "geometrydash",
+  "brotato",
+  "dontstarve",
+  "bloonstd6",
+  "partyanimals",
+  "humanfallflat",
+  "overcooked2",
+  "picopark",
+  "left4dead2",
+  "garrysmod",
+  "teardown",
+  "rimworld",
+  "supermarketsim",
+  "tcgcardshop",
+  "internetcafe2",
+  "brawlhalla"
+]);
+
+const SIM_GAME_IDS = new Set([
+  "supermarketsim",
+  "tcgcardshop",
+  "internetcafe2",
+  "beamng",
+  "ets2",
+  "farm_sim25",
+  "msfs2024",
+  "teardown",
+  "rimworld",
+  "citiesskylines",
+  "citiesskylines2",
+  "manorlords",
+  "bannerlord",
+  "satisfactory",
+  "factorio"
+]);
 
 const POPULAR_GAME_IDS = new Set([
   "cs2",
@@ -50,7 +117,11 @@ const POPULAR_GAME_IDS = new Set([
   "fortnite",
   "rust",
   "pubg",
-  "lol"
+  "lol",
+  "lethalcompany",
+  "liarsbar",
+  "chainedtogether",
+  "palworld"
 ]);
 
 const ESPORTS_GAME_IDS = new Set([
@@ -62,14 +133,17 @@ const ESPORTS_GAME_IDS = new Set([
   "pubg",
   "r6siege",
   "overwatch2",
+  "thefinals",
   "lol",
   "dota2",
   "rocketleague",
-  "tf2"
+  "tf2",
+  "brawlhalla"
 ]);
 
 const AAA_GAME_IDS = new Set([
   "wukong",
+  "spacemarine2",
   "cyberpunk",
   "gta6",
   "gta5",
@@ -88,22 +162,14 @@ const AAA_GAME_IDS = new Set([
   "re4_remake",
   "spiderman",
   "alanwake2",
-  "tlou1"
-]);
-
-const NEW_GAME_IDS = new Set([
-  "wukong",
-  "eafc25",
-  "helldivers2",
-  "gow_ragnarok",
-  "stalker2",
-  "silenthill2",
-  "mhw_wilds",
-  "farm_sim25",
-  "msfs2024",
-  "manorlords",
-  "palworld",
-  "gta6"
+  "tlou1",
+  "ghostoftsushima",
+  "sekiro",
+  "darksouls3",
+  "skyrim",
+  "fallout4",
+  "doometernal",
+  "diablo4"
 ]);
 
 export const FpsSimulatorModule: React.FC<FpsSimulatorModuleProps> = ({
@@ -170,10 +236,11 @@ export const FpsSimulatorModule: React.FC<FpsSimulatorModuleProps> = ({
   const filteredGames = useMemo(() => {
     return allGames.filter((g) => {
       // Category filter
+      if (activeCategory === "indie" && !INDIE_GAME_IDS.has(g.id)) return false;
       if (activeCategory === "popular" && !POPULAR_GAME_IDS.has(g.id)) return false;
       if (activeCategory === "esports" && !ESPORTS_GAME_IDS.has(g.id)) return false;
       if (activeCategory === "aaa" && !AAA_GAME_IDS.has(g.id)) return false;
-      if (activeCategory === "new" && !NEW_GAME_IDS.has(g.id)) return false;
+      if (activeCategory === "sim" && !SIM_GAME_IDS.has(g.id)) return false;
       if (activeCategory === "custom" && !g.isLiveAdded) return false;
 
       // Search query
@@ -398,6 +465,17 @@ export const FpsSimulatorModule: React.FC<FpsSimulatorModuleProps> = ({
               <span>Tümü ({allGames.length})</span>
             </button>
             <button
+              onClick={() => setActiveCategory("indie")}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeCategory === "indie"
+                  ? "bg-emerald-500 text-neutral-950 shadow-md shadow-emerald-500/20"
+                  : "bg-neutral-950 text-neutral-400 hover:text-white border border-neutral-800"
+              }`}
+            >
+              <Gamepad2 className="w-3.5 h-3.5 text-purple-400" />
+              <span>🕹️ Bağımsız &amp; Küçük Oyunlar</span>
+            </button>
+            <button
               onClick={() => setActiveCategory("popular")}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                 activeCategory === "popular"
@@ -430,14 +508,14 @@ export const FpsSimulatorModule: React.FC<FpsSimulatorModuleProps> = ({
               <span>⚔️ AAA &amp; Ağır Grafikler</span>
             </button>
             <button
-              onClick={() => setActiveCategory("new")}
+              onClick={() => setActiveCategory("sim")}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                activeCategory === "new"
+                activeCategory === "sim"
                   ? "bg-emerald-500 text-neutral-950 shadow-md shadow-emerald-500/20"
                   : "bg-neutral-950 text-neutral-400 hover:text-white border border-neutral-800"
               }`}
             >
-              <span>⚡ 2024-2025 Yeni</span>
+              <span>🚜 Simülasyon &amp; Şehir</span>
             </button>
             {allGames.some((g) => g.isLiveAdded) && (
               <button
@@ -518,8 +596,9 @@ export const FpsSimulatorModule: React.FC<FpsSimulatorModuleProps> = ({
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src =
-                        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80";
+                      e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                        game.title
+                      )}&background=09090b&color=10b981&bold=true`;
                     }}
                   />
                   {game.isLiveAdded && (
