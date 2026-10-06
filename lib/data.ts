@@ -1572,7 +1572,7 @@ export const STREAMER_SETUPS: StreamerSetup[] = [
     name: "Tuğkan Gönültaş",
     alias: "Elraenn",
     platform: "Twitch / YouTube",
-    avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=300&q=80",
+    avatar: "/streamers/elraenn.png",
     banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
     description: "Türkiye'nin en çok izlenen yayıncısı. GTA RP, RDR2 ve hikayeli oyunları 4K yayın kalitesinde oynar.",
     primaryGame: "GTA RP / RDR2 / Hikayeli Oyunlar",
@@ -1602,7 +1602,7 @@ export const STREAMER_SETUPS: StreamerSetup[] = [
     name: "Ferit Karakaya",
     alias: "wtcN",
     platform: "Kick / YouTube",
-    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80",
+    avatar: "/streamers/wtcn.png",
     banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
     description: "Eski profesyonel LoL ve Valorant oyuncusu, BBL Esports kurucusu. Yüksek FPS ve sıfır gecikme odaklı donanım kullanır.",
     primaryGame: "Valorant / CS2 / Rekabetçi",
@@ -1632,7 +1632,7 @@ export const STREAMER_SETUPS: StreamerSetup[] = [
     name: "Kemal Can Parlak",
     alias: "Kendine Müzisyen",
     platform: "Twitch / YouTube",
-    avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=300&q=80",
+    avatar: "/streamers/kendinemuzisyen.png",
     banner: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=80",
     description: "Türkiye'nin en popüler eğlence ve IRL yayıncısı. Ağır oyunları ve müzik kayıtlarını tek makinada işler.",
     primaryGame: "Çeşitli Oyunlar / IRL / Simülasyon",
@@ -1662,7 +1662,7 @@ export const STREAMER_SETUPS: StreamerSetup[] = [
     name: "Cem Karakoç",
     alias: "Mithrain",
     platform: "Twitch / YouTube",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+    avatar: "/streamers/mithrain.png",
     banner: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
     description: "Eski profesyonel PUBG ve FPS oyuncusu. Keskin aim refleksleri ve saf rekabetçi donanım odaklıdır.",
     primaryGame: "PUBG / Apex Legends / CS2",
@@ -1692,7 +1692,7 @@ export const STREAMER_SETUPS: StreamerSetup[] = [
     name: "Cantuğ Özsoy",
     alias: "Unlost",
     platform: "Twitch / YouTube",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+    avatar: "/streamers/unlost.png",
     banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
     description: "CS ve Half-Life efsanesi, Türkiye'nin ilk donanım ve FPS optimizasyon rehberlerini yapan ismi.",
     primaryGame: "Counter-Strike 2 / Half-Life",
@@ -1722,7 +1722,7 @@ export const STREAMER_SETUPS: StreamerSetup[] = [
     name: "Ahmet Sonuç",
     alias: "Jahrein",
     platform: "Kick / YouTube",
-    avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=300&q=80",
+    avatar: "/streamers/jahrein.png",
     banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
     description: "Türkiye'nin en kıdemli yayıncılarından. Ağır strateji, simülasyon ve açık dünya RPG oyunları oynar.",
     primaryGame: "Tarkov / Total War / Simülasyon",
@@ -1746,193 +1746,13 @@ export const STREAMER_SETUPS: StreamerSetup[] = [
     closestSystemId: "sinerji-vesper-7800x3d"
   },
 
-  // 7. S1MPLE
-  {
-    id: "s1mple",
-    name: "Oleksandr Kostyliev",
-    alias: "s1mple (CS2 GOAT)",
-    platform: "Pro Espor",
-    avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=300&q=80",
-    banner: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=80",
-    description: "CS:GO ve CS2 tarihinin en iyi oyuncusu (GOAT). Tüm ayarlarını 500+ FPS ve 4:3 çözünürlük için optimize eder.",
-    primaryGame: "Counter-Strike 2",
-    pcSpecs: {
-      cpu: "Intel Core i9 14900KS (6.2 GHz)",
-      gpu: "Nvidia GeForce RTX 4090 24GB",
-      ram: "32GB Kingston Fury Renegade 7200MHz",
-      motherboard: "Z790 AORUS Master",
-      storage: "2TB WD Black SN850X",
-      cooling: "Lian Li Galahad II LCD 360"
-    },
-    gear: {
-      monitor: "BenQ ZOWIE XL2566K 360Hz DyAc+",
-      mouse: "Logitech G Pro X Superlight 2 (Magenta)",
-      keyboard: "Logitech G715 Tactile White",
-      headset: "Logitech G PRO X 2 Lightspeed",
-      microphone: "Audio-Technica AT2020",
-      mousepad: "Hator It's Nice to be s1mple Özel",
-      chair: "Anda Seat Kaiser 3 XL"
-    },
-    closestSystemId: "gamegaraj-hero-4070super"
-  },
-
-  // 8. TENZ
-  {
-    id: "tenz",
-    name: "Tyson Ngo",
-    alias: "TenZ (Valorant Şampiyonu)",
-    platform: "Pro Espor",
-    avatar: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=300&q=80",
-    banner: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
-    description: "Sentinels takımının dünya şampiyonu Valorant yıldızı. Mouse ve klavye hassasiyetinde dünya çapında trend belirleyicidir.",
-    primaryGame: "Valorant / Aim Lab",
-    pcSpecs: {
-      cpu: "AMD Ryzen 7 7800X3D",
-      gpu: "Nvidia GeForce RTX 4080 16GB",
-      ram: "32GB DDR5 6000MHz",
-      motherboard: "ASUS ROG Strix X670E",
-      storage: "2TB Samsung 980 Pro",
-      cooling: "Arctic Liquid Freezer III 360"
-    },
-    gear: {
-      monitor: "BenQ ZOWIE XL2566K 360Hz",
-      mouse: "Finalmouse UltralightX TenZ Edition",
-      keyboard: "Wooting 60HE Hall Effect",
-      headset: "Xtrfy H1 Pro Gaming",
-      microphone: "Shure MV7X XLR",
-      mousepad: "Artisan Ninja FX Zero Soft XL",
-      chair: "Herman Miller Aeron Graphite"
-    },
-    closestSystemId: "gaminggen-blade-7500f"
-  },
-
-  // 9. SHROUD
-  {
-    id: "shroud",
-    name: "Michael Grzesiek",
-    alias: "shroud (İnsan Aim Botu)",
-    platform: "Twitch / YouTube",
-    avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=300&q=80",
-    banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
-    description: "Eski Cloud9 CS:GO profesyoneli, tüm FPS dünyasının en saygı duyulan aim ustası.",
-    primaryGame: "Tüm FPS Oyunları / Rekabetçi",
-    pcSpecs: {
-      cpu: "AMD Ryzen 9 7950X3D",
-      gpu: "Nvidia GeForce RTX 4090 24GB",
-      ram: "64GB G.Skill Trident Z5 6000MHz",
-      motherboard: "ASUS ROG Crosshair X670E Extreme",
-      storage: "4TB Samsung 990 Pro",
-      cooling: "Corsair iCUE LINK H150i LCD"
-    },
-    gear: {
-      monitor: "ASUS ROG Swift OLED PG27AQDM 240Hz",
-      mouse: "Logitech G303 Shroud Edition Wireless",
-      keyboard: "Logitech G PRO X TKL Lightspeed",
-      headset: "Logitech G PRO X 2 Lightspeed",
-      microphone: "Shure SM7B + Cloudlifter CL-1",
-      mousepad: "Logitech G840 Shroud Edition XL",
-      chair: "Herman Miller Embody Cyan"
-    },
-    closestSystemId: "sinerji-vesper-7800x3d"
-  },
-
-  // 10. NIKO
-  {
-    id: "niko",
-    name: "Nikola Kovač",
-    alias: "NiKo (CS2 Deagle Kralı)",
-    platform: "Pro Espor",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
-    banner: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=80",
-    description: "G2 Esports ve Falcons yıldızı, CS tarihinin tartışmasız en iyi rifler oyuncusu.",
-    primaryGame: "Counter-Strike 2",
-    pcSpecs: {
-      cpu: "AMD Ryzen 7 7800X3D (3D V-Cache)",
-      gpu: "Nvidia GeForce RTX 4080 SUPER 16GB",
-      ram: "32GB Kingston Fury 6000MHz",
-      motherboard: "ASUS ROG Strix B650E-E",
-      storage: "2TB Samsung 990 Pro",
-      cooling: "Lian Li Galahad II Trinity 360"
-    },
-    gear: {
-      monitor: "BenQ ZOWIE XL2566K 360Hz 0.5ms",
-      mouse: "Logitech G Pro X Superlight 2 (Siyah)",
-      keyboard: "Wooting 60HE Hall Effect (Snap Tap)",
-      headset: "Logitech G PRO X Lightspeed",
-      microphone: "HyperX QuadCast S",
-      mousepad: "Lethal Gaming Gear Saturn Pro XL",
-      chair: "Secretlab TITAN Evo G2 Esports Edition"
-    },
-    closestSystemId: "gamegaraj-hero-4070super"
-  },
-
-  // 11. XANTARES (Eternal Fire)
-  {
-    id: "xantares",
-    name: "İsmailcan Dörtkardeş",
-    alias: "XANTARES (Eternal Fire Efsanesi)",
-    platform: "Pro Espor / Twitch",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
-    banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
-    description: "Eternal Fire takımının dünya çapındaki gururu. 'XANTARES PEEK' teriminin yaratıcısı, CS tarihinin en ölümcül aim ustalarından.",
-    primaryGame: "Counter-Strike 2",
-    pcSpecs: {
-      cpu: "AMD Ryzen 7 7800X3D (3D V-Cache Espor Canavarı)",
-      gpu: "Nvidia GeForce RTX 4080 SUPER 16GB",
-      ram: "32GB Kingston Fury Renegade 6000MHz CL30",
-      motherboard: "ASUS ROG Strix B650E-F Gaming WiFi",
-      storage: "2TB Samsung 990 Pro NVMe Gen4",
-      cooling: "NZXT Kraken Elite 360 RGB"
-    },
-    gear: {
-      monitor: "BenQ ZOWIE XL2566K 360Hz 0.5ms DyAc+",
-      mouse: "ZOWIE EC2-CW Kablosuz Espor Faresi",
-      keyboard: "HyperX Alloy Origins Core (Aqua Switch)",
-      headset: "HyperX Cloud II Pro Gaming (Kırmızı/Siyah)",
-      microphone: "Shure SM7B + TC Helicon GoXLR",
-      mousepad: "SteelSeries QcK Heavy XXL (6mm)",
-      chair: "xDrive Eternal Fire Özel Seri Oyuncu Koltuğu"
-    },
-    closestSystemId: "sinerji-vesper-7800x3d"
-  },
-
-  // 12. CNED (FUT Esports / Dünya Şampiyonu)
-  {
-    id: "cned",
-    name: "Mehmet Yağız İpek",
-    alias: "cNed (Valorant Dünya Şampiyonu)",
-    platform: "Pro Espor / Twitch",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
-    banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
-    description: "Acend ile Valorant Champions 2021 Dünya Şampiyonu, şu an FUT Esports yıldızı. Jett operatör vuruşlarıyla dünya espor tarihine geçti.",
-    primaryGame: "Valorant / Aim Lab",
-    pcSpecs: {
-      cpu: "AMD Ryzen 7 7800X3D",
-      gpu: "Nvidia GeForce RTX 4070 Ti SUPER 16GB",
-      ram: "32GB G.Skill Flare X5 6000MHz CL30",
-      motherboard: "MSI MAG B650 Tomahawk WiFi",
-      storage: "2TB Kingston KC3000 Gen4",
-      cooling: "DeepCool LT720 360mm Sıvı Soğutma"
-    },
-    gear: {
-      monitor: "BenQ ZOWIE XL2566K 360Hz DyAc+",
-      mouse: "Logitech G Pro X Superlight 2 (Beyaz)",
-      keyboard: "Wooting 60HE+ (Rapid Trigger Analog)",
-      headset: "HyperX Cloud Alpha Wireless",
-      microphone: "HyperX QuadCast S RGB",
-      mousepad: "Artisan Ninja FX Zero Soft XL",
-      chair: "Secretlab TITAN Evo FUT Esports Edition"
-    },
-    closestSystemId: "gamegaraj-hero-4070super"
-  },
-
-  // 13. RRAENEE
+  // 7. RRAENEE
   {
     id: "rraenee",
     name: "Alp Eren",
     alias: "Rraenee",
     platform: "Kick / YouTube",
-    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80",
+    avatar: "/streamers/rraenee.png",
     banner: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=80",
     description: "Türkiye'nin en popüler yayıncılarından. GTA RP, Valorant ve eğlenceli sohbet yayınlarıyla her gün on binlerce izleyiciye hitap eder.",
     primaryGame: "GTA RP / Valorant / CS2",
@@ -1956,13 +1776,13 @@ export const STREAMER_SETUPS: StreamerSetup[] = [
     closestSystemId: "sinerji-vesper-7800x3d"
   },
 
-  // 14. ERAY
+  // 8. ERAY
   {
     id: "eray",
     name: "Eray Özkenar",
     alias: "Eray",
     platform: "Twitch / YouTube",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+    avatar: "/streamers/eray.png",
     banner: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
     description: "CS2, korku oyunları, GTA RP ve eğlenceli yayınlarıyla Türk Twitch topluluğunun en sevilen yayıncılarından.",
     primaryGame: "CS2 / Korku / Çeşitli Oyunlar",
@@ -1984,6 +1804,396 @@ export const STREAMER_SETUPS: StreamerSetup[] = [
       chair: "xDrive Tufan Profesyonel Oyuncu Koltuğu"
     },
     closestSystemId: "vatan-intel-14400f-4070"
+  },
+
+  // 9. XANTARES (Eternal Fire)
+  {
+    id: "xantares",
+    name: "İsmailcan Dörtkardeş",
+    alias: "XANTARES (Eternal Fire)",
+    platform: "Pro Espor / Twitch",
+    avatar: "/streamers/xantares.png",
+    banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+    description: "Eternal Fire takımının dünya çapındaki gururu. 'XANTARES PEEK' teriminin yaratıcısı, CS tarihinin en ölümcül aim ustalarından.",
+    primaryGame: "Counter-Strike 2",
+    pcSpecs: {
+      cpu: "AMD Ryzen 7 7800X3D (3D V-Cache Espor Canavarı)",
+      gpu: "Nvidia GeForce RTX 4080 SUPER 16GB",
+      ram: "32GB Kingston Fury Renegade 6000MHz CL30",
+      motherboard: "ASUS ROG Strix B650E-F Gaming WiFi",
+      storage: "2TB Samsung 990 Pro NVMe Gen4",
+      cooling: "NZXT Kraken Elite 360 RGB"
+    },
+    gear: {
+      monitor: "BenQ ZOWIE XL2566K 360Hz 0.5ms DyAc+",
+      mouse: "ZOWIE EC2-CW Kablosuz Espor Faresi",
+      keyboard: "HyperX Alloy Origins Core (Aqua Switch)",
+      headset: "HyperX Cloud II Pro Gaming (Kırmızı/Siyah)",
+      microphone: "Shure SM7B + TC Helicon GoXLR",
+      mousepad: "SteelSeries QcK Heavy XXL (6mm)",
+      chair: "xDrive Eternal Fire Özel Seri Oyuncu Koltuğu"
+    },
+    closestSystemId: "sinerji-vesper-7800x3d"
+  },
+
+  // 10. WOXIC (Eternal Fire AWP)
+  {
+    id: "woxic",
+    name: "Özgür Eker",
+    alias: "woxic (Eternal Fire AWP)",
+    platform: "Pro Espor / Twitch",
+    avatar: "/streamers/woxic.png",
+    banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
+    description: "Dünyanın en yüksek hassasiyetli (high sens) ve en hızlı refleksli solak AWP oyuncusu. Eternal Fire ile Major çeyrek finalisti.",
+    primaryGame: "Counter-Strike 2",
+    pcSpecs: {
+      cpu: "AMD Ryzen 7 7800X3D",
+      gpu: "Nvidia GeForce RTX 4080 SUPER 16GB",
+      ram: "32GB G.Skill Trident Z5 6000MHz CL30",
+      motherboard: "ASUS TUF Gaming B650-Plus WiFi",
+      storage: "2TB Kingston KC3000 Gen4",
+      cooling: "Arctic Liquid Freezer III 360"
+    },
+    gear: {
+      monitor: "BenQ ZOWIE XL2566K 360Hz 0.5ms DyAc+",
+      mouse: "SteelSeries Sensei Ten (1620 eDPI Yüksek Sens)",
+      keyboard: "SteelSeries Apex Pro TKL OmniPoint",
+      headset: "HyperX Cloud Alpha S",
+      microphone: "HyperX QuadCast S",
+      mousepad: "SteelSeries QcK Heavy Large",
+      chair: "xDrive 15'Li Profesyonel Oyuncu Koltuğu"
+    },
+    closestSystemId: "sinerji-vesper-7800x3d"
+  },
+
+  // 11. CNED (FUT Esports / Dünya Şampiyonu)
+  {
+    id: "cned",
+    name: "Mehmet Yağız İpek",
+    alias: "cNed (Valorant Dünya Şampiyonu)",
+    platform: "Pro Espor / Twitch",
+    avatar: "/streamers/cned.png",
+    banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
+    description: "Acend ile Valorant Champions 2021 Dünya Şampiyonu, şu an FUT Esports yıldızı. Jett operatör vuruşlarıyla dünya espor tarihine geçti.",
+    primaryGame: "Valorant / Aim Lab",
+    pcSpecs: {
+      cpu: "AMD Ryzen 7 7800X3D",
+      gpu: "Nvidia GeForce RTX 4070 Ti SUPER 16GB",
+      ram: "32GB G.Skill Flare X5 6000MHz CL30",
+      motherboard: "MSI MAG B650 Tomahawk WiFi",
+      storage: "2TB Kingston KC3000 Gen4",
+      cooling: "DeepCool LT720 360mm Sıvı Soğutma"
+    },
+    gear: {
+      monitor: "BenQ ZOWIE XL2566K 360Hz DyAc+",
+      mouse: "Logitech G Pro X Superlight 2 (Beyaz)",
+      keyboard: "Wooting 60HE+ (Rapid Trigger Analog)",
+      headset: "HyperX Cloud Alpha Wireless",
+      microphone: "HyperX QuadCast S RGB",
+      mousepad: "Artisan Ninja FX Zero Soft XL",
+      chair: "Secretlab TITAN Evo FUT Esports Edition"
+    },
+    closestSystemId: "gamegaraj-hero-4070super"
+  },
+
+  // 12. S1MPLE (CS:GO / CS2 GOAT)
+  {
+    id: "s1mple",
+    name: "Oleksandr Kostyliev",
+    alias: "s1mple (CS2 GOAT)",
+    platform: "Pro Espor",
+    avatar: "/streamers/s1mple.png",
+    banner: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=80",
+    description: "CS:GO ve CS2 tarihinin en iyi oyuncusu (GOAT). Tüm ayarlarını 500+ FPS ve 4:3 çözünürlük için optimize eder.",
+    primaryGame: "Counter-Strike 2",
+    pcSpecs: {
+      cpu: "Intel Core i9 14900KS (6.2 GHz)",
+      gpu: "Nvidia GeForce RTX 4090 24GB",
+      ram: "32GB Kingston Fury Renegade 7200MHz",
+      motherboard: "Z790 AORUS Master",
+      storage: "2TB WD Black SN850X",
+      cooling: "Lian Li Galahad II LCD 360"
+    },
+    gear: {
+      monitor: "BenQ ZOWIE XL2566K 360Hz DyAc+",
+      mouse: "Logitech G Pro X Superlight 2 (Magenta)",
+      keyboard: "Logitech G715 Tactile White",
+      headset: "Logitech G PRO X 2 Lightspeed",
+      microphone: "Audio-Technica AT2020",
+      mousepad: "Hator It's Nice to be s1mple Özel",
+      chair: "Anda Seat Kaiser 3 XL"
+    },
+    closestSystemId: "gamegaraj-hero-4070super"
+  },
+
+  // 13. NIKO (CS2 Deagle Kralı)
+  {
+    id: "niko",
+    name: "Nikola Kovač",
+    alias: "NiKo (CS2 Deagle Kralı)",
+    platform: "Pro Espor",
+    avatar: "/streamers/niko.png",
+    banner: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=80",
+    description: "G2 Esports ve Falcons yıldızı, CS tarihinin tartışmasız en iyi rifler oyuncusu.",
+    primaryGame: "Counter-Strike 2",
+    pcSpecs: {
+      cpu: "AMD Ryzen 7 7800X3D (3D V-Cache)",
+      gpu: "Nvidia GeForce RTX 4080 SUPER 16GB",
+      ram: "32GB Kingston Fury 6000MHz",
+      motherboard: "ASUS ROG Strix B650E-E",
+      storage: "2TB Samsung 990 Pro",
+      cooling: "Lian Li Galahad II Trinity 360"
+    },
+    gear: {
+      monitor: "BenQ ZOWIE XL2566K 360Hz 0.5ms",
+      mouse: "Logitech G Pro X Superlight 2 (Siyah)",
+      keyboard: "Wooting 60HE Hall Effect (Snap Tap)",
+      headset: "Logitech G PRO X Lightspeed",
+      microphone: "HyperX QuadCast S",
+      mousepad: "Lethal Gaming Gear Saturn Pro XL",
+      chair: "Secretlab TITAN Evo G2 Esports Edition"
+    },
+    closestSystemId: "gamegaraj-hero-4070super"
+  },
+
+  // 14. M0NESY (G2 Esports AWP Fenomeni)
+  {
+    id: "m0nesy",
+    name: "Ilya Osipov",
+    alias: "m0NESY (Baby GOAT)",
+    platform: "Pro Espor / Twitch",
+    avatar: "/streamers/m0nesy.png",
+    banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+    description: "G2 Esports'un dahi AWP oyuncusu. İnanılmaz hızlı flick vuruşları ve harita glitch taktikleriyle tanınır.",
+    primaryGame: "Counter-Strike 2",
+    pcSpecs: {
+      cpu: "AMD Ryzen 7 7800X3D (4.2 - 5.0 GHz)",
+      gpu: "Nvidia GeForce RTX 4080 16GB",
+      ram: "32GB Kingston Fury Beast 6000MHz",
+      motherboard: "ASUS ROG Maximus Z790 Hero",
+      storage: "2TB WD Black SN850X",
+      cooling: "NZXT Kraken Z73 360mm"
+    },
+    gear: {
+      monitor: "BenQ ZOWIE XL2566K 360Hz DyAc+",
+      mouse: "Logitech G Pro X Superlight (Beyaz)",
+      keyboard: "SteelSeries Apex Pro Mini (Manyetik)",
+      headset: "Logitech G PRO X 2 Lightspeed",
+      microphone: "HyperX QuadCast",
+      mousepad: "SteelSeries QcK Heavy Large",
+      chair: "Secretlab TITAN Evo G2 Edition"
+    },
+    closestSystemId: "sinerji-vesper-7800x3d"
+  },
+
+  // 15. DONK (Team Spirit / Katowice & Major MVP)
+  {
+    id: "donk",
+    name: "Danil Kryshkovets",
+    alias: "donk (Spirit Harikası)",
+    platform: "Pro Espor",
+    avatar: "/streamers/donk.png",
+    banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
+    description: "17 yaşında IEM Katowice 2024 MVP'si olan, CS2 tarihinin en agresif ve durdurulamaz entry fragger'ı.",
+    primaryGame: "Counter-Strike 2",
+    pcSpecs: {
+      cpu: "AMD Ryzen 7 7800X3D (Espor Rekortmeni)",
+      gpu: "Nvidia GeForce RTX 4080 SUPER 16GB",
+      ram: "32GB Kingston Fury Renegade 6000MHz CL30",
+      motherboard: "MSI MAG B650 Tomahawk WiFi",
+      storage: "2TB Samsung 990 Pro",
+      cooling: "DeepCool LT720 360mm"
+    },
+    gear: {
+      monitor: "BenQ ZOWIE XL2546K 240Hz DyAc+",
+      mouse: "Logitech G Pro X Superlight (Kırmızı)",
+      keyboard: "Logitech G PRO X Mechanical Keyboard",
+      headset: "HyperX Cloud II Pro Gaming",
+      microphone: "HyperX SoloCast",
+      mousepad: "SteelSeries QcK Heavy Medium",
+      chair: "Anda Seat Phantom 3"
+    },
+    closestSystemId: "sinerji-vesper-7800x3d"
+  },
+
+  // 16. TENZ (Valorant Şampiyonu)
+  {
+    id: "tenz",
+    name: "Tyson Ngo",
+    alias: "TenZ (Valorant Şampiyonu)",
+    platform: "Pro Espor",
+    avatar: "/streamers/tenz.png",
+    banner: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
+    description: "Sentinels takımının dünya şampiyonu Valorant yıldızı. Mouse ve klavye hassasiyetinde dünya çapında trend belirleyicidir.",
+    primaryGame: "Valorant / Aim Lab",
+    pcSpecs: {
+      cpu: "AMD Ryzen 7 7800X3D",
+      gpu: "Nvidia GeForce RTX 4080 16GB",
+      ram: "32GB DDR5 6000MHz",
+      motherboard: "ASUS ROG Strix X670E",
+      storage: "2TB Samsung 980 Pro",
+      cooling: "Arctic Liquid Freezer III 360"
+    },
+    gear: {
+      monitor: "BenQ ZOWIE XL2566K 360Hz",
+      mouse: "Finalmouse UltralightX TenZ Edition",
+      keyboard: "Wooting 60HE Hall Effect",
+      headset: "Xtrfy H1 Pro Gaming",
+      microphone: "Shure MV7X XLR",
+      mousepad: "Artisan Ninja FX Zero Soft XL",
+      chair: "Herman Miller Aeron Graphite"
+    },
+    closestSystemId: "gaminggen-blade-7500f"
+  },
+
+  // 17. SHROUD (İnsan Aim Botu)
+  {
+    id: "shroud",
+    name: "Michael Grzesiek",
+    alias: "shroud (İnsan Aim Botu)",
+    platform: "Twitch / YouTube",
+    avatar: "/streamers/shroud.png",
+    banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
+    description: "Eski Cloud9 CS:GO profesyoneli, tüm FPS dünyasının en saygı duyulan aim ustası.",
+    primaryGame: "Tüm FPS Oyunları / Rekabetçi",
+    pcSpecs: {
+      cpu: "AMD Ryzen 9 7950X3D",
+      gpu: "Nvidia GeForce RTX 4090 24GB",
+      ram: "64GB G.Skill Trident Z5 6000MHz",
+      motherboard: "ASUS ROG Crosshair X670E Extreme",
+      storage: "4TB Samsung 990 Pro",
+      cooling: "Corsair iCUE LINK H150i LCD"
+    },
+    gear: {
+      monitor: "ASUS ROG Swift OLED PG27AQDM 240Hz",
+      mouse: "Logitech G303 Shroud Edition Wireless",
+      keyboard: "Logitech G PRO X TKL Lightspeed",
+      headset: "Logitech G PRO X 2 Lightspeed",
+      microphone: "Shure SM7B + Cloudlifter CL-1",
+      mousepad: "Logitech G840 Shroud Edition XL",
+      chair: "Herman Miller Embody Cyan"
+    },
+    closestSystemId: "sinerji-vesper-7800x3d"
+  },
+
+  // 18. TARIK (Sentinels / Major MVP)
+  {
+    id: "tarik",
+    name: "Tarik Celik",
+    alias: "Tarik (Valorant Kralı)",
+    platform: "Twitch / YouTube",
+    avatar: "/streamers/tarik.png",
+    banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+    description: "Boston 2018 CS:GO Major MVP'si, Valorant'ın dünyadaki en büyük yayıncısı ve Sentinels içerik üreticisi.",
+    primaryGame: "Valorant / CS2",
+    pcSpecs: {
+      cpu: "Intel Core i9 14900K (6.0 GHz)",
+      gpu: "Nvidia GeForce RTX 4090 24GB",
+      ram: "64GB Corsair Dominator Titanium 6000MHz",
+      motherboard: "ASUS ROG Maximus Z790 Dark Hero",
+      storage: "4TB Samsung 990 Pro NVMe",
+      cooling: "NZXT Kraken Elite 360 RGB"
+    },
+    gear: {
+      monitor: "BenQ ZOWIE XL2566K 360Hz 0.5ms DyAc+",
+      mouse: "Razer Viper V3 Pro Wireless (Siyah)",
+      keyboard: "Wooting 60HE+ (Snap Tap)",
+      headset: "HyperX Cloud Alpha Wireless",
+      microphone: "Shure SM7B + TC-Helicon GoXLR",
+      mousepad: "Artisan Hayate Otsu XSoft XL",
+      chair: "Herman Miller Embody Gaming"
+    },
+    closestSystemId: "sinerji-vesper-7800x3d"
+  },
+
+  // 19. XQC (Juicebox / Çeşitlilik Kralı)
+  {
+    id: "xqc",
+    name: "Félix Lengyel",
+    alias: "xQc",
+    platform: "Kick / Twitch",
+    avatar: "/streamers/xqc.png",
+    banner: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=80",
+    description: "Dünyanın en çok izlenen yayıncılarından. Eski Overwatch profesyoneli, aralıksız 16 saatlik maraton yayınlarıyla bilinir.",
+    primaryGame: "Çeşitli Oyunlar / GTA RP / Overwatch",
+    pcSpecs: {
+      cpu: "Intel Core i9 14900KS (6.2 GHz Özel)",
+      gpu: "Nvidia GeForce RTX 4090 24GB GDDR6X",
+      ram: "64GB G.Skill Trident Z5 RGB 7200MHz",
+      motherboard: "ASUS ROG Maximus Z790 Apex Encore",
+      storage: "8TB Corsair MP700 PRO Gen5 NVMe",
+      cooling: "Custom Hardline Liquid Cooling 420mm"
+    },
+    gear: {
+      monitor: "ASUS ROG Swift PG27AQN 360Hz 2K",
+      mouse: "SteelSeries Aerox 3 Wireless Ghost",
+      keyboard: "SteelSeries Apex Pro TKL OmniPoint",
+      headset: "HyperX Cloud II Kablolu (Klasik)",
+      microphone: "Shure SM7B + Scarlett 2i2",
+      mousepad: "SteelSeries QcK XXL",
+      chair: "Herman Miller Aeron Remastered"
+    },
+    closestSystemId: "sinerji-vesper-7800x3d"
+  },
+
+  // 20. KAI CENAT (Dünya Abone Rekortmeni)
+  {
+    id: "kaicenat",
+    name: "Kai Cenat",
+    alias: "Kai Cenat (AMP)",
+    platform: "Twitch / YouTube",
+    avatar: "/streamers/kaicenat.png",
+    banner: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80",
+    description: "Twitch tarihinin en çok aboneye ulaşan yayıncısı (300K+ Sub). Elden Ring maratonları ve ünlü konuklu yayınlarıyla zirvede.",
+    primaryGame: "IRL / Elden Ring / GTA RP",
+    pcSpecs: {
+      cpu: "Intel Core i9 14900KS (Çift PC Yayın Sistemi)",
+      gpu: "Nvidia GeForce RTX 4090 24GB",
+      ram: "64GB Corsair Dominator Titanium DDR5",
+      motherboard: "ASUS ROG Strix Z790-E Gaming WiFi II",
+      storage: "4TB Samsung 990 Pro",
+      cooling: "NZXT Kraken Elite 360"
+    },
+    gear: {
+      monitor: "Alienware AW2725DF 360Hz QD-OLED 2K",
+      mouse: "Logitech G PRO X Superlight 2 (Siyah)",
+      keyboard: "Wooting 60HE+ Manyetik",
+      headset: "Audio-Technica ATH-M50x",
+      microphone: "Shure SM7B + Rodecaster Pro II",
+      mousepad: "Logitech G840 XL Black",
+      chair: "Herman Miller Embody Logitech G"
+    },
+    closestSystemId: "sinerji-vesper-7800x3d"
+  },
+
+  // 21. ISHOWSPEED (Küresel Yayın Fenomeni)
+  {
+    id: "ishowspeed",
+    name: "Darren Watkins Jr.",
+    alias: "IShowSpeed",
+    platform: "YouTube",
+    avatar: "/streamers/ishowspeed.png",
+    banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+    description: "Dünyanın en enerjik ve en çok takip edilen YouTube canlı yayıncısı. FIFA/FC 24, Fortnite ve dünya turlarıyla tanınır.",
+    primaryGame: "EA FC 24 / Fortnite / IRL",
+    pcSpecs: {
+      cpu: "Intel Core i9 13900K (24C/32T 5.8GHz)",
+      gpu: "Nvidia GeForce RTX 4090 24GB",
+      ram: "64GB Kingston Fury Beast 6000MHz",
+      motherboard: "ASUS TUF Gaming Z790-Plus WiFi",
+      storage: "4TB Kingston KC3000 Gen4",
+      cooling: "Corsair iCUE H150i RGB Elite"
+    },
+    gear: {
+      monitor: "ASUS ROG Swift PG259QN 360Hz",
+      mouse: "Logitech G Pro Wireless",
+      keyboard: "Razer Huntsman Mini %60",
+      headset: "HyperX Cloud Alpha Kablolu",
+      microphone: "HyperX QuadCast S RGB",
+      mousepad: "Razer Gigantus V2 XXL",
+      chair: "Secretlab TITAN Evo 2022 Batman Edition"
+    },
+    closestSystemId: "sinerji-vesper-7800x3d"
   }
 ];
 
