@@ -20,6 +20,9 @@ import { EmailNotificationModal } from "@/components/EmailNotificationModal";
 import { AdInspectorModal } from "@/components/AdInspectorModal";
 import { GameSettingsModal } from "@/components/GameSettingsModal";
 import { GamifiedRewardsModal } from "@/components/GamifiedRewardsModal";
+import { PcRecommenderModal } from "@/components/PcRecommenderModal";
+import { VersusArenaModal } from "@/components/VersusArenaModal";
+import { PriceHistoryModal } from "@/components/PriceHistoryModal";
 import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
 import { TelegramGrowthFloatingBar } from "@/components/TelegramGrowthFloatingBar";
 import { SponsorsSection } from "@/components/SponsorsSection";
@@ -51,10 +54,13 @@ export default function Home() {
   const [isFavoritesDrawerOpen, setIsFavoritesDrawerOpen] = useState<boolean>(false);
   const [isEmailModalOpen, setIsEmailModalOpen] = useState<boolean>(false);
 
-  // Modals
+  // Killer Features Modals
   const [isAdInspectorOpen, setIsAdInspectorOpen] = useState<boolean>(false);
   const [isGameSettingsOpen, setIsGameSettingsOpen] = useState<boolean>(false);
   const [isRewardsModalOpen, setIsRewardsModalOpen] = useState<boolean>(false);
+  const [isPcRecommenderOpen, setIsPcRecommenderOpen] = useState<boolean>(false);
+  const [isVersusArenaOpen, setIsVersusArenaOpen] = useState<boolean>(false);
+  const [isPriceHistoryModalOpen, setIsPriceHistoryModalOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -199,6 +205,9 @@ export default function Home() {
           onOpenAdInspector={() => setIsAdInspectorOpen(true)}
           onOpenGameSettings={() => setIsGameSettingsOpen(true)}
           onOpenRewardsModal={() => setIsRewardsModalOpen(true)}
+          onOpenPcRecommender={() => setIsPcRecommenderOpen(true)}
+          onOpenVersusArena={() => setIsVersusArenaOpen(true)}
+          onOpenPriceHistory={() => setIsPriceHistoryModalOpen(true)}
         />
 
         {/* Live Telegram Deal Feed Ticker */}
@@ -412,6 +421,33 @@ export default function Home() {
       <GamifiedRewardsModal
         isOpen={isRewardsModalOpen}
         onClose={() => setIsRewardsModalOpen(false)}
+      />
+
+      {/* KILLER FEATURE 3: Akıllı PC Sihirbazı */}
+      <PcRecommenderModal
+        isOpen={isPcRecommenderOpen}
+        onClose={() => setIsPcRecommenderOpen(false)}
+        systems={PREBUILT_SYSTEMS}
+        onSelectSystemForFps={handleTestFps}
+        onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
+      />
+
+      {/* KILLER FEATURE 4: Kasa Kapışması & Topluluk Oylama Arenası */}
+      <VersusArenaModal
+        isOpen={isVersusArenaOpen}
+        onClose={() => setIsVersusArenaOpen(false)}
+        systems={PREBUILT_SYSTEMS}
+        onTestFps={handleTestFps}
+        onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
+      />
+
+      {/* KILLER FEATURE 5: 30-90 Günlük Fiyat Geçmişi & İndirim Trendi Modalı */}
+      <PriceHistoryModal
+        isOpen={isPriceHistoryModalOpen}
+        onClose={() => setIsPriceHistoryModalOpen(false)}
+        systems={PREBUILT_SYSTEMS}
+        initialSystem={selectedDetailSystem}
+        onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
       />
 
       {/* Sponsors & Brand Partnerships Section */}

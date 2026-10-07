@@ -11,6 +11,9 @@ interface HeroBannerProps {
   onOpenAdInspector?: () => void;
   onOpenGameSettings?: () => void;
   onOpenRewardsModal?: () => void;
+  onOpenPcRecommender?: () => void;
+  onOpenVersusArena?: () => void;
+  onOpenPriceHistory?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -20,7 +23,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onGoToFps,
   onOpenAdInspector,
   onOpenGameSettings,
-  onOpenRewardsModal
+  onOpenRewardsModal,
+  onOpenPcRecommender,
+  onOpenVersusArena,
+  onOpenPriceHistory
 }) => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 via-neutral-900/60 to-neutral-950 border border-neutral-800 p-6 sm:p-10 mb-8 shadow-2xl">
@@ -51,7 +57,37 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
         </p>
 
         {/* KILLER FEATURE QUICK BUTTONS ROW */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1">
+        <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+          {onOpenPcRecommender && (
+            <button
+              onClick={onOpenPcRecommender}
+              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-neutral-950 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-emerald-500/20"
+            >
+              <span>🎯 Bana PC Öner</span>
+              <span className="text-[10px] bg-neutral-950/20 px-1.5 py-0.2 rounded font-bold">Sihirbaz</span>
+            </button>
+          )}
+
+          {onOpenVersusArena && (
+            <button
+              onClick={onOpenVersusArena}
+              className="px-3.5 py-1.5 rounded-xl bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            >
+              <span>🥊 Kasa Kapışması</span>
+              <span className="text-[10px] bg-purple-500/30 px-1.5 py-0.2 rounded font-semibold">Versus</span>
+            </button>
+          )}
+
+          {onOpenPriceHistory && (
+            <button
+              onClick={onOpenPriceHistory}
+              className="px-3.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            >
+              <span>📈 30 Günlük Fiyat Grafiği</span>
+              <span className="text-[10px] bg-emerald-500/20 px-1.5 py-0.2 rounded font-normal">Dip Fiyat</span>
+            </button>
+          )}
+
           {onOpenAdInspector && (
             <button
               onClick={onOpenAdInspector}
@@ -67,7 +103,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               onClick={onOpenGameSettings}
               className="px-3.5 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
             >
-              <span>🎮 Espor Oyun Ayarları</span>
+              <span>🎮 Espor Ayarları</span>
               <span className="text-[10px] bg-cyan-500/20 px-1.5 py-0.2 rounded font-normal">CS2 / Valo</span>
             </button>
           )}
@@ -78,8 +114,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             rel="noopener noreferrer"
             className="px-3.5 py-1.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
           >
-            <span>📢 Telegram Fırsat Kanalı</span>
-            <span className="text-[10px] bg-sky-500/30 px-1.5 py-0.2 rounded font-semibold">Canlı Radar</span>
+            <span>📢 Telegram Kanalı</span>
+            <span className="text-[10px] bg-sky-500/30 px-1.5 py-0.2 rounded font-semibold">Canlı Bot</span>
           </a>
         </div>
 
