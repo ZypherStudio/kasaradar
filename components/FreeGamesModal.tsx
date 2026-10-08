@@ -182,14 +182,14 @@ export const FreeGamesModal: React.FC<FreeGamesModalProps> = ({ isOpen, onClose 
                   className="group relative rounded-2xl bg-neutral-950 border border-neutral-800/80 hover:border-neutral-700 overflow-hidden transition-all flex flex-col justify-between"
                 >
                   {/* Top Image Banner */}
-                  <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-neutral-900">
+                  <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-neutral-950">
                     <img
                       src={game.imageUrl}
                       alt={game.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
 
                     {/* Platform Badge */}
                     <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
