@@ -42,7 +42,7 @@ export const TelegramGrowthFloatingBar: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 right-3 sm:right-6 z-40 max-w-sm w-[calc(100%-1.5rem)] sm:w-auto animate-slide-up">
+    <div className="fixed bottom-20 sm:bottom-4 right-3 sm:right-6 z-40 max-w-sm w-[calc(100%-1.5rem)] sm:w-auto animate-slide-up">
       <div className="relative rounded-2xl bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950 border border-sky-500/40 p-4 shadow-2xl backdrop-blur-xl space-y-3">
         {/* Close Button */}
         <button

@@ -5,6 +5,7 @@ import { PrebuiltSystem } from "@/lib/types";
 import { formatTL } from "@/lib/calculator";
 import {
   X,
+  ArrowLeft,
   ExternalLink,
   Zap,
   Cpu,
@@ -142,12 +143,21 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
             <p className="text-xs text-neutral-400">{system.highlight}</p>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all cursor-pointer shrink-0"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              onClick={onClose}
+              className="sm:hidden flex items-center gap-1 px-3 py-1.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-bold transition-all cursor-pointer border border-neutral-700 active:scale-95"
+            >
+              <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Geri</span>
+            </button>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Pricing & Direct Store Action Bar */}
@@ -764,6 +774,17 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
           <span className="text-[11px] text-neutral-500">
             Garanti: {system.warranty}
           </span>
+        </div>
+
+        {/* Mobile Full Width Back Button */}
+        <div className="sm:hidden pt-2 border-t border-neutral-800">
+          <button
+            onClick={onClose}
+            className="w-full py-3 rounded-2xl bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs flex items-center justify-center gap-2 cursor-pointer transition-colors active:scale-95 border border-neutral-700"
+          >
+            <ArrowLeft className="w-4 h-4 text-emerald-400" />
+            <span>Kasalara Geri Dön</span>
+          </button>
         </div>
       </div>
 

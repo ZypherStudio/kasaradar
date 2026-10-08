@@ -23,10 +23,12 @@ import { GamifiedRewardsModal } from "@/components/GamifiedRewardsModal";
 import { PcRecommenderModal } from "@/components/PcRecommenderModal";
 import { VersusArenaModal } from "@/components/VersusArenaModal";
 import { PriceHistoryModal } from "@/components/PriceHistoryModal";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
 import { TelegramGrowthFloatingBar } from "@/components/TelegramGrowthFloatingBar";
 import { SponsorsSection } from "@/components/SponsorsSection";
 import { Footer } from "@/components/Footer";
+import { ArrowLeft, ArrowUp } from "lucide-react";
 import {
   PREBUILT_SYSTEMS,
   GAMES,
@@ -123,6 +125,101 @@ export default function Home() {
     setPendingFavoriteSystem(null);
   };
 
+  // Scroll to top state for mobile
+  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 350);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Native phone back gesture (Android Back & iPhone Swipe-Back) integration
+  useEffect(() => {
+    const handlePopState = () => {
+      if (selectedDetailSystem) {
+        setSelectedDetailSystem(null);
+        return;
+      }
+      if (isPcRecommenderOpen) {
+        setIsPcRecommenderOpen(false);
+        return;
+      }
+      if (isVersusArenaOpen) {
+        setIsVersusArenaOpen(false);
+        return;
+      }
+      if (isPriceHistoryModalOpen) {
+        setIsPriceHistoryModalOpen(false);
+        return;
+      }
+      if (isAdInspectorOpen) {
+        setIsAdInspectorOpen(false);
+        return;
+      }
+      if (isGameSettingsOpen) {
+        setIsGameSettingsOpen(false);
+        return;
+      }
+      if (isAiAssistantOpen) {
+        setIsAiAssistantOpen(false);
+        return;
+      }
+      if (isComparisonModalOpen) {
+        setIsComparisonModalOpen(false);
+        return;
+      }
+      if (isFavoritesDrawerOpen) {
+        setIsFavoritesDrawerOpen(false);
+        return;
+      }
+      if (isAuthModalOpen) {
+        setIsAuthModalOpen(false);
+        return;
+      }
+      if (isRewardsModalOpen) {
+        setIsRewardsModalOpen(false);
+        return;
+      }
+      if (isEmailModalOpen) {
+        setIsEmailModalOpen(false);
+        return;
+      }
+
+      if (activeTab !== "systems") {
+        setActiveTab("systems");
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [
+    selectedDetailSystem,
+    isPcRecommenderOpen,
+    isVersusArenaOpen,
+    isPriceHistoryModalOpen,
+    isAdInspectorOpen,
+    isGameSettingsOpen,
+    isAiAssistantOpen,
+    isComparisonModalOpen,
+    isFavoritesDrawerOpen,
+    isAuthModalOpen,
+    isRewardsModalOpen,
+    isEmailModalOpen,
+    activeTab
+  ]);
+
+  const handleTabChangeWithHistory = (tab: NavTab) => {
+    if (tab !== activeTab) {
+      if (typeof window !== "undefined") {
+        window.history.pushState({ tab }, "", `#${tab}`);
+      }
+      setActiveTab(tab);
+    }
+  };
+
   const handleToggleFavorite = (system: PrebuiltSystem) => {
     if (!user || !user.isLoggedIn) {
       setPendingFavoriteSystem(system);
@@ -183,7 +280,7 @@ export default function Home() {
       {/* Top Navbar */}
       <Navbar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={handleTabChangeWithHistory}
         onOpenAiAssistant={() => setIsAiAssistantOpen(true)}
         comparisonCount={comparisonList.length}
         onOpenComparison={() => setIsComparisonModalOpen(true)}
@@ -195,19 +292,60 @@ export default function Home() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full pb-28 lg:pb-8">
+        {/* Mobile Sticky Back Bar (When not on systems tab) */}
+        {activeTab !== "systems" && (
+          <div className="lg:hidden sticky top-16 z-30 mb-4 p-2.5 rounded-2xl bg-neutral-900/95 backdrop-blur-xl border border-neutral-800 shadow-xl flex items-center justify-between animate-fade-in">
+            <button
+              onClick={() => {
+                setActiveTab("systems");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-emerald-400 font-bold text-xs transition-all active:scale-95 cursor-pointer border border-neutral-700"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Hazır Kasalara Dön</span>
+            </button>
+            <span className="text-xs font-bold text-neutral-300 pr-2">
+              {activeTab === "fps" && "🎮 FPS Testi"}
+              {activeTab === "monitors" && "🎧 Ekipman & Monitör"}
+              {activeTab === "streamers" && "✨ Yayıncı Sistemleri"}
+              {activeTab === "arbitrage" && "⚖️ 2. El vs Sıfır"}
+              {activeTab === "deals" && "🔔 Fırsat Radarı"}
+            </span>
+          </div>
+        )}
+
         {/* Hero Header Banner */}
         <HeroBanner
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           onSelectPreset={handleSelectPreset}
-          onGoToFps={() => setActiveTab("fps")}
-          onOpenAdInspector={() => setIsAdInspectorOpen(true)}
-          onOpenGameSettings={() => setIsGameSettingsOpen(true)}
-          onOpenRewardsModal={() => setIsRewardsModalOpen(true)}
-          onOpenPcRecommender={() => setIsPcRecommenderOpen(true)}
-          onOpenVersusArena={() => setIsVersusArenaOpen(true)}
-          onOpenPriceHistory={() => setIsPriceHistoryModalOpen(true)}
+          onGoToFps={() => handleTabChangeWithHistory("fps")}
+          onOpenAdInspector={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "ad" }, "", "#ekspertiz");
+            setIsAdInspectorOpen(true);
+          }}
+          onOpenGameSettings={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "game" }, "", "#ayarlar");
+            setIsGameSettingsOpen(true);
+          }}
+          onOpenRewardsModal={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "rewards" }, "", "#oduller");
+            setIsRewardsModalOpen(true);
+          }}
+          onOpenPcRecommender={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "recommender" }, "", "#sihirbaz");
+            setIsPcRecommenderOpen(true);
+          }}
+          onOpenVersusArena={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "versus" }, "", "#versus");
+            setIsVersusArenaOpen(true);
+          }}
+          onOpenPriceHistory={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "history" }, "", "#fiyat");
+            setIsPriceHistoryModalOpen(true);
+          }}
         />
 
         {/* Live Telegram Deal Feed Ticker */}
@@ -453,8 +591,33 @@ export default function Home() {
       {/* Sponsors & Brand Partnerships Section */}
       <SponsorsSection />
 
-      {/* Sticky Floating Telegram Growth & Live Radar Bar */}
       <TelegramGrowthFloatingBar />
+
+      {/* Floating Scroll To Top Button on Mobile */}
+      {showScrollTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="lg:hidden fixed bottom-20 left-3.5 z-40 p-2.5 rounded-2xl bg-neutral-900/95 text-neutral-200 border border-neutral-700 shadow-2xl backdrop-blur-xl active:scale-90 transition-all flex items-center gap-1.5 text-xs font-bold cursor-pointer"
+          title="Başa Dön"
+        >
+          <ArrowUp className="w-4 h-4 text-emerald-400" />
+          <span className="text-[11px] pr-0.5">Yukarı</span>
+        </button>
+      )}
+
+      {/* Native App-like Mobile Bottom Navigation Bar */}
+      <MobileBottomNav
+        activeTab={activeTab}
+        setActiveTab={handleTabChangeWithHistory}
+        onOpenPcRecommender={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "recommender" }, "", "#sihirbaz");
+          setIsPcRecommenderOpen(true);
+        }}
+        onOpenVersusArena={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "versus" }, "", "#versus");
+          setIsVersusArenaOpen(true);
+        }}
+      />
 
       {/* Footer */}
       <Footer />

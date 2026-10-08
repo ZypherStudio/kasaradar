@@ -6,6 +6,7 @@ import { formatTL } from "@/lib/calculator";
 import {
   Sparkles,
   X,
+  ArrowLeft,
   Target,
   Trophy,
   Zap,
@@ -121,13 +122,22 @@ export const PcRecommenderModal: React.FC<PcRecommenderModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto">
       <div className="relative w-full max-w-3xl bg-neutral-900 border border-emerald-500/40 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl space-y-6 my-8">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all cursor-pointer"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Close & Back Button */}
+        <div className="absolute top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-1.5 z-10">
+          <button
+            onClick={onClose}
+            className="sm:hidden flex items-center gap-1 px-3 py-1.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-bold transition-all cursor-pointer border border-neutral-700 active:scale-95"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Geri</span>
+          </button>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all cursor-pointer"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
         {/* Modal Header */}
         <div className="space-y-1 pr-8">
