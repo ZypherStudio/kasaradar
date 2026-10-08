@@ -23,6 +23,7 @@ import { GamifiedRewardsModal } from "@/components/GamifiedRewardsModal";
 import { PcRecommenderModal } from "@/components/PcRecommenderModal";
 import { VersusArenaModal } from "@/components/VersusArenaModal";
 import { PriceHistoryModal } from "@/components/PriceHistoryModal";
+import { FreeGamesModal } from "@/components/FreeGamesModal";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
 import { TelegramGrowthFloatingBar } from "@/components/TelegramGrowthFloatingBar";
@@ -63,6 +64,7 @@ export default function Home() {
   const [isPcRecommenderOpen, setIsPcRecommenderOpen] = useState<boolean>(false);
   const [isVersusArenaOpen, setIsVersusArenaOpen] = useState<boolean>(false);
   const [isPriceHistoryModalOpen, setIsPriceHistoryModalOpen] = useState<boolean>(false);
+  const [isFreeGamesModalOpen, setIsFreeGamesModalOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -155,6 +157,10 @@ export default function Home() {
         setIsPriceHistoryModalOpen(false);
         return;
       }
+      if (isFreeGamesModalOpen) {
+        setIsFreeGamesModalOpen(false);
+        return;
+      }
       if (isAdInspectorOpen) {
         setIsAdInspectorOpen(false);
         return;
@@ -200,6 +206,7 @@ export default function Home() {
     isPcRecommenderOpen,
     isVersusArenaOpen,
     isPriceHistoryModalOpen,
+    isFreeGamesModalOpen,
     isAdInspectorOpen,
     isGameSettingsOpen,
     isAiAssistantOpen,
@@ -289,6 +296,10 @@ export default function Home() {
         user={user}
         onOpenAuth={() => setIsAuthModalOpen(true)}
         onOpenRewardsModal={() => setIsRewardsModalOpen(true)}
+        onOpenFreeGames={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "freegames" }, "", "#bedava-oyunlar");
+          setIsFreeGamesModalOpen(true);
+        }}
       />
 
       {/* Main Content Area */}
@@ -345,6 +356,10 @@ export default function Home() {
           onOpenPriceHistory={() => {
             if (typeof window !== "undefined") window.history.pushState({ modal: "history" }, "", "#fiyat");
             setIsPriceHistoryModalOpen(true);
+          }}
+          onOpenFreeGames={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "freegames" }, "", "#bedava-oyunlar");
+            setIsFreeGamesModalOpen(true);
           }}
         />
 
@@ -586,6 +601,12 @@ export default function Home() {
         systems={PREBUILT_SYSTEMS}
         initialSystem={selectedDetailSystem}
         onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
+      />
+
+      {/* KILLER FEATURE 6: Epic Games & Steam Bedava / Kelepir Oyunlar Radarı */}
+      <FreeGamesModal
+        isOpen={isFreeGamesModalOpen}
+        onClose={() => setIsFreeGamesModalOpen(false)}
       />
 
       {/* Sponsors & Brand Partnerships Section */}

@@ -14,6 +14,7 @@ interface HeroBannerProps {
   onOpenPcRecommender?: () => void;
   onOpenVersusArena?: () => void;
   onOpenPriceHistory?: () => void;
+  onOpenFreeGames?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -26,7 +27,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onOpenRewardsModal,
   onOpenPcRecommender,
   onOpenVersusArena,
-  onOpenPriceHistory
+  onOpenPriceHistory,
+  onOpenFreeGames
 }) => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 via-neutral-900/60 to-neutral-950 border border-neutral-800 p-6 sm:p-10 mb-8 shadow-2xl">
@@ -58,6 +60,16 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
         {/* KILLER FEATURE QUICK BUTTONS ROW */}
         <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+          {onOpenFreeGames && (
+            <button
+              onClick={onOpenFreeGames}
+              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm animate-pulse"
+            >
+              <span>🎁 Bedava Oyunlar</span>
+              <span className="text-[10px] bg-amber-500/30 px-1.5 py-0.2 rounded font-black text-amber-200">Epic &amp; Steam</span>
+            </button>
+          )}
+
           {onOpenPcRecommender && (
             <button
               onClick={onOpenPcRecommender}

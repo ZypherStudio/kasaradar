@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Zap, Monitor, Sparkles, Scale, Bell, SlidersHorizontal, Tv, Heart, User, Headphones, Bot } from "lucide-react";
+import { Zap, Monitor, Sparkles, Scale, Bell, SlidersHorizontal, Tv, Heart, User, Headphones, Bot, Gift } from "lucide-react";
 import { UserAccount } from "./AuthModal";
 import { Logo } from "./Logo";
 
@@ -18,6 +18,7 @@ interface NavbarProps {
   user: UserAccount | null;
   onOpenAuth: () => void;
   onOpenRewardsModal?: () => void;
+  onOpenFreeGames?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -30,7 +31,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenFavorites,
   user,
   onOpenAuth,
-  onOpenRewardsModal
+  onOpenRewardsModal,
+  onOpenFreeGames
 }) => {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-neutral-950/85 border-b border-neutral-800/80">
@@ -150,6 +152,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </span>
               )}
             </button>
+
+            {/* Bedava Oyunlar Button */}
+            {onOpenFreeGames && (
+              <button
+                onClick={onOpenFreeGames}
+                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-bold transition-all cursor-pointer"
+                title="Bedava & Kelepir Oyunlar Radarı"
+              >
+                <Gift className="w-3.5 h-3.5 text-amber-400" />
+                <span className="hidden md:inline">Bedava Oyun</span>
+              </button>
+            )}
 
             {/* AI Assistant Button */}
             <button
