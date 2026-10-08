@@ -1,9 +1,9 @@
 export interface FreeGameDeal {
   id: string;
   title: string;
-  platform: "epic" | "steam" | "gog" | "prime";
+  platform: "epic" | "steam" | "gog" | "prime" | "riot";
   platformName: string;
-  badge: "ÜCRETSİZ" | "DEV İNDİRİM" | "SINIRLI SÜRE";
+  badge: "ÜCRETSİZ" | "DEV İNDİRİM" | "SINIRLI SÜRE" | "OYNAMASI ÜCRETSİZ";
   originalPrice: number; // in TL or USD
   currency: "TL" | "USD";
   discountedPrice: number; // 0 for free
@@ -19,6 +19,45 @@ export interface FreeGameDeal {
 }
 
 export const FREE_GAMES_DATABASE: FreeGameDeal[] = [
+  // 1. Epic Games Bu Hafta Ücretsizler
+  {
+    id: "epic-out-of-sight",
+    title: "Out of Sight",
+    platform: "epic",
+    platformName: "Epic Games Store",
+    badge: "ÜCRETSİZ",
+    originalPrice: 199,
+    currency: "TL",
+    discountedPrice: 0,
+    discountPercent: 100,
+    endsAt: "2026-10-15T18:00:00+03:00",
+    endDateReadable: "15 Ekim Perşembe 18:00'e kadar",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1487040/capsule_616x353.jpg",
+    genre: "Gizli Nesne / Rahatlatıcı Bulmaca",
+    rating: "4.8/5 (Çok Olumlu)",
+    storeUrl: "https://store.epicgames.com/tr/free-games",
+    description: "Büyüleyici müzikler ve sevimli çizimlerle kayıp nesneleri bulduğunuz harika bir kafa dinleme oyunu. Kütüphanene eklersen ömür boyu senin!",
+    isPermanent: true
+  },
+  {
+    id: "epic-terrascape",
+    title: "TerraScape",
+    platform: "epic",
+    platformName: "Epic Games Store",
+    badge: "ÜCRETSİZ",
+    originalPrice: 420,
+    currency: "TL",
+    discountedPrice: 0,
+    discountPercent: 100,
+    endsAt: "2026-10-15T18:00:00+03:00",
+    endDateReadable: "15 Ekim Perşembe 18:00'e kadar",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2290000/capsule_616x353.jpg",
+    genre: "Şehir Kurma / Kart Destesi / Strateji",
+    rating: "4.9/5 (Son Derece Olumlu)",
+    storeUrl: "https://store.epicgames.com/tr/free-games",
+    description: "Kart destesi mekanikleriyle birleşen huzur verici ada ve krallık kurma simülasyonu. Epic Games'te şu an tamamen ücretsiz!",
+    isPermanent: true
+  },
   {
     id: "epic-ghostrunner-2",
     title: "Ghostrunner 2",
@@ -30,12 +69,12 @@ export const FREE_GAMES_DATABASE: FreeGameDeal[] = [
     discountedPrice: 0,
     discountPercent: 100,
     endsAt: "2026-10-15T18:00:00+03:00",
-    endDateReadable: "15 Ekim Perşembe 18:00'e kadar",
+    endDateReadable: "Özel Fırsat",
     imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2144740/capsule_616x353.jpg",
     genre: "Aksiyon / Cyberpunk / Hızlı Parkur",
     rating: "4.8/5 (Çok Olumlu)",
     storeUrl: "https://store.epicgames.com/tr/free-games",
-    description: "Kıyamet sonrası siberpunk dünyada tek vuruşta öldüren kılıç dövüşleri ve nefes kesen birinci şahıs parkur deneyimi. Kütüphanene eklersen sonsuza dek senin!",
+    description: "Kıyamet sonrası siberpunk dünyada tek vuruşta öldüren kılıç dövüşleri ve nefes kesen birinci şahıs parkur deneyimi.",
     isPermanent: true
   },
   {
@@ -49,12 +88,52 @@ export const FREE_GAMES_DATABASE: FreeGameDeal[] = [
     discountedPrice: 0,
     discountPercent: 100,
     endsAt: "2026-10-15T18:00:00+03:00",
-    endDateReadable: "15 Ekim Perşembe 18:00'e kadar",
+    endDateReadable: "Sınırlı Süre",
     imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1920490/capsule_616x353.jpg",
     genre: "Bilim Kurgu / RPG / Açık Dünya",
     rating: "4.7/5 (Ödüllü RPG)",
     storeUrl: "https://store.epicgames.com/tr/free-games",
-    description: "Obsidian Entertainment yapımı efsanevi uzay RPG'si. Tüm DLC'ler dahil geliştirilmiş grafiklerle tamamen bedava!",
+    description: "Obsidian Entertainment yapımı efsanevi uzay RPG'si. Tüm DLC'ler dahil geliştirilmiş grafiklerle.",
+    isPermanent: true
+  },
+
+  // 2. Steam Dev Kelepir İndirimleri
+  {
+    id: "steam-rdr2",
+    title: "Red Dead Redemption 2",
+    platform: "steam",
+    platformName: "Steam",
+    badge: "DEV İNDİRİM",
+    originalPrice: 59.99,
+    currency: "USD",
+    discountedPrice: 14.99,
+    discountPercent: 75,
+    endsAt: "2026-10-18T20:00:00+03:00",
+    endDateReadable: "Tarihi Fırsat",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1174180/capsule_616x353.jpg",
+    genre: "Vahşi Batı / Açık Dünya Başyapıtı",
+    rating: "9.8/10 (175+ Yılın Oyunu Ödülü)",
+    storeUrl: "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
+    description: "Arthur Morgan ve Van der Linde çetesinin Amerika'nın kalbindeki destansı hikayesi. Oyun dünyasının zirvesi.",
+    isPermanent: true
+  },
+  {
+    id: "steam-cyberpunk-2077",
+    title: "Cyberpunk 2077: Ultimate Edition",
+    platform: "steam",
+    platformName: "Steam",
+    badge: "DEV İNDİRİM",
+    originalPrice: 59.99,
+    currency: "USD",
+    discountedPrice: 29.99,
+    discountPercent: 50,
+    endsAt: "2026-10-17T20:00:00+03:00",
+    endDateReadable: "Özel Fırsat",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/capsule_616x353.jpg",
+    genre: "Aksiyon / RPG / Ray Tracing",
+    rating: "9.1/10 (Çok Olumlu)",
+    storeUrl: "https://store.steampowered.com/app/1091500/Cyberpunk_2077/",
+    description: "Night City'nin neon ışıklı sokaklarında Phantom Liberty genişlemesi ve Ray Tracing Overdrive moduyla devrim niteliğinde deneyim.",
     isPermanent: true
   },
   {
@@ -67,13 +146,32 @@ export const FREE_GAMES_DATABASE: FreeGameDeal[] = [
     currency: "USD",
     discountedPrice: 7.99,
     discountPercent: 80,
-    endsAt: "2026-10-14T20:00:00+03:00",
+    endsAt: "2026-10-16T20:00:00+03:00",
     endDateReadable: "Hafta Ortası İndirimi",
     imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/capsule_616x353.jpg",
     genre: "Aksiyon / RPG / Hikaye Başyapıtı",
     rating: "9.7/10 (Son Derece Olumlu)",
     storeUrl: "https://store.steampowered.com/app/292030/The_Witcher_3_Wild_Hunt/",
     description: "250'den fazla Yılın Oyunu ödülü. Blood and Wine ve Hearts of Stone DLC'leri dahil yeni nesil güncellenmiş sürüm.",
+    isPermanent: true
+  },
+  {
+    id: "steam-gta-v",
+    title: "Grand Theft Auto V: Premium Edition",
+    platform: "steam",
+    platformName: "Steam",
+    badge: "DEV İNDİRİM",
+    originalPrice: 29.99,
+    currency: "USD",
+    discountedPrice: 14.99,
+    discountPercent: 50,
+    endsAt: "2026-10-18T20:00:00+03:00",
+    endDateReadable: "Rockstar Özel İndirimi",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/capsule_616x353.jpg",
+    genre: "Açık Dünya / Suç / Online",
+    rating: "9.3/10 (Tüm Zamanların En Çok Satanı)",
+    storeUrl: "https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/",
+    description: "Los Santos ve Blaine County sokaklarında Michael, Franklin ve Trevor ile sınırsız aksiyon ve GTA Online dünyası.",
     isPermanent: true
   },
   {
@@ -115,6 +213,25 @@ export const FREE_GAMES_DATABASE: FreeGameDeal[] = [
     isPermanent: true
   },
   {
+    id: "steam-rust",
+    title: "Rust",
+    platform: "steam",
+    platformName: "Steam",
+    badge: "DEV İNDİRİM",
+    originalPrice: 39.99,
+    currency: "USD",
+    discountedPrice: 19.99,
+    discountPercent: 50,
+    endsAt: "2026-10-15T20:00:00+03:00",
+    endDateReadable: "Haftalık İndirim",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/252490/capsule_616x353.jpg",
+    genre: "Hayatta Kalma / PVP / Üs Kurma",
+    rating: "9.0/10 (Milyonlarca Oyuncu)",
+    storeUrl: "https://store.steampowered.com/app/252490/Rust/",
+    description: "Açlık, susuzluk ve diğer oyunculara karşı acımasız hayatta kalma mücadelesi. Türk klanlarının favorisi.",
+    isPermanent: true
+  },
+  {
     id: "steam-metro-exodus",
     title: "Metro Exodus - Enhanced Edition",
     platform: "steam",
@@ -133,23 +250,82 @@ export const FREE_GAMES_DATABASE: FreeGameDeal[] = [
     description: "Nükleer kıyamet sonrası Rusya tundralarında geçen nefes kesici tren yolculuğu ve Ray Tracing destekli enfes grafikler.",
     isPermanent: true
   },
+
+  // 3. Kalıcı En Popüler Oynaması Ücretsiz Oyunlar (Free-to-Play Hits)
   {
-    id: "gog-fallout-tactics",
-    title: "Fallout Tactics: Brotherhood of Steel",
-    platform: "gog",
-    platformName: "GOG.com",
-    badge: "ÜCRETSİZ",
-    originalPrice: 249,
+    id: "steam-cs2",
+    title: "Counter-Strike 2",
+    platform: "steam",
+    platformName: "Steam",
+    badge: "OYNAMASI ÜCRETSİZ",
+    originalPrice: 0,
     currency: "TL",
     discountedPrice: 0,
     discountPercent: 100,
-    endsAt: "2026-10-12T16:00:00+03:00",
-    endDateReadable: "Hafta Sonu Özel Hediye",
-    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/38420/capsule_616x353.jpg",
-    genre: "Taktiksel RPG / Kıyamet Sonrası",
-    rating: "4.5/5 (DRM'siz Klasik)",
-    storeUrl: "https://www.gog.com",
-    description: "DRM korumasız, tamamen ücretsiz klasik Fallout taktik strateji oyunu. GOG hesabına anında ekle.",
+    endsAt: "Kalıcı Ücretsiz",
+    endDateReadable: "Her Zaman Ücretsiz",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg",
+    genre: "Taktiksel FPS / Espor / Rekabetçi",
+    rating: "9.5/10 (Steam'in 1 Numarası)",
+    storeUrl: "https://store.steampowered.com/app/730/CounterStrike_2/",
+    description: "Source 2 motoruyla yenilenen duman dinamikleri, alt-tick hassasiyeti ve efsanevi haritalarıyla dünyanın en çok oynanan taktiksel FPS oyunu.",
+    isPermanent: true
+  },
+  {
+    id: "steam-apex-legends",
+    title: "Apex Legends",
+    platform: "steam",
+    platformName: "Steam",
+    badge: "OYNAMASI ÜCRETSİZ",
+    originalPrice: 0,
+    currency: "TL",
+    discountedPrice: 0,
+    discountPercent: 100,
+    endsAt: "Kalıcı Ücretsiz",
+    endDateReadable: "Her Zaman Ücretsiz",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1172470/capsule_616x353.jpg",
+    genre: "Battle Royale / Karakter Yetenekleri / Hızlı FPS",
+    rating: "8.9/10 (Ödüllü BR)",
+    storeUrl: "https://store.steampowered.com/app/1172470/Apex_Legends/",
+    description: "Respawn Entertainment imzalı efsanevi karakter yetenekleri ve yüksek tempolu 3 kişilik takım tabanlı Battle Royale mücadelesi.",
+    isPermanent: true
+  },
+  {
+    id: "steam-pubg",
+    title: "PUBG: BATTLEGROUNDS",
+    platform: "steam",
+    platformName: "Steam",
+    badge: "OYNAMASI ÜCRETSİZ",
+    originalPrice: 0,
+    currency: "TL",
+    discountedPrice: 0,
+    discountPercent: 100,
+    endsAt: "Kalıcı Ücretsiz",
+    endDateReadable: "Her Zaman Ücretsiz",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/capsule_616x353.jpg",
+    genre: "Gerçekçi Battle Royale / Hayatta Kalma",
+    rating: "8.7/10 (Orijinal Battle Royale)",
+    storeUrl: "https://store.steampowered.com/app/578080/PUBG_BATTLEGROUNDS/",
+    description: "100 oyuncunun devasa haritaya paraşütle atlayıp son hayatta kalan takım olmak için mücadele ettiği gerçekçi taktiksel hayatta kalma oyunu.",
+    isPermanent: true
+  },
+  {
+    id: "steam-the-finals",
+    title: "THE FINALS",
+    platform: "steam",
+    platformName: "Steam",
+    badge: "OYNAMASI ÜCRETSİZ",
+    originalPrice: 0,
+    currency: "TL",
+    discountedPrice: 0,
+    discountPercent: 100,
+    endsAt: "Kalıcı Ücretsiz",
+    endDateReadable: "Her Zaman Ücretsiz",
+    imageUrl: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2073850/capsule_616x353.jpg",
+    genre: "Yıkılabilir Çevre / Şov FPS / Hızlı Aksiyon",
+    rating: "8.8/10 (Yeni Nesil Yıkım)",
+    storeUrl: "https://store.steampowered.com/app/2073850/THE_FINALS/",
+    description: "Tüm binaların ve duvarların yerle bir edilebildiği, dinamik oyun şovu temalı yüksek tempolu takım savaşı.",
     isPermanent: true
   }
 ];
