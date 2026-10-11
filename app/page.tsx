@@ -24,6 +24,8 @@ import { PcRecommenderModal } from "@/components/PcRecommenderModal";
 import { VersusArenaModal } from "@/components/VersusArenaModal";
 import { PriceHistoryModal } from "@/components/PriceHistoryModal";
 import { FreeGamesModal } from "@/components/FreeGamesModal";
+import { KazikSayarModal } from "@/components/KazikSayarModal";
+import { BottleneckModal } from "@/components/BottleneckModal";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
 import { TelegramGrowthFloatingBar } from "@/components/TelegramGrowthFloatingBar";
@@ -65,6 +67,8 @@ export default function Home() {
   const [isVersusArenaOpen, setIsVersusArenaOpen] = useState<boolean>(false);
   const [isPriceHistoryModalOpen, setIsPriceHistoryModalOpen] = useState<boolean>(false);
   const [isFreeGamesModalOpen, setIsFreeGamesModalOpen] = useState<boolean>(false);
+  const [isKazikSayarOpen, setIsKazikSayarOpen] = useState<boolean>(false);
+  const [isBottleneckOpen, setIsBottleneckOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -161,6 +165,14 @@ export default function Home() {
         setIsFreeGamesModalOpen(false);
         return;
       }
+      if (isKazikSayarOpen) {
+        setIsKazikSayarOpen(false);
+        return;
+      }
+      if (isBottleneckOpen) {
+        setIsBottleneckOpen(false);
+        return;
+      }
       if (isAdInspectorOpen) {
         setIsAdInspectorOpen(false);
         return;
@@ -207,6 +219,8 @@ export default function Home() {
     isVersusArenaOpen,
     isPriceHistoryModalOpen,
     isFreeGamesModalOpen,
+    isKazikSayarOpen,
+    isBottleneckOpen,
     isAdInspectorOpen,
     isGameSettingsOpen,
     isAiAssistantOpen,
@@ -300,6 +314,10 @@ export default function Home() {
           if (typeof window !== "undefined") window.history.pushState({ modal: "freegames" }, "", "#bedava-oyunlar");
           setIsFreeGamesModalOpen(true);
         }}
+        onOpenKazikSayar={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "kazik" }, "", "#kazik-sayar");
+          setIsKazikSayarOpen(true);
+        }}
       />
 
       {/* Main Content Area */}
@@ -360,6 +378,14 @@ export default function Home() {
           onOpenFreeGames={() => {
             if (typeof window !== "undefined") window.history.pushState({ modal: "freegames" }, "", "#bedava-oyunlar");
             setIsFreeGamesModalOpen(true);
+          }}
+          onOpenKazikSayar={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "kazik" }, "", "#kazik-sayar");
+            setIsKazikSayarOpen(true);
+          }}
+          onOpenBottleneck={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "bottleneck" }, "", "#darbogaz");
+            setIsBottleneckOpen(true);
           }}
         />
 
@@ -607,6 +633,22 @@ export default function Home() {
       <FreeGamesModal
         isOpen={isFreeGamesModalOpen}
         onClose={() => setIsFreeGamesModalOpen(false)}
+      />
+
+      {/* KILLER FEATURE 7: Kazık Sayar / Alınır Mı? Ekspertiz Modalı */}
+      <KazikSayarModal
+        isOpen={isKazikSayarOpen}
+        onClose={() => setIsKazikSayarOpen(false)}
+        systems={PREBUILT_SYSTEMS}
+        onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
+      />
+
+      {/* KILLER FEATURE 8: Darboğaz (Bottleneck) Hesaplayıcı Modalı */}
+      <BottleneckModal
+        isOpen={isBottleneckOpen}
+        onClose={() => setIsBottleneckOpen(false)}
+        systems={PREBUILT_SYSTEMS}
+        onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
       />
 
       {/* Sponsors & Brand Partnerships Section */}

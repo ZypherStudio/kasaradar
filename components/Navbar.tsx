@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Zap, Monitor, Sparkles, Scale, Bell, SlidersHorizontal, Tv, Heart, User, Headphones, Bot, Gift } from "lucide-react";
+import { Zap, Monitor, Sparkles, Scale, Bell, SlidersHorizontal, Tv, Heart, User, Headphones, Bot, Gift, AlertTriangle } from "lucide-react";
 import { UserAccount } from "./AuthModal";
 import { Logo } from "./Logo";
 
@@ -19,6 +19,7 @@ interface NavbarProps {
   onOpenAuth: () => void;
   onOpenRewardsModal?: () => void;
   onOpenFreeGames?: () => void;
+  onOpenKazikSayar?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -32,7 +33,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   user,
   onOpenAuth,
   onOpenRewardsModal,
-  onOpenFreeGames
+  onOpenFreeGames,
+  onOpenKazikSayar
 }) => {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-neutral-950/85 border-b border-neutral-800/80">
@@ -162,6 +164,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <Gift className="w-3.5 h-3.5 text-amber-400" />
                 <span className="hidden md:inline">Bedava Oyun</span>
+              </button>
+            )}
+
+            {/* Kazık Sayar Button */}
+            {onOpenKazikSayar && (
+              <button
+                onClick={onOpenKazikSayar}
+                className="hidden xl:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/30 text-xs font-bold transition-all cursor-pointer"
+                title="Kazık Sayar: Alınır Mı?"
+              >
+                <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+                <span>Kazık Sayar</span>
               </button>
             )}
 

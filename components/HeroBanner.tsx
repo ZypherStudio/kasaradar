@@ -15,6 +15,8 @@ interface HeroBannerProps {
   onOpenVersusArena?: () => void;
   onOpenPriceHistory?: () => void;
   onOpenFreeGames?: () => void;
+  onOpenKazikSayar?: () => void;
+  onOpenBottleneck?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -28,7 +30,9 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onOpenPcRecommender,
   onOpenVersusArena,
   onOpenPriceHistory,
-  onOpenFreeGames
+  onOpenFreeGames,
+  onOpenKazikSayar,
+  onOpenBottleneck
 }) => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 via-neutral-900/60 to-neutral-950 border border-neutral-800 p-6 sm:p-10 mb-8 shadow-2xl">
@@ -60,6 +64,26 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
         {/* KILLER FEATURE QUICK BUTTONS ROW */}
         <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+          {onOpenKazikSayar && (
+            <button
+              onClick={onOpenKazikSayar}
+              className="px-3.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-rose-500/10"
+            >
+              <span>🚨 Kazık Sayar</span>
+              <span className="text-[10px] bg-rose-500/30 px-1.5 py-0.2 rounded font-black text-rose-200">Alınır Mı?</span>
+            </button>
+          )}
+
+          {onOpenBottleneck && (
+            <button
+              onClick={onOpenBottleneck}
+              className="px-3.5 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-cyan-500/10"
+            >
+              <span>⚡ Darboğaz Testi</span>
+              <span className="text-[10px] bg-cyan-500/30 px-1.5 py-0.2 rounded font-black text-cyan-200">Bottleneck</span>
+            </button>
+          )}
+
           {onOpenFreeGames && (
             <button
               onClick={onOpenFreeGames}
