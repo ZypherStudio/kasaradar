@@ -37,7 +37,7 @@ export const EmailNotificationModal: React.FC<EmailNotificationModalProps> = ({
   newPrice = 22999,
   imageUrl = "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80",
   storeName = "İtopya",
-  directUrl = "https://www.itopya.com/AramaSonuclari/?q=modart&ref=kasaradar",
+  directUrl = "https://www.itopya.com/oem-paketler",
   userEmail = "zypherstudio@gmail.com"
 }) => {
   const [recipient, setRecipient] = useState<string>(userEmail);

@@ -72,21 +72,40 @@ export const ArbitrageModule: React.FC<ArbitrageModuleProps> = ({ hardwareList, 
   const isKazik = calcAdPrice > activeCalcItem.secondHandAvg * 1.15;
   const isFair = !isKelepir && !isKazik;
 
+  // Helper to sanitize search terms for 2nd hand marketplaces
+  const sanitizeQuery = (raw: string) => {
+    return raw
+      .replace(/\s*\([^)]*\)/g, "") // remove anything in parentheses like (6C/12T 32MB L3)
+      .replace(/hazır sistem|hazir sistem|hazır kasa|oyuncu kasası|gaming kasa/gi, "")
+      .replace(/nvidia geforce|amd radeon|geforce|radeon/gi, "")
+      .replace(/\b(8gb|12gb|16gb|24gb|32gb|64gb)\b/gi, "")
+      .replace(/\b(ddr4|ddr5|am4|am5|lga1700|gddr6|gddr6x)\b/gi, "")
+      .replace(/\b(360hz|240hz|170hz|165hz|144hz|2k|4k|qhd|fhd)\b/gi, "")
+      .replace(/\b(wireless|kablosuz|analog|rapid trigger|dyac\+|dyac)\b/gi, "")
+      .replace(/[-+]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim() || raw.trim();
+  };
+
   // External search URLs
   const openSahibinden = (q: string) => {
-    window.open(`https://www.sahibinden.com/kelime-ile-arama?query=${encodeURIComponent(q)}`, "_blank");
+    const cleanQ = sanitizeQuery(q);
+    window.open(`https://www.sahibinden.com/kelime-ile-arama?query_text=${encodeURIComponent(cleanQ)}`, "_blank");
   };
 
   const openLetgo = (q: string) => {
-    window.open(`https://www.letgo.com/search?query=${encodeURIComponent(q)}`, "_blank");
+    const cleanQ = sanitizeQuery(q);
+    window.open(`https://www.google.com/search?q=${encodeURIComponent(cleanQ + " site:letgo.com")}`, "_blank");
   };
 
   const openDolap = (q: string) => {
-    window.open(`https://dolap.com/arama?q=${encodeURIComponent(q)}`, "_blank");
+    const cleanQ = sanitizeQuery(q);
+    window.open(`https://dolap.com/arama?q=${encodeURIComponent(cleanQ)}`, "_blank");
   };
 
   const openDhForum = (q: string) => {
-    window.open(`https://forum.donanimhaber.com/search?q=${encodeURIComponent(q)}`, "_blank");
+    const cleanQ = sanitizeQuery(q);
+    window.open(`https://www.google.com/search?q=${encodeURIComponent(cleanQ + " forum donanimhaber ikinci el")}`, "_blank");
   };
 
   return (
@@ -411,13 +430,25 @@ export const ArbitrageModule: React.FC<ArbitrageModuleProps> = ({ hardwareList, 
                   </div>
 
                   {/* Action Button */}
-                  <button
-                    onClick={platformClick}
-                    className="w-full py-2 px-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer border border-neutral-700 group-hover:border-amber-400/50"
-                  >
-                    <span>{deal.platformName}&apos;de İlanı / Benzerini İncele</span>
-                    <ExternalLink className="w-3 h-3 text-amber-400" />
-                  </button>
+                  <div className="flex items-center gap-1.5 pt-0.5">
+                    <button
+                      onClick={() => openSahibinden(deal.searchQuery)}
+                      className="flex-1 py-2 px-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black text-xs flex items-center justify-center gap-1.5 shadow-md shadow-amber-400/20 transition-all cursor-pointer"
+                      title="Sahibinden Sarı Sitede canlı ilanları gör"
+                    >
+                      <span>Sarı Sitede Canlı İlanları Gör</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </button>
+                    {deal.platform !== "sahibinden" && (
+                      <button
+                        onClick={platformClick}
+                        className="py-2 px-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white text-[11px] font-semibold border border-neutral-700 transition-all cursor-pointer shrink-0"
+                        title={`${deal.platformName}'de Ara`}
+                      >
+                        <span>{deal.platformName}</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               );
             })}
@@ -754,8 +785,14 @@ export const ArbitrageModule: React.FC<ArbitrageModuleProps> = ({ hardwareList, 
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-1.5">
                           <button
-                            onClick={() => openSahibinden(item.name)}
-                            className="px-2 py-1 rounded-lg bg-amber-400/20 hover:bg-amber-400 text-amber-300 hover:text-neutral-950 font-bold text-[10px] border border-amber-400/30 transition-all cursor-pointer flex items-center gap-0.5"
+                            onClick={() => {
+                              if (item.direct2ndHandUrl) {
+                                window.open(item.direct2ndHandUrl, "_blank");
+                              } else {
+                                openSahibinden(item.name);
+                              }
+                            }}
+                            className="px-2.5 py-1.5 rounded-lg bg-amber-400/20 hover:bg-amber-400 text-amber-300 hover:text-neutral-950 font-bold text-[10px] border border-amber-400/30 transition-all cursor-pointer flex items-center gap-1"
                             title="Sahibinden'de bu parçayı ara"
                           >
                             <span>Sarı Site</span>
@@ -763,11 +800,17 @@ export const ArbitrageModule: React.FC<ArbitrageModuleProps> = ({ hardwareList, 
                           </button>
 
                           <button
-                            onClick={() => openLetgo(item.name)}
-                            className="px-2 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white font-bold text-[10px] border border-rose-500/30 transition-all cursor-pointer flex items-center gap-0.5"
-                            title="Letgo'da bu parçayı ara"
+                            onClick={() => {
+                              if (item.directBuyUrl) {
+                                window.open(item.directBuyUrl, "_blank");
+                              } else {
+                                window.open(`https://www.akakce.com/arama/?q=${encodeURIComponent(sanitizeQuery(item.name))}`, "_blank");
+                              }
+                            }}
+                            className="px-2.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-neutral-950 font-bold text-[10px] border border-emerald-500/30 transition-all cursor-pointer flex items-center gap-1"
+                            title="Sıfır Fiyatını Karşılaştır (Akakçe / Mağaza)"
                           >
-                            <span>Letgo</span>
+                            <span>Sıfır Fiyat</span>
                             <ExternalLink className="w-2.5 h-2.5" />
                           </button>
                         </div>

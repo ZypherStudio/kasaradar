@@ -126,7 +126,7 @@ export function loginUser(params: {
     return { success: true, user: updatedUser };
   }
 
-  // If not found in demo storage, automatically create a seamless account
+  // If not found in local storage, automatically create a seamless account
   const newUser: StoredUserAccount = {
     name: cleanEmail.split("@")[0],
     email: cleanEmail,

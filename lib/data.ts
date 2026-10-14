@@ -49,7 +49,7 @@ export const MONITORS_DATABASE: MonitorRecommendation[] = [
     price: 24999,
     dealTag: "Espor Standardı",
     imageUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=ZOWIE+XL2566K&ref=kasaradar",
+    buyUrl: "https://www.akakce.com/arama/?q=ZOWIE+XL2566K",
     idealForGpu: "RTX 4060 Ti / RTX 4070 / Espor"
   },
   {
@@ -63,7 +63,7 @@ export const MONITORS_DATABASE: MonitorRecommendation[] = [
     price: 31999,
     dealTag: "OLED Zirvesi",
     imageUrl: "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=Alienware+AW2725DF&ref=kasaradar",
+    buyUrl: "https://www.akakce.com/arama/?q=Alienware+AW2725DF",
     idealForGpu: "RTX 4070 Super / RTX 4080 Super"
   }
 ];
@@ -106,7 +106,7 @@ export const GAMING_GEAR_DATABASE: GamingGear[] = [
     tag: "Ergonomik Efsane (63g)",
     specs: "63 gram hafif tasarım, Focus Pro 30K optik sensör, Gen-3 optik anahtarlar, 90 saat pil",
     imageUrl: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=DeathAdder+V3+Pro&ref=kasaradar",
+    buyUrl: "https://www.amazon.com.tr/s?k=DeathAdder+V3+Pro&tag=kasaradar-21",
     proPlayersUsing: ["s1mple", "NiKo"]
   },
   {
@@ -132,7 +132,7 @@ export const GAMING_GEAR_DATABASE: GamingGear[] = [
     tag: "Aim Lab Özel Espor Kalibrasyonu (54g)",
     specs: "54g biyo-bazlı naylon gövde, ROG AimPoint 36.000 DPI sensör, SpeedNova kablosuz, 90 saat pil",
     imageUrl: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=ROG+Harpe+Ace&ref=kasaradar",
+    buyUrl: "https://www.akakce.com/arama/?q=ROG+Harpe+Ace",
     proPlayersUsing: ["TenZ", "cNed"]
   },
   {
@@ -145,7 +145,7 @@ export const GAMING_GEAR_DATABASE: GamingGear[] = [
     tag: "CS2 Esporcularının Efsane Standardı",
     specs: "Ergonomik efsane form faktör, parazitsiz bağımsız kablosuz sinyal alıcı dock, 3370 sensör, sürücüsüz tak-çalıştır",
     imageUrl: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=Zowie+EC2-CW&ref=kasaradar",
+    buyUrl: "https://www.akakce.com/arama/?q=Zowie+EC2-CW",
     proPlayersUsing: ["s1mple", "NiKo", "ZywOo"]
   },
   {
@@ -171,7 +171,7 @@ export const GAMING_GEAR_DATABASE: GamingGear[] = [
     tag: "OLED Ekran & Fabrika Çıkışlı Yağlı (Lubed)",
     specs: "OLED ekran & 3 yönlü kontrol tekerleği, silikon conta (gasket) montajı, 3 katmanlı sönümleme köpüğü, lube kiti dahil",
     imageUrl: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=ROG+Azoth&ref=kasaradar",
+    buyUrl: "https://www.amazon.com.tr/s?k=ROG+Azoth&tag=kasaradar-21",
     proPlayersUsing: ["Elraenn", "Mithrain"]
   },
   {
@@ -184,7 +184,7 @@ export const GAMING_GEAR_DATABASE: GamingGear[] = [
     tag: "Aktif Gürültü Engelleme (ANC) & Çift Batarya",
     specs: "Hi-Res ses sertifikası, baz istasyonu ile kesintisiz yedek batarya şarjı, aktif gürültü engelleme (ANC), eşzamanlı Bluetooth & 2.4GHz",
     imageUrl: "https://images.unsplash.com/photo-1599669454699-248893623440?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=Nova+Pro+Wireless&ref=kasaradar",
+    buyUrl: "https://www.amazon.com.tr/s?k=Nova+Pro+Wireless&tag=kasaradar-21",
     proPlayersUsing: ["wtcN", "shroud"]
   },
   {
@@ -225,7 +225,7 @@ export const GAMING_GEAR_DATABASE: GamingGear[] = [
     tag: "OmniPoint 3.0 Manyetik Switch",
     specs: "OLED akıllı ekran, 0.1mm - 4.0mm ayarlanabilir aktivasyon mesafesi, havacılık sınıfı alüminyum gövde",
     imageUrl: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=Apex+Pro+TKL&ref=kasaradar",
+    buyUrl: "https://www.amazon.com.tr/s?k=Apex+Pro+TKL&tag=kasaradar-21",
     proPlayersUsing: ["Elraenn", "s1mple"]
   },
   {
@@ -266,7 +266,7 @@ export const GAMING_GEAR_DATABASE: GamingGear[] = [
     tag: "HyperClear Süper Geniş Bant Mikrofon",
     specs: "TriForce Titanyum 50mm sürücüler, 70 saat pil, ultra net mikrofon kalitesi, espor ses profilleri",
     imageUrl: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=BlackShark+V2+Pro&ref=kasaradar",
+    buyUrl: "https://www.amazon.com.tr/s?k=BlackShark+V2+Pro&tag=kasaradar-21",
     proPlayersUsing: ["shroud", "NiKo"]
   },
   {
@@ -307,7 +307,7 @@ export const GAMING_GEAR_DATABASE: GamingGear[] = [
     tag: "CS2 & Valorant Kontrol Standardı",
     specs: "Neme karşı güçlendirilmiş yoğun kumaş dokusu, mikro-durdurma gücü, 3.5mm dikişli yumuşak kauçuk taban",
     imageUrl: "https://images.unsplash.com/photo-1616440347437-b1c73416efc2?auto=format&fit=crop&w=600&q=80",
-    buyUrl: "https://www.itopya.com/AramaSonuclari/?q=Zowie+G-SR-II&ref=kasaradar",
+    buyUrl: "https://www.akakce.com/arama/?q=Zowie+G-SR-II",
     proPlayersUsing: ["s1mple", "NiKo"]
   },
   {
@@ -354,7 +354,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Vento VG15FE 4x ARGB Fanlı Mesh Kasa",
     cooling: "AMD Wraith Stealth Stok Soğutucu",
     imageUrl: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.itopya.com/AramaSonuclari/?q=modart&ref=kasaradar",
+    directUrl: "https://www.itopya.com/oem-paketler",
     fpScore: 9.4,
     individualZeroPrice: 27850,
     individualSecondHandPrice: 19400,
@@ -366,10 +366,10 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     partsBreakdown: [
       { name: "Nvidia GeForce RTX 4060 8GB", category: "Ekran Kartı", individualNewPrice: 12900, buyUrl: "https://www.amazon.com.tr/s?k=RTX+4060&tag=kasaradar-21", store: "Amazon TR" },
       { name: "AMD Ryzen 5 5600 4.4GHz", category: "İşlemci", individualNewPrice: 4100, buyUrl: "https://www.hepsiburada.com/ara?q=Ryzen+5+5600&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "ASUS Prime B450M-K II", category: "Anakart", individualNewPrice: 2450, buyUrl: "https://www.itopya.com/AramaSonuclari/?q=ASUS+B450M-K+II&ref=kasaradar", store: "İtopya" },
+      { name: "ASUS Prime B450M-K II", category: "Anakart", individualNewPrice: 2450, buyUrl: "https://www.akakce.com/arama/?q=ASUS+B450M-K+II", store: "İtopya" },
       { name: "G.Skill Ripjaws 16GB (2x8) 3200MHz", category: "RAM", individualNewPrice: 1650, buyUrl: "https://www.amazon.com.tr/s?k=G.Skill+Ripjaws+16GB&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Kioxia Exceria Plus G3 1TB NVMe", category: "SSD", individualNewPrice: 2750, buyUrl: "https://www.hepsiburada.com/ara?q=Kioxia+Exceria+G3+1TB&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "Vento VG15FE + FSP 650W Kasa & PSU", category: "Kasa", individualNewPrice: 4000, buyUrl: "https://www.itopya.com/AramaSonuclari/?q=Vento+VG15FE&ref=kasaradar", store: "İtopya" }
+      { name: "Vento VG15FE + FSP 650W Kasa & PSU", category: "Kasa", individualNewPrice: 4000, buyUrl: "https://www.akakce.com/arama/?q=Vento+VG15FE", store: "İtopya" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[0]]
   },
@@ -402,7 +402,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Vento VG07F Tempered Glass ARGB",
     cooling: "Thermalright Assassin King 120 SE Kule Tipi",
     imageUrl: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.gaming.gen.tr/?s=blade-7500f&ref=kasaradar",
+    directUrl: "https://www.gaming.gen.tr/kategori/hazir-sistemler/",
     fpScore: 9.6,
     individualZeroPrice: 37900,
     individualSecondHandPrice: 27200,
@@ -414,7 +414,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     partsBreakdown: [
       { name: "ASUS Dual RTX 4060 Ti 8GB OC", category: "Ekran Kartı", individualNewPrice: 16900, buyUrl: "https://www.amazon.com.tr/s?k=ASUS+Dual+RTX+4060+Ti&tag=kasaradar-21", store: "Amazon TR" },
       { name: "AMD Ryzen 5 7500F Tray AM5", category: "İşlemci", individualNewPrice: 5800, buyUrl: "https://www.hepsiburada.com/ara?q=Ryzen+5+7500F&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "ASUS Prime A620M-K DDR5", category: "Anakart", individualNewPrice: 3600, buyUrl: "https://www.itopya.com/AramaSonuclari/?q=ASUS+Prime+A620M-K&ref=kasaradar", store: "İtopya" },
+      { name: "ASUS Prime A620M-K DDR5", category: "Anakart", individualNewPrice: 3600, buyUrl: "https://www.akakce.com/arama/?q=ASUS+Prime+A620M-K", store: "İtopya" },
       { name: "Kingston Fury Beast 16GB 5600MHz DDR5", category: "RAM", individualNewPrice: 2200, buyUrl: "https://www.amazon.com.tr/s?k=Kingston+Fury+16GB+DDR5&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Kingston NV2 1TB Gen4 NVMe", category: "SSD", individualNewPrice: 2600, buyUrl: "https://www.hepsiburada.com/ara?q=Kingston+NV2+1TB&utm_source=kasaradar", store: "Hepsiburada" },
       { name: "Thermalright Assassin King 120", category: "Soğutucu", individualNewPrice: 1100, buyUrl: "https://www.gaming.gen.tr?ref=kasaradar", store: "Gaming.Gen.TR" },
@@ -451,7 +451,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "DarkFlash DLX21 Mesh White",
     cooling: "Thermalright Peerless Assassin 120 Çift Kule",
     imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.gamegaraj.com/?s=hero+7a&ref=kasaradar",
+    directUrl: "https://www.gamegaraj.com/kategori/oem-paketler/",
     fpScore: 9.3,
     individualZeroPrice: 53800,
     individualSecondHandPrice: 39500,
@@ -461,13 +461,13 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     warranty: "2 Yıl GameGaraj Garantisi",
     tdpWatts: 420,
     partsBreakdown: [
-      { name: "Palit GeForce RTX 4070 SUPER 12GB", category: "Ekran Kartı", individualNewPrice: 26500, buyUrl: "https://www.gamegaraj.com?ref=kasaradar", store: "GameGaraj" },
+      { name: "Palit GeForce RTX 4070 SUPER 12GB", category: "Ekran Kartı", individualNewPrice: 26500, buyUrl: "https://www.gamegaraj.com/kategori/oem-paketler/", store: "GameGaraj" },
       { name: "AMD Ryzen 5 7600X 5.3GHz AM5", category: "İşlemci", individualNewPrice: 7800, buyUrl: "https://www.amazon.com.tr/s?k=Ryzen+5+7600X&tag=kasaradar-21", store: "Amazon TR" },
       { name: "MSI Pro B650M-P AM5 DDR5", category: "Anakart", individualNewPrice: 4800, buyUrl: "https://www.hepsiburada.com/ara?q=MSI+Pro+B650M-P&utm_source=kasaradar", store: "Hepsiburada" },
       { name: "G.Skill Flare X5 32GB (2x16) 6000MHz", category: "RAM", individualNewPrice: 4400, buyUrl: "https://www.amazon.com.tr/s?k=G.Skill+Flare+X5+32GB&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Kingston KC3000 1TB PCIe 4.0 NVMe", category: "SSD", individualNewPrice: 3800, buyUrl: "https://www.hepsiburada.com/ara?q=Kingston+KC3000+1TB&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "Thermalright Peerless Assassin 120", category: "Soğutucu", individualNewPrice: 1800, buyUrl: "https://www.gaming.gen.tr?ref=kasaradar", store: "Gaming.Gen.TR" },
-      { name: "DarkFlash DLX21 + 750W Gold Modüler Kasa", category: "Kasa", individualNewPrice: 4700, buyUrl: "https://www.gamegaraj.com?ref=kasaradar", store: "GameGaraj" }
+      { name: "Thermalright Peerless Assassin 120", category: "Soğutucu", individualNewPrice: 1800, buyUrl: "https://www.gaming.gen.tr/kategori/hazir-sistemler/", store: "Gaming.Gen.TR" },
+      { name: "DarkFlash DLX21 + 750W Gold Modüler Kasa", category: "Kasa", individualNewPrice: 4700, buyUrl: "https://www.gamegaraj.com/kategori/oem-paketler/", store: "GameGaraj" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[1], MONITORS_DATABASE[2]]
   },
@@ -500,7 +500,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Rampage Sailor Temperli Cam Mid-Tower",
     cooling: "Intel Orijinal Stok Fan",
     imageUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.vatanbilgisayar.com/arama/rtx%203050%20hazir%20sistem/",
+    directUrl: "https://www.vatanbilgisayar.com/oem-paketler/",
     fpScore: 9.2,
     individualZeroPrice: 20900,
     individualSecondHandPrice: 13800,
@@ -512,10 +512,10 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     partsBreakdown: [
       { name: "ZOTAC GeForce RTX 3050 8GB", category: "Ekran Kartı", individualNewPrice: 8600, buyUrl: "https://www.amazon.com.tr/s?k=RTX+3050+8GB&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Intel Core i3 12100F", category: "İşlemci", individualNewPrice: 3200, buyUrl: "https://www.hepsiburada.com/ara?q=i3+12100F&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "MSI PRO H610M-E DDR4", category: "Anakart", individualNewPrice: 2400, buyUrl: "https://www.vatanbilgisayar.com/arama/MSI+H610M/", store: "Vatan Bilgisayar" },
+      { name: "MSI PRO H610M-E DDR4", category: "Anakart", individualNewPrice: 2400, buyUrl: "https://www.akakce.com/arama/?q=MSI+H610M", store: "Vatan Bilgisayar" },
       { name: "Crucial 16GB (2x8) 3200MHz", category: "RAM", individualNewPrice: 1500, buyUrl: "https://www.amazon.com.tr/s?k=Crucial+16GB+3200&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Crucial P3 500GB NVMe", category: "SSD", individualNewPrice: 1700, buyUrl: "https://www.hepsiburada.com/ara?q=Crucial+P3+500GB&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "Rampage 500W Kasa & Güç Kaynağı", category: "Kasa", individualNewPrice: 3500, buyUrl: "https://www.vatanbilgisayar.com/arama/Rampage+Kasa/", store: "Vatan Bilgisayar" }
+      { name: "Rampage 500W Kasa & Güç Kaynağı", category: "Kasa", individualNewPrice: 3500, buyUrl: "https://www.akakce.com/arama/?q=Rampage+Sailor+Kasa", store: "Vatan Bilgisayar" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[0]]
   },
@@ -548,7 +548,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "DeepCool CC560 V2 Mesh 4x Fan",
     cooling: "Intel Orijinal Stok Fan",
     imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.tebilon.com/arama?q=zenith",
+    directUrl: "https://www.tebilon.com/hazir-sistemler/",
     fpScore: 9.5,
     individualZeroPrice: 25100,
     individualSecondHandPrice: 17800,
@@ -560,10 +560,10 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     partsBreakdown: [
       { name: "Gigabyte RTX 4060 Eagle OC 8GB", category: "Ekran Kartı", individualNewPrice: 12800, buyUrl: "https://www.amazon.com.tr/s?k=RTX+4060+Gigabyte&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Intel Core i5 12400F 4.4GHz", category: "İşlemci", individualNewPrice: 4200, buyUrl: "https://www.hepsiburada.com/ara?q=i5+12400F&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "Gigabyte H610M H V2 DDR4", category: "Anakart", individualNewPrice: 2500, buyUrl: "https://www.itopya.com/AramaSonuclari/?q=Gigabyte+H610M&ref=kasaradar", store: "İtopya" },
+      { name: "Gigabyte H610M H V2 DDR4", category: "Anakart", individualNewPrice: 2500, buyUrl: "https://www.akakce.com/arama/?q=Gigabyte+H610M", store: "İtopya" },
       { name: "Corsair Vengeance 16GB (2x8) 3200MHz", category: "RAM", individualNewPrice: 1550, buyUrl: "https://www.amazon.com.tr/s?k=Corsair+Vengeance+16GB&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Kingston NV2 500GB NVMe M.2", category: "SSD", individualNewPrice: 1650, buyUrl: "https://www.hepsiburada.com/ara?q=Kingston+NV2+500GB&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "DeepCool CC560 + 550W Bronze Kasa & PSU", category: "Kasa", individualNewPrice: 3400, buyUrl: "https://www.tebilon.com/arama?q=DeepCool+CC560", store: "Tebilon" }
+      { name: "DeepCool CC560 + 550W Bronze Kasa & PSU", category: "Kasa", individualNewPrice: 3400, buyUrl: "https://www.akakce.com/arama/?q=DeepCool+CC560", store: "Tebilon" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[0]]
   },
@@ -596,7 +596,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Lian Li Lancool 205 Mesh ARGB",
     cooling: "ID-Cooling SE-214-XT ARGB",
     imageUrl: "https://images.unsplash.com/photo-1552831388-6a0b3575b35a?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.incehesap.com/ara/?q=falcon",
+    directUrl: "https://www.incehesap.com/hazir-sistemler-fiyatlari/",
     fpScore: 9.1,
     individualZeroPrice: 41200,
     individualSecondHandPrice: 30500,
@@ -645,7 +645,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Dark Maxima V30 Temperli Cam ARGB",
     cooling: "Dark AquaForce W242 240mm Sıvı Soğutma",
     imageUrl: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.teknobiyotik.com/arama?q=dark+diamond",
+    directUrl: "https://www.teknobiyotik.com/kampanyali-oyuncu-bilgisayarlari.html",
     fpScore: 9.3,
     individualZeroPrice: 47200,
     individualSecondHandPrice: 34500,
@@ -694,7 +694,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "NZXT H9 Flow Akvaryum Cam Kasa",
     cooling: "DeepCool LT720 360mm Sıvı Soğutma",
     imageUrl: "https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.sinerji.gen.tr/arama?q=vesper",
+    directUrl: "https://www.sinerji.gen.tr/hazir-sistemler-c-2037",
     fpScore: 8.8,
     individualZeroPrice: 94500,
     individualSecondHandPrice: 69000,
@@ -704,7 +704,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     warranty: "2 Yıl Resmi Distribütör Garantisi",
     tdpWatts: 540,
     partsBreakdown: [
-      { name: "MSI RTX 4080 SUPER 16G Ventus 3X", category: "Ekran Kartı", individualNewPrice: 46500, buyUrl: "https://www.itopya.com/AramaSonuclari/?q=RTX+4080+Super&ref=kasaradar", store: "İtopya" },
+      { name: "MSI RTX 4080 SUPER 16G Ventus 3X", category: "Ekran Kartı", individualNewPrice: 46500, buyUrl: "https://www.akakce.com/arama/?q=RTX+4080+Super", store: "İtopya" },
       { name: "AMD Ryzen 7 7800X3D 3D V-Cache", category: "İşlemci", individualNewPrice: 15800, buyUrl: "https://www.amazon.com.tr/s?k=Ryzen+7+7800X3D&tag=kasaradar-21", store: "Amazon TR" },
       { name: "ASUS TUF B650-Plus WiFi AM5", category: "Anakart", individualNewPrice: 7900, buyUrl: "https://www.hepsiburada.com/ara?q=ASUS+TUF+B650-Plus&utm_source=kasaradar", store: "Hepsiburada" },
       { name: "Corsair Vengeance RGB 32GB 6000MHz CL30", category: "RAM", individualNewPrice: 5200, buyUrl: "https://www.amazon.com.tr/s?k=Corsair+Vengeance+32GB+6000&tag=kasaradar-21", store: "Amazon TR" },
@@ -743,7 +743,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "BitFenix Nova Mesh SE 4x ARGB Fanlı Kasa",
     cooling: "AMD Wraith Stealth Orijinal Fan",
     imageUrl: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.itopya.com/AramaSonuclari/?q=frenzy&ref=kasaradar",
+    directUrl: "https://www.itopya.com/oem-paketler",
     fpScore: 9.7,
     individualZeroPrice: 19800,
     individualSecondHandPrice: 13200,
@@ -755,10 +755,10 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     partsBreakdown: [
       { name: "Sapphire Pulse RX 6600 8GB", category: "Ekran Kartı", individualNewPrice: 8500, buyUrl: "https://www.amazon.com.tr/s?k=RX+6600+8GB&tag=kasaradar-21", store: "Amazon TR" },
       { name: "AMD Ryzen 5 5500 4.2GHz", category: "İşlemci", individualNewPrice: 3200, buyUrl: "https://www.hepsiburada.com/ara?q=Ryzen+5+5500&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "Gigabyte A520M K V2 AM4", category: "Anakart", individualNewPrice: 2100, buyUrl: "https://www.itopya.com/AramaSonuclari/?q=A520M&ref=kasaradar", store: "İtopya" },
+      { name: "Gigabyte A520M K V2 AM4", category: "Anakart", individualNewPrice: 2100, buyUrl: "https://www.akakce.com/arama/?q=Gigabyte+A520M+K+V2", store: "İtopya" },
       { name: "G.Skill Ripjaws 16GB (2x8) 3200MHz", category: "RAM", individualNewPrice: 1650, buyUrl: "https://www.amazon.com.tr/s?k=G.Skill+16GB+3200&tag=kasaradar-21", store: "Amazon TR" },
       { name: "GoodRam PX500 512GB NVMe M.2", category: "SSD", individualNewPrice: 1400, buyUrl: "https://www.hepsiburada.com/ara?q=GoodRam+512GB&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "BitFenix Nova Mesh + 600W Kasa & PSU", category: "Kasa", individualNewPrice: 2950, buyUrl: "https://www.itopya.com/AramaSonuclari/?q=Bitfenix+Nova&ref=kasaradar", store: "İtopya" }
+      { name: "BitFenix Nova Mesh + 600W Kasa & PSU", category: "Kasa", individualNewPrice: 2950, buyUrl: "https://www.akakce.com/arama/?q=Bitfenix+Nova+Mesh", store: "İtopya" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[0]]
   },
@@ -791,7 +791,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Thermaltake S200 TG ARGB Aydınlatmalı Mesh",
     cooling: "Thermaltake UX200 SE ARGB Kule Tipi Soğutucu",
     imageUrl: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.vatanbilgisayar.com/arama/rtx%204070%20hazir%20sistem/",
+    directUrl: "https://www.vatanbilgisayar.com/oem-paketler/",
     fpScore: 9.4,
     individualZeroPrice: 49200,
     individualSecondHandPrice: 36000,
@@ -801,12 +801,12 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     warranty: "2 Yıl Resmi Vatan Bilgisayar Garantili",
     tdpWatts: 390,
     partsBreakdown: [
-      { name: "ZOTAC GeForce RTX 4070 12GB", category: "Ekran Kartı", individualNewPrice: 24500, buyUrl: "https://www.vatanbilgisayar.com/arama/RTX+4070/", store: "Vatan Bilgisayar" },
+      { name: "ZOTAC GeForce RTX 4070 12GB", category: "Ekran Kartı", individualNewPrice: 24500, buyUrl: "https://www.akakce.com/arama/?q=ZOTAC+RTX+4070", store: "Vatan Bilgisayar" },
       { name: "Intel Core i5 14400F 14. Nesil", category: "İşlemci", individualNewPrice: 7200, buyUrl: "https://www.amazon.com.tr/s?k=i5+14400F&tag=kasaradar-21", store: "Amazon TR" },
       { name: "MSI PRO B760M-P DDR5", category: "Anakart", individualNewPrice: 4600, buyUrl: "https://www.hepsiburada.com/ara?q=MSI+B760M-P&utm_source=kasaradar", store: "Hepsiburada" },
       { name: "Crucial 16GB 5200MHz DDR5", category: "RAM", individualNewPrice: 2100, buyUrl: "https://www.amazon.com.tr/s?k=Crucial+16GB+DDR5&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Kioxia Exceria G3 1TB NVMe", category: "SSD", individualNewPrice: 2750, buyUrl: "https://www.hepsiburada.com/ara?q=Kioxia+Exceria+G3&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "Thermaltake S200 + 650W PSU", category: "Kasa", individualNewPrice: 4800, buyUrl: "https://www.vatanbilgisayar.com/arama/Thermaltake+S200/", store: "Vatan Bilgisayar" }
+      { name: "Thermaltake S200 + 650W PSU", category: "Kasa", individualNewPrice: 4800, buyUrl: "https://www.akakce.com/arama/?q=Thermaltake+S200", store: "Vatan Bilgisayar" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[1]]
   },
@@ -839,7 +839,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Vento VG10F Temperli Cam ARGB",
     cooling: "AMD Wraith Stealth Orijinal Fan",
     imageUrl: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.gencergaming.com/?s=phantom&ref=kasaradar",
+    directUrl: "https://www.gencergaming.com/hazir-sistemler",
     fpScore: 9.6,
     individualZeroPrice: 33400,
     individualSecondHandPrice: 24000,
@@ -887,7 +887,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Xigmatek Master X ARGB Aydınlatmalı Mesh",
     cooling: "Thermalright Assassin Spirit 120 V2 Kule Tipi",
     imageUrl: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://pckolik.com/arama?q=ghost&ref=kasaradar",
+    directUrl: "https://pckolik.com/kategori/hazir-sistemler",
     fpScore: 9.5,
     individualZeroPrice: 52100,
     individualSecondHandPrice: 38500,
@@ -936,7 +936,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Corsair 4000D Airflow Temperli Cam Mesh",
     cooling: "DeepCool LT520 240mm RGB Sıvı Soğutma",
     imageUrl: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.qp.com.tr/catalogsearch/result/?q=eclipse&ref=kasaradar",
+    directUrl: "https://www.qp.com.tr/hazir-sistemler",
     fpScore: 9.6,
     individualZeroPrice: 58200,
     individualSecondHandPrice: 42000,
@@ -946,13 +946,13 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     warranty: "2 Yıl QP Bilişim Garantili",
     tdpWatts: 420,
     partsBreakdown: [
-      { name: "Sapphire Nitro+ RX 7800 XT 16GB", category: "Ekran Kartı", individualNewPrice: 22500, buyUrl: "https://www.qp.com.tr/catalogsearch/result/?q=RX+7800+XT", store: "QP Bilişim" },
+      { name: "Sapphire Nitro+ RX 7800 XT 16GB", category: "Ekran Kartı", individualNewPrice: 22500, buyUrl: "https://www.qp.com.tr/hazir-sistemler", store: "QP Bilişim" },
       { name: "AMD Ryzen 7 7700X AM5", category: "İşlemci", individualNewPrice: 11500, buyUrl: "https://www.amazon.com.tr/s?k=Ryzen+7+7700X&tag=kasaradar-21", store: "Amazon TR" },
       { name: "ASUS TUF B650-PLUS WIFI", category: "Anakart", individualNewPrice: 8200, buyUrl: "https://www.hepsiburada.com/ara?q=ASUS+TUF+B650&utm_source=kasaradar", store: "Hepsiburada" },
       { name: "Corsair Vengeance 32GB 6000MHz", category: "RAM", individualNewPrice: 4600, buyUrl: "https://www.amazon.com.tr/s?k=Corsair+32GB+6000MHz&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Kingston KC3000 1TB Gen4 NVMe", category: "SSD", individualNewPrice: 3800, buyUrl: "https://www.hepsiburada.com/ara?q=Kingston+KC3000+1TB&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "DeepCool LT520 240mm Sıvı Soğutma", category: "Soğutucu", individualNewPrice: 3100, buyUrl: "https://www.qp.com.tr/catalogsearch/result/?q=LT520", store: "QP Bilişim" },
-      { name: "Corsair 4000D + RM750e Gold PSU", category: "Kasa", individualNewPrice: 6500, buyUrl: "https://www.qp.com.tr/catalogsearch/result/?q=4000D", store: "QP Bilişim" }
+      { name: "DeepCool LT520 240mm Sıvı Soğutma", category: "Soğutucu", individualNewPrice: 3100, buyUrl: "https://www.qp.com.tr/hazir-sistemler", store: "QP Bilişim" },
+      { name: "Corsair 4000D + RM750e Gold PSU", category: "Kasa", individualNewPrice: 6500, buyUrl: "https://www.qp.com.tr/hazir-sistemler", store: "QP Bilişim" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[1], MONITORS_DATABASE[2]]
   },
@@ -985,7 +985,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Vento VG15FE ARGB Mesh Kasa",
     cooling: "ID-Cooling SE-214-XT ARGB",
     imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://inventus.com.tr/mi_products/ProductList.aspx?DT=ares",
+    directUrl: "https://inventus.com.tr/dedicated/hazirsistem/",
     fpScore: 9.4,
     individualZeroPrice: 38800,
     individualSecondHandPrice: 28500,
@@ -995,13 +995,13 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     warranty: "2 Yıl Birebir Değişim Inventus Garantisi",
     tdpWatts: 320,
     partsBreakdown: [
-      { name: "ASUS Dual RTX 4060 Ti 8GB", category: "Ekran Kartı", individualNewPrice: 17500, buyUrl: "https://inventus.com.tr/mi_products/ProductList.aspx?DT=4060+Ti", store: "Inventus" },
+      { name: "ASUS Dual RTX 4060 Ti 8GB", category: "Ekran Kartı", individualNewPrice: 17500, buyUrl: "https://inventus.com.tr/dedicated/hazirsistem/", store: "Inventus" },
       { name: "Intel Core i5 13400F", category: "İşlemci", individualNewPrice: 6800, buyUrl: "https://www.amazon.com.tr/s?k=i5+13400F&tag=kasaradar-21", store: "Amazon TR" },
-      { name: "ASUS Prime B760M-K DDR5", category: "Anakart", individualNewPrice: 4400, buyUrl: "https://inventus.com.tr/mi_products/ProductList.aspx?DT=B760M-K", store: "Inventus" },
+      { name: "ASUS Prime B760M-K DDR5", category: "Anakart", individualNewPrice: 4400, buyUrl: "https://inventus.com.tr/dedicated/hazirsistem/", store: "Inventus" },
       { name: "Kingston Fury 16GB DDR5", category: "RAM", individualNewPrice: 2200, buyUrl: "https://www.amazon.com.tr/s?k=Kingston+Fury+16GB+DDR5&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Kioxia Exceria G3 1TB NVMe", category: "SSD", individualNewPrice: 2750, buyUrl: "https://www.hepsiburada.com/ara?q=Kioxia+Exceria+G3&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "ID-Cooling SE-214-XT", category: "Soğutucu", individualNewPrice: 1100, buyUrl: "https://inventus.com.tr/mi_products/ProductList.aspx?DT=SE-214-XT", store: "Inventus" },
-      { name: "Vento VG15FE + FSP 650W PSU", category: "Kasa", individualNewPrice: 4050, buyUrl: "https://inventus.com.tr/mi_products/ProductList.aspx?DT=VG15FE", store: "Inventus" }
+      { name: "ID-Cooling SE-214-XT", category: "Soğutucu", individualNewPrice: 1100, buyUrl: "https://inventus.com.tr/dedicated/hazirsistem/", store: "Inventus" },
+      { name: "Vento VG15FE + FSP 650W PSU", category: "Kasa", individualNewPrice: 4050, buyUrl: "https://inventus.com.tr/dedicated/hazirsistem/", store: "Inventus" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[0]]
   },
@@ -1034,7 +1034,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Zalman i3 Neo ARGB Mesh Kasa",
     cooling: "Dark Freezer X127 ARGB Kule Tipi",
     imageUrl: "https://images.unsplash.com/photo-1552831388-6a0b3575b35a?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://molekulpc.com/arama?q=quantum",
+    directUrl: "https://molekulpc.com/kategori/hazir-sistemler",
     fpScore: 9.3,
     individualZeroPrice: 42600,
     individualSecondHandPrice: 31200,
@@ -1044,13 +1044,13 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     warranty: "2 Yıl Molekül PC Garantili",
     tdpWatts: 370,
     partsBreakdown: [
-      { name: "XFX RX 7700 XT 12GB QICK 319", category: "Ekran Kartı", individualNewPrice: 19800, buyUrl: "https://molekulpc.com/arama?q=RX+7700+XT", store: "Molekül PC" },
+      { name: "XFX RX 7700 XT 12GB QICK 319", category: "Ekran Kartı", individualNewPrice: 19800, buyUrl: "https://molekulpc.com/kategori/hazir-sistemler", store: "Molekül PC" },
       { name: "AMD Ryzen 5 7600 AM5", category: "İşlemci", individualNewPrice: 7200, buyUrl: "https://www.amazon.com.tr/s?k=Ryzen+5+7600&tag=kasaradar-21", store: "Amazon TR" },
-      { name: "MSI PRO A620M-E AM5", category: "Anakart", individualNewPrice: 3800, buyUrl: "https://molekulpc.com/arama?q=A620M-E", store: "Molekül PC" },
+      { name: "MSI PRO A620M-E AM5", category: "Anakart", individualNewPrice: 3800, buyUrl: "https://molekulpc.com/kategori/hazir-sistemler", store: "Molekül PC" },
       { name: "Kingston Fury 16GB DDR5", category: "RAM", individualNewPrice: 2200, buyUrl: "https://www.amazon.com.tr/s?k=Kingston+Fury+16GB&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Kingston NV2 1TB Gen4", category: "SSD", individualNewPrice: 2600, buyUrl: "https://www.hepsiburada.com/ara?q=Kingston+NV2+1TB&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "Dark Freezer X127 Soğutucu", category: "Soğutucu", individualNewPrice: 1100, buyUrl: "https://molekulpc.com/arama?q=Freezer+X127", store: "Molekül PC" },
-      { name: "Zalman i3 Neo + 700W Bronze PSU", category: "Kasa", individualNewPrice: 3900, buyUrl: "https://molekulpc.com/arama?q=Zalman+i3", store: "Molekül PC" }
+      { name: "Dark Freezer X127 Soğutucu", category: "Soğutucu", individualNewPrice: 1100, buyUrl: "https://molekulpc.com/kategori/hazir-sistemler", store: "Molekül PC" },
+      { name: "Zalman i3 Neo + 700W Bronze PSU", category: "Kasa", individualNewPrice: 3900, buyUrl: "https://molekulpc.com/kategori/hazir-sistemler", store: "Molekül PC" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[1]]
   },
@@ -1083,7 +1083,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Lian Li Lancool III RGB Temperli Cam",
     cooling: "Thermalright Frozen Prism 360mm Sıvı Soğutma",
     imageUrl: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.novabilgisayar.com/arama.asp?kelime=titan",
+    directUrl: "https://www.novabilgisayar.com/bilgisayar_kategori.asp?kategori=24",
     fpScore: 9.7,
     individualZeroPrice: 74800,
     individualSecondHandPrice: 56000,
@@ -1093,13 +1093,13 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     warranty: "2 Yıl Novabilgisayar Garantisi",
     tdpWatts: 450,
     partsBreakdown: [
-      { name: "Palit RTX 4070 Ti SUPER 16GB", category: "Ekran Kartı", individualNewPrice: 35000, buyUrl: "https://www.novabilgisayar.com/arama.asp?kelime=4070+Ti+Super", store: "Novabilgisayar" },
+      { name: "Palit RTX 4070 Ti SUPER 16GB", category: "Ekran Kartı", individualNewPrice: 35000, buyUrl: "https://www.novabilgisayar.com/bilgisayar_kategori.asp?kategori=24", store: "Novabilgisayar" },
       { name: "AMD Ryzen 7 7800X3D", category: "İşlemci", individualNewPrice: 16500, buyUrl: "https://www.amazon.com.tr/s?k=Ryzen+7+7800X3D&tag=kasaradar-21", store: "Amazon TR" },
-      { name: "Gigabyte B650 Gaming X AX WIFI", category: "Anakart", individualNewPrice: 7800, buyUrl: "https://www.novabilgisayar.com/arama.asp?kelime=B650+Gaming+X", store: "Novabilgisayar" },
+      { name: "Gigabyte B650 Gaming X AX WIFI", category: "Anakart", individualNewPrice: 7800, buyUrl: "https://www.novabilgisayar.com/bilgisayar_kategori.asp?kategori=24", store: "Novabilgisayar" },
       { name: "G.Skill Flare X5 32GB 6000MHz", category: "RAM", individualNewPrice: 4600, buyUrl: "https://www.amazon.com.tr/s?k=G.Skill+Flare+X5&tag=kasaradar-21", store: "Amazon TR" },
       { name: "Samsung 980 Pro 1TB NVMe", category: "SSD", individualNewPrice: 4200, buyUrl: "https://www.hepsiburada.com/ara?q=Samsung+980+Pro+1TB&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "Thermalright 360mm Sıvı Soğutma", category: "Soğutucu", individualNewPrice: 3200, buyUrl: "https://www.novabilgisayar.com/arama.asp?kelime=Frozen+Prism", store: "Novabilgisayar" },
-      { name: "Lian Li Lancool III + 850W Gold PSU", category: "Kasa", individualNewPrice: 7500, buyUrl: "https://www.novabilgisayar.com/arama.asp?kelime=Lancool+III", store: "Novabilgisayar" }
+      { name: "Thermalright 360mm Sıvı Soğutma", category: "Soğutucu", individualNewPrice: 3200, buyUrl: "https://www.novabilgisayar.com/bilgisayar_kategori.asp?kategori=24", store: "Novabilgisayar" },
+      { name: "Lian Li Lancool III + 850W Gold PSU", category: "Kasa", individualNewPrice: 7500, buyUrl: "https://www.novabilgisayar.com/bilgisayar_kategori.asp?kategori=24", store: "Novabilgisayar" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[2], MONITORS_DATABASE[3]]
   },
@@ -1132,7 +1132,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "Gametech Colder Mesh 4x Fan ARGB",
     cooling: "AMD Orijinal Wraith Stealth",
     imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.dfsbilgisayar.com/arama?q=gladiator",
+    directUrl: "https://www.dfsbilgisayar.com/hazir-sistemler",
     fpScore: 9.5,
     individualZeroPrice: 26400,
     individualSecondHandPrice: 18500,
@@ -1142,12 +1142,12 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     warranty: "2 Yıl DFS Bilgisayar Güvencesi",
     tdpWatts: 275,
     partsBreakdown: [
-      { name: "PNY RTX 4060 Verto Dual 8GB", category: "Ekran Kartı", individualNewPrice: 12900, buyUrl: "https://www.dfsbilgisayar.com/arama?q=PNY+4060", store: "DFS Bilgisayar" },
+      { name: "PNY RTX 4060 Verto Dual 8GB", category: "Ekran Kartı", individualNewPrice: 12900, buyUrl: "https://www.dfsbilgisayar.com/hazir-sistemler", store: "DFS Bilgisayar" },
       { name: "AMD Ryzen 5 5600", category: "İşlemci", individualNewPrice: 4100, buyUrl: "https://www.amazon.com.tr/s?k=Ryzen+5+5600&tag=kasaradar-21", store: "Amazon TR" },
-      { name: "Gigabyte A520M K V2", category: "Anakart", individualNewPrice: 2200, buyUrl: "https://www.dfsbilgisayar.com/arama?q=A520M", store: "DFS Bilgisayar" },
-      { name: "Lexar Thor 16GB DDR4", category: "RAM", individualNewPrice: 1550, buyUrl: "https://www.dfsbilgisayar.com/arama?q=Lexar+Thor", store: "DFS Bilgisayar" },
+      { name: "Gigabyte A520M K V2", category: "Anakart", individualNewPrice: 2200, buyUrl: "https://www.dfsbilgisayar.com/hazir-sistemler", store: "DFS Bilgisayar" },
+      { name: "Lexar Thor 16GB DDR4", category: "RAM", individualNewPrice: 1550, buyUrl: "https://www.dfsbilgisayar.com/hazir-sistemler", store: "DFS Bilgisayar" },
       { name: "Kingston NV2 500GB NVMe", category: "SSD", individualNewPrice: 1650, buyUrl: "https://www.hepsiburada.com/ara?q=Kingston+NV2+500GB&utm_source=kasaradar", store: "Hepsiburada" },
-      { name: "Gametech Colder + FSP 550W PSU", category: "Kasa", individualNewPrice: 3400, buyUrl: "https://www.dfsbilgisayar.com/arama?q=Gametech+Colder", store: "DFS Bilgisayar" }
+      { name: "Gametech Colder + FSP 550W PSU", category: "Kasa", individualNewPrice: 3400, buyUrl: "https://www.dfsbilgisayar.com/hazir-sistemler", store: "DFS Bilgisayar" }
     ],
     recommendedMonitors: [MONITORS_DATABASE[0]]
   },
@@ -1180,7 +1180,7 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     caseModel: "DeepCool CC560 WH V2 Beyaz Mesh",
     cooling: "DeepCool AG400 ARGB Kule Tipi Soğutucu",
     imageUrl: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=800&q=80",
-    directUrl: "https://www.adeksstore.com/arama?q=esports",
+    directUrl: "https://www.adeksstore.com/kategori/hazir-oyun-bilgisayarlari",
     fpScore: 9.5,
     individualZeroPrice: 44200,
     individualSecondHandPrice: 32500,
@@ -1190,9 +1190,9 @@ export const PREBUILT_SYSTEMS: PrebuiltSystem[] = [
     warranty: "2 Yıl Adeks Store Garantili",
     tdpWatts: 340,
     partsBreakdown: [
-      { name: "Gigabyte RTX 4060 Ti 16GB Gaming OC", category: "Ekran Kartı", individualNewPrice: 20500, buyUrl: "https://www.adeksstore.com/arama?q=4060+Ti+16GB", store: "Adeks Store" },
+      { name: "Gigabyte RTX 4060 Ti 16GB Gaming OC", category: "Ekran Kartı", individualNewPrice: 20500, buyUrl: "https://www.adeksstore.com/kategori/hazir-oyun-bilgisayarlari", store: "Adeks Store" },
       { name: "Intel Core i5 14400F", category: "İşlemci", individualNewPrice: 7200, buyUrl: "https://www.amazon.com.tr/s?k=i5+14400F&tag=kasaradar-21", store: "Amazon TR" },
-      { name: "MSI PRO B760M-E DDR4", category: "Anakart", individualNewPrice: 3900, buyUrl: "https://www.adeksstore.com/arama?q=B760M-E", store: "Adeks Store" },
+      { name: "MSI PRO B760M-E DDR4", category: "Anakart", individualNewPrice: 3900, buyUrl: "https://www.adeksstore.com/kategori/hazir-oyun-bilgisayarlari", store: "Adeks Store" },
       { name: "Corsair Vengeance 32GB 3600MHz", category: "RAM", individualNewPrice: 3300, buyUrl: "https://www.amazon.com.tr/s?k=Corsair+32GB+3600&tag=kasaradar-21", store: "Amazon TR" },
       { name: "WD Black SN770 1TB NVMe", category: "SSD", individualNewPrice: 3200, buyUrl: "https://www.hepsiburada.com/ara?q=WD+SN770+1TB&utm_source=kasaradar", store: "Hepsiburada" },
       { name: "DeepCool AG400 ARGB", category: "Soğutucu", individualNewPrice: 1100, buyUrl: "https://www.adeksstore.com/arama?q=AG400", store: "Adeks Store" },
@@ -1354,7 +1354,7 @@ export const HARDWARE_DATABASE: HardwareComponent[] = [
     secondHandRisk: "Düşük Risk",
     riskReason: "Intel LGA1700 soket. İkinci elde uygun fiyatlı bütçe dostu işlemci.",
     specsSummary: "6 Çekirdek / 12 İzlek, 4.4 GHz Turbo",
-    directBuyUrl: "https://www.itopya.com/AramaSonuclari/?q=Core+i5+12400F&ref=kasaradar",
+    directBuyUrl: "https://www.akakce.com/arama/?q=Core+i5+12400F",
     direct2ndHandUrl: "https://www.sahibinden.com/kelime-ile-arama?query_text=i5+12400F"
   },
   // Gaming Gear & Ekipmanlar (2. El Borsası)
@@ -1400,7 +1400,7 @@ export const HARDWARE_DATABASE: HardwareComponent[] = [
     secondHandRisk: "Düşük Risk",
     riskReason: "OLED ekranının sağlamlığını ve OmniPoint manyetik basış ayarını yazılımdan test edin.",
     specsSummary: "OmniPoint Manyetik, OLED Ekran, Alüminyum Gövde",
-    directBuyUrl: "https://www.itopya.com/AramaSonuclari/?q=Apex+Pro+TKL&ref=kasaradar",
+    directBuyUrl: "https://www.amazon.com.tr/s?k=Apex+Pro+TKL&tag=kasaradar-21",
     direct2ndHandUrl: "https://www.sahibinden.com/kelime-ile-arama?query_text=Apex+Pro+TKL"
   },
   {
@@ -1430,7 +1430,7 @@ export const HARDWARE_DATABASE: HardwareComponent[] = [
     secondHandRisk: "Orta Risk",
     riskReason: "360Hz modunda ölü piksel, panel çizikleri ve DyAc+ netlik modülü kesinlikle test edilmelidir.",
     specsSummary: "24.5 inç, 360Hz 0.5ms, DyAc+ Espor Standardı",
-    directBuyUrl: "https://www.itopya.com/AramaSonuclari/?q=ZOWIE+XL2566K&ref=kasaradar",
+    directBuyUrl: "https://www.akakce.com/arama/?q=ZOWIE+XL2566K",
     direct2ndHandUrl: "https://www.sahibinden.com/kelime-ile-arama?query_text=XL2566K"
   },
   {
@@ -2310,7 +2310,7 @@ export const SECOND_HAND_LIVE_DEALS: SecondHandDealItem[] = [
     trustBadge: "Param Güvende / Elden",
     condition: "6 Ay Kullanıldı • İtopya Faturalı",
     specsSummary: "16GB DDR5 5600MHz, 1TB NVMe, 650W 80+ Bronze, RGB Kasa",
-    searchQuery: "RTX 4060 Ti hazır sistem"
+    searchQuery: "RTX 4060 Ti"
   },
   {
     id: "sh-deal-10",
@@ -2329,7 +2329,7 @@ export const SECOND_HAND_LIVE_DEALS: SecondHandDealItem[] = [
     trustBadge: "Dolap Korumalı",
     condition: "Kusursuz • Tozsuz",
     specsSummary: "Gaming Gen çıkışlı, 16GB DDR4, 500GB M.2 SSD, 600W",
-    searchQuery: "RTX 4060 hazır kasa"
+    searchQuery: "RTX 4060"
   },
   {
     id: "sh-deal-11",
@@ -2348,7 +2348,7 @@ export const SECOND_HAND_LIVE_DEALS: SecondHandDealItem[] = [
     trustBadge: "Evde Test Edip Al",
     condition: "Sorunsuz • Bakımları Yapıldı",
     specsSummary: "12GB VRAM, 16GB RAM, 512GB SSD, Temperli Cam Kasa",
-    searchQuery: "RTX 3060 hazır sistem"
+    searchQuery: "RTX 3060"
   },
   {
     id: "sh-deal-12",
@@ -2367,7 +2367,7 @@ export const SECOND_HAND_LIVE_DEALS: SecondHandDealItem[] = [
     trustBadge: "DH Platin Satıcı",
     condition: "Sıfır Kokusu Üzerinde",
     specsSummary: "32GB DDR5 6000MHz, 2TB Gen4 SSD, 360mm Sıvı Soğutma, 850W Gold",
-    searchQuery: "4070 Ti Super hazır sistem"
+    searchQuery: "RTX 4070 Ti Super"
   },
 
   // --- Monitör ---
@@ -2407,7 +2407,7 @@ export const SECOND_HAND_LIVE_DEALS: SecondHandDealItem[] = [
     trustBadge: "Dolap Kargo Koruması",
     condition: "Çiziksiz • Fatura Var",
     specsSummary: "27 inç 2K QHD (2560x1440), 170Hz 1ms, HDR10",
-    searchQuery: "ViewSonic VX2780-2K-PRO"
+    searchQuery: "ViewSonic VX2780"
   },
   {
     id: "sh-deal-15",
@@ -2485,7 +2485,7 @@ export const SECOND_HAND_LIVE_DEALS: SecondHandDealItem[] = [
     trustBadge: "Dolap Güvencesi",
     condition: "Deri pedler yıpranmamış",
     specsSummary: "53mm sürücüler, 120 saat pil, Dongle dahil",
-    searchQuery: "HyperX Cloud III Wireless"
+    searchQuery: "HyperX Cloud III"
   },
   {
     id: "sh-deal-19",

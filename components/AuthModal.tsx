@@ -420,9 +420,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <div>
                 <div className="flex justify-between items-center text-xs font-semibold text-neutral-300 mb-1">
                   <span>Şifre</span>
-                  {!isRegisterMode && (
-                    <span className="text-[10px] text-neutral-500">Demo şifre: 123456</span>
-                  )}
                 </div>
                 <div className="relative flex items-center">
                   <Lock className="w-4 h-4 absolute left-3 text-neutral-500" />
