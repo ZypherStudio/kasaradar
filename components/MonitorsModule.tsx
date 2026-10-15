@@ -102,62 +102,83 @@ export const MonitorsModule: React.FC<MonitorsModuleProps> = ({ monitors }) => {
 
       {/* Monitors Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {filtered.map((mon) => (
-          <div
-            key={mon.id}
-            className="flex flex-col justify-between rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-neutral-700 transition-all p-5 space-y-4"
-          >
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-                  {mon.dealTag}
-                </span>
-                <span className="text-[10px] text-neutral-500">{mon.brand}</span>
+        {filtered.map((mon) => {
+          const cleanQuery = encodeURIComponent(mon.name.replace(/\s*\([^)]*\)/g, "").trim());
+          const targetUrl = mon.buyUrl && mon.buyUrl.startsWith("http")
+            ? mon.buyUrl
+            : `https://www.akakce.com/arama/?q=${cleanQuery}`;
+          const secondHandUrl = `https://www.sahibinden.com/kelime-ile-arama?query_text_mf=${cleanQuery}&sorting=date_desc`;
+
+          return (
+            <div
+              key={mon.id}
+              className="flex flex-col justify-between rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-neutral-700 transition-all p-5 space-y-4"
+            >
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                    {mon.dealTag}
+                  </span>
+                  <span className="text-[10px] text-neutral-500">{mon.brand}</span>
+                </div>
+
+                <div className="space-y-1">
+                  <h3 className="font-bold text-white text-sm line-clamp-1">{mon.name}</h3>
+                  <div className="text-xs text-neutral-400">
+                    {mon.sizeInch} • {mon.panelType}
+                  </div>
+                </div>
+
+                {/* Specs */}
+                <div className="p-3 rounded-xl bg-neutral-950 border border-neutral-800 space-y-1.5 text-xs text-neutral-300">
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Çözünürlük:</span>
+                    <span className="font-semibold text-white">{mon.resolution}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Tazeleme Hızı:</span>
+                    <span className="font-bold text-cyan-400">{mon.refreshRate}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500">Uyumlu GPU:</span>
+                    <span className="font-semibold text-emerald-400">{mon.idealForGpu}</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="space-y-1">
-                <h3 className="font-bold text-white text-sm line-clamp-1">{mon.name}</h3>
-                <div className="text-xs text-neutral-400">
-                  {mon.sizeInch} • {mon.panelType}
+              {/* Price & Buy Button */}
+              <div className="space-y-2 pt-2 border-t border-neutral-800">
+                <div className="flex items-baseline justify-between">
+                  <span className="text-[10px] text-neutral-500 uppercase">Satış Fiyatı</span>
+                  <span className="text-lg font-black text-white">{formatTL(mon.price)}</span>
                 </div>
-              </div>
 
-              {/* Specs */}
-              <div className="p-3 rounded-xl bg-neutral-950 border border-neutral-800 space-y-1.5 text-xs text-neutral-300">
-                <div className="flex justify-between">
-                  <span className="text-neutral-500">Çözünürlük:</span>
-                  <span className="font-semibold text-white">{mon.resolution}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-neutral-500">Tazeleme Hızı:</span>
-                  <span className="font-bold text-cyan-400">{mon.refreshRate}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-neutral-500">Uyumlu GPU:</span>
-                  <span className="font-semibold text-emerald-400">{mon.idealForGpu}</span>
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  <a
+                    href={targetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2 px-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-neutral-950 font-bold text-xs flex items-center justify-center gap-1 shadow-md shadow-cyan-500/20 transition-all text-center"
+                    title="Akakçe ve Mağazalarda En Ucuz Sıfır Fiyatı Karşılaştır"
+                  >
+                    <span>En Ucuz Sıfır</span>
+                    <ExternalLink className="w-3 h-3 shrink-0" />
+                  </a>
+                  <a
+                    href={secondHandUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2 px-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 font-bold text-xs flex items-center justify-center gap-1 transition-all text-center"
+                    title="Sahibinden Üzerinde İkinci El Monitör İlanlarını İncele"
+                  >
+                    <span>2. El Ara</span>
+                    <ExternalLink className="w-3 h-3 shrink-0" />
+                  </a>
                 </div>
               </div>
             </div>
-
-            {/* Price & Buy Button */}
-            <div className="space-y-2 pt-2 border-t border-neutral-800">
-              <div className="flex items-baseline justify-between">
-                <span className="text-[10px] text-neutral-500 uppercase">Satış Fiyatı</span>
-                <span className="text-lg font-black text-white">{formatTL(mon.price)}</span>
-              </div>
-
-              <a
-                href={mon.buyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-2 px-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-neutral-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-cyan-500/20 transition-all text-center"
-              >
-                <span>Mağazada İncele</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

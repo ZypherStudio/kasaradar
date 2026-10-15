@@ -265,6 +265,11 @@ export const GearModule: React.FC<GearModuleProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredItems.map((item) => {
           const isSaved = savedGearIds.includes(item.id);
+          const cleanQuery = encodeURIComponent(item.name.replace(/\s*\([^)]*\)/g, "").trim());
+          const targetUrl = item.buyUrl && item.buyUrl.startsWith("http")
+            ? item.buyUrl
+            : `https://www.akakce.com/arama/?q=${cleanQuery}`;
+          const secondHandUrl = `https://www.sahibinden.com/kelime-ile-arama?query_text_mf=${cleanQuery}&sorting=date_desc`;
 
           return (
             <div
@@ -369,15 +374,28 @@ export const GearModule: React.FC<GearModuleProps> = ({
                     </button>
                   </div>
 
-                  <a
-                    href={item.buyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-2.5 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-neutral-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 transition-all cursor-pointer"
-                  >
-                    <span>En Uygun Mağazada Satın Al</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                  <div className="grid grid-cols-2 gap-2">
+                    <a
+                      href={targetUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2.5 px-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-neutral-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-500/20 transition-all cursor-pointer text-center"
+                      title="Akakçe ve Mağazalarda En Ucuz Sıfır Fiyatı Karşılaştır"
+                    >
+                      <span>En Ucuz Sıfır</span>
+                      <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                    </a>
+                    <a
+                      href={secondHandUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2.5 px-3 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
+                      title="Sahibinden Üzerinde İkinci El İlanlarını İncele"
+                    >
+                      <span>Sarı Sitede 2. El</span>
+                      <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
