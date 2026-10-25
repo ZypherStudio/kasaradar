@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Zap, Monitor, Sparkles, Scale, Bell, SlidersHorizontal, Tv, Heart, User, Headphones, Bot, Gift, AlertTriangle } from "lucide-react";
+import { Zap, Monitor, Sparkles, Scale, Bell, SlidersHorizontal, Tv, Heart, User, Headphones, Bot, Gift, AlertTriangle, ShieldCheck } from "lucide-react";
 import { UserAccount } from "./AuthModal";
 import { Logo } from "./Logo";
 
@@ -20,6 +20,8 @@ interface NavbarProps {
   onOpenRewardsModal?: () => void;
   onOpenFreeGames?: () => void;
   onOpenKazikSayar?: () => void;
+  onOpenDdosShield?: () => void;
+  onOpenUpgradeAdvisor?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -34,7 +36,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAuth,
   onOpenRewardsModal,
   onOpenFreeGames,
-  onOpenKazikSayar
+  onOpenKazikSayar,
+  onOpenDdosShield,
+  onOpenUpgradeAdvisor
 }) => {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-neutral-950/85 border-b border-neutral-800/80">
@@ -176,6 +180,30 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
                 <span>Kazık Sayar</span>
+              </button>
+            )}
+
+            {/* Upgrade Sihirbazı Button */}
+            {onOpenUpgradeAdvisor && (
+              <button
+                onClick={onOpenUpgradeAdvisor}
+                className="hidden xl:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/30 text-xs font-bold transition-all cursor-pointer"
+                title="Sistemimi Yükselt: En Ucuz Yoldan FPS Artır"
+              >
+                <Zap className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Sistem Yükselt</span>
+              </button>
+            )}
+
+            {/* DDoS Shield Live Indicator */}
+            {onOpenDdosShield && (
+              <button
+                onClick={onOpenDdosShield}
+                className="flex items-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-bold transition-all cursor-pointer"
+                title="KasaRadar Shield v2.0: DDoS & WAF Koruması Aktif (Tıkla ve İncele)"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+                <span className="hidden sm:inline">Kalkan Aktif</span>
               </button>
             )}
 

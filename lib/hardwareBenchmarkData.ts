@@ -17,33 +17,79 @@ export interface BenchmarkGpu {
 }
 
 export const POPULAR_CPUS: BenchmarkCpu[] = [
-  { id: "r5-5600", name: "AMD Ryzen 5 5600", brand: "AMD", tier: 68, cores: "6 Çekirdek / 12 İzlek", priceAvg: 3800 },
-  { id: "r5-7500f", name: "AMD Ryzen 5 7500F (AM5)", brand: "AMD", tier: 84, cores: "6 Çekirdek / 12 İzlek", priceAvg: 5800 },
+  // AMD AM5 & Son Nesil
+  { id: "r7-9800x3d", name: "AMD Ryzen 7 9800X3D", brand: "AMD", tier: 100, cores: "8 Çekirdek / 16 İzlek", priceAvg: 19500 },
   { id: "r7-7800x3d", name: "AMD Ryzen 7 7800X3D", brand: "AMD", tier: 99, cores: "8 Çekirdek / 16 İzlek", priceAvg: 16500 },
+  { id: "r7-9700x", name: "AMD Ryzen 7 9700X (AM5)", brand: "AMD", tier: 92, cores: "8 Çekirdek / 16 İzlek", priceAvg: 13900 },
+  { id: "r5-7600", name: "AMD Ryzen 5 7600 (AM5)", brand: "AMD", tier: 85, cores: "6 Çekirdek / 12 İzlek", priceAvg: 7200 },
+  { id: "r5-7500f", name: "AMD Ryzen 5 7500F (AM5)", brand: "AMD", tier: 84, cores: "6 Çekirdek / 12 İzlek", priceAvg: 5800 },
+  { id: "r5-8400f", name: "AMD Ryzen 5 8400F (AM5)", brand: "AMD", tier: 80, cores: "6 Çekirdek / 12 İzlek", priceAvg: 5200 },
+
+  // AMD AM4 Popüler & 2. El Efsaneleri
   { id: "r7-5700x3d", name: "AMD Ryzen 7 5700X3D", brand: "AMD", tier: 86, cores: "8 Çekirdek / 16 İzlek", priceAvg: 8500 },
+  { id: "r7-5800x", name: "AMD Ryzen 7 5800X", brand: "AMD", tier: 76, cores: "8 Çekirdek / 16 İzlek", priceAvg: 6800 },
+  { id: "r5-5600x", name: "AMD Ryzen 5 5600X", brand: "AMD", tier: 70, cores: "6 Çekirdek / 12 İzlek", priceAvg: 4400 },
+  { id: "r5-5600", name: "AMD Ryzen 5 5600", brand: "AMD", tier: 68, cores: "6 Çekirdek / 12 İzlek", priceAvg: 3800 },
   { id: "r5-5500", name: "AMD Ryzen 5 5500", brand: "AMD", tier: 55, cores: "6 Çekirdek / 12 İzlek", priceAvg: 2900 },
-  { id: "r5-3600", name: "AMD Ryzen 5 3600", brand: "AMD", tier: 48, cores: "6 Çekirdek / 12 İzlek", priceAvg: 2400 },
-  { id: "i5-12400f", name: "Intel Core i5 12400F", brand: "Intel", tier: 66, cores: "6 Çekirdek / 12 İzlek", priceAvg: 4100 },
-  { id: "i5-13400f", name: "Intel Core i5 13400F", brand: "Intel", tier: 75, cores: "10 Çekirdek / 16 İzlek", priceAvg: 6700 },
-  { id: "i5-14400f", name: "Intel Core i5 14400F", brand: "Intel", tier: 78, cores: "10 Çekirdek / 16 İzlek", priceAvg: 7500 },
-  { id: "i5-14600kf", name: "Intel Core i5 14600KF", brand: "Intel", tier: 90, cores: "14 Çekirdek / 20 İzlek", priceAvg: 11000 },
+  { id: "r5-3600", name: "AMD Ryzen 5 3600", brand: "AMD", tier: 48, cores: "6 Çekirdek / 12 İzlek", priceAvg: 2200 },
+  { id: "r5-2600", name: "AMD Ryzen 5 2600", brand: "AMD", tier: 40, cores: "6 Çekirdek / 12 İzlek", priceAvg: 1600 },
+  { id: "r3-3100", name: "AMD Ryzen 3 3100", brand: "AMD", tier: 38, cores: "4 Çekirdek / 8 İzlek", priceAvg: 1400 },
+
+  // Intel 13. & 14. Nesil
   { id: "i7-14700k", name: "Intel Core i7 14700K", brand: "Intel", tier: 96, cores: "20 Çekirdek / 28 İzlek", priceAvg: 16000 },
-  { id: "i3-12100f", name: "Intel Core i3 12100F", brand: "Intel", tier: 52, cores: "4 Çekirdek / 8 İzlek", priceAvg: 2800 }
+  { id: "i5-14600kf", name: "Intel Core i5 14600KF", brand: "Intel", tier: 90, cores: "14 Çekirdek / 20 İzlek", priceAvg: 11000 },
+  { id: "i7-13700k", name: "Intel Core i7 13700K", brand: "Intel", tier: 92, cores: "16 Çekirdek / 24 İzlek", priceAvg: 13500 },
+  { id: "i5-14400f", name: "Intel Core i5 14400F", brand: "Intel", tier: 78, cores: "10 Çekirdek / 16 İzlek", priceAvg: 7500 },
+  { id: "i5-13400f", name: "Intel Core i5 13400F", brand: "Intel", tier: 75, cores: "10 Çekirdek / 16 İzlek", priceAvg: 6700 },
+
+  // Intel 10., 11. & 12. Nesil (2. El Çok Satanlar)
+  { id: "i5-12400f", name: "Intel Core i5 12400F", brand: "Intel", tier: 66, cores: "6 Çekirdek / 12 İzlek", priceAvg: 4100 },
+  { id: "i3-12100f", name: "Intel Core i3 12100F", brand: "Intel", tier: 52, cores: "4 Çekirdek / 8 İzlek", priceAvg: 2800 },
+  { id: "i5-11400f", name: "Intel Core i5 11400F", brand: "Intel", tier: 58, cores: "6 Çekirdek / 12 İzlek", priceAvg: 3300 },
+  { id: "i5-10400f", name: "Intel Core i5 10400F", brand: "Intel", tier: 50, cores: "6 Çekirdek / 12 İzlek", priceAvg: 2600 },
+  { id: "i3-10100f", name: "Intel Core i3 10100F", brand: "Intel", tier: 42, cores: "4 Çekirdek / 8 İzlek", priceAvg: 1800 }
 ];
 
 export const POPULAR_GPUS: BenchmarkGpu[] = [
-  { id: "rtx-4060", name: "Nvidia GeForce RTX 4060", brand: "Nvidia", tier: 72, vramGb: 8, priceAvg: 12500 },
-  { id: "rtx-4060-ti", name: "Nvidia GeForce RTX 4060 Ti", brand: "Nvidia", tier: 79, vramGb: 8, priceAvg: 16000 },
-  { id: "rtx-4070-super", name: "Nvidia GeForce RTX 4070 SUPER", brand: "Nvidia", tier: 89, vramGb: 12, priceAvg: 26000 },
-  { id: "rtx-4070-ti-super", name: "Nvidia GeForce RTX 4070 Ti SUPER", brand: "Nvidia", tier: 93, vramGb: 16, priceAvg: 34500 },
-  { id: "rtx-4080-super", name: "Nvidia GeForce RTX 4080 SUPER", brand: "Nvidia", tier: 97, vramGb: 16, priceAvg: 46000 },
-  { id: "rtx-4090", name: "Nvidia GeForce RTX 4090", brand: "Nvidia", tier: 100, vramGb: 24, priceAvg: 80000 },
-  { id: "rtx-3060", name: "Nvidia GeForce RTX 3060 12GB", brand: "Nvidia", tier: 62, vramGb: 12, priceAvg: 10500 },
-  { id: "rtx-3050", name: "Nvidia GeForce RTX 3050 8GB", brand: "Nvidia", tier: 50, vramGb: 8, priceAvg: 7900 },
-  { id: "rx-7600", name: "AMD Radeon RX 7600", brand: "AMD", tier: 71, vramGb: 8, priceAvg: 10800 },
-  { id: "rx-7700-xt", name: "AMD Radeon RX 7700 XT", brand: "AMD", tier: 84, vramGb: 12, priceAvg: 17500 },
-  { id: "rx-7800-xt", name: "AMD Radeon RX 7800 XT", brand: "AMD", tier: 88, vramGb: 16, priceAvg: 21500 },
-  { id: "rx-6600", name: "AMD Radeon RX 6600", brand: "AMD", tier: 58, vramGb: 8, priceAvg: 8200 }
+  // Nvidia RTX 4000 Serisi
+  { id: "rtx-4090", name: "Nvidia GeForce RTX 4090 24GB", brand: "Nvidia", tier: 100, vramGb: 24, priceAvg: 80000 },
+  { id: "rtx-4080-super", name: "Nvidia GeForce RTX 4080 SUPER 16GB", brand: "Nvidia", tier: 97, vramGb: 16, priceAvg: 46000 },
+  { id: "rtx-4070-ti-super", name: "Nvidia GeForce RTX 4070 Ti SUPER 16GB", brand: "Nvidia", tier: 93, vramGb: 16, priceAvg: 34500 },
+  { id: "rtx-4070-super", name: "Nvidia GeForce RTX 4070 SUPER 12GB", brand: "Nvidia", tier: 89, vramGb: 12, priceAvg: 26000 },
+  { id: "rtx-4070", name: "Nvidia GeForce RTX 4070 12GB", brand: "Nvidia", tier: 85, vramGb: 12, priceAvg: 22500 },
+  { id: "rtx-4060-ti-16gb", name: "Nvidia GeForce RTX 4060 Ti 16GB", brand: "Nvidia", tier: 80, vramGb: 16, priceAvg: 19000 },
+  { id: "rtx-4060-ti", name: "Nvidia GeForce RTX 4060 Ti 8GB", brand: "Nvidia", tier: 79, vramGb: 8, priceAvg: 16000 },
+  { id: "rtx-4060", name: "Nvidia GeForce RTX 4060 8GB", brand: "Nvidia", tier: 72, vramGb: 8, priceAvg: 12500 },
+
+  // Nvidia RTX 3000 & 2000 Serisi (Sıfır & 2. El)
+  { id: "rtx-3080", name: "Nvidia GeForce RTX 3080 10GB", brand: "Nvidia", tier: 86, vramGb: 10, priceAvg: 16500 },
+  { id: "rtx-3070-ti", name: "Nvidia GeForce RTX 3070 Ti 8GB", brand: "Nvidia", tier: 78, vramGb: 8, priceAvg: 13500 },
+  { id: "rtx-3070", name: "Nvidia GeForce RTX 3070 8GB", brand: "Nvidia", tier: 75, vramGb: 8, priceAvg: 11500 },
+  { id: "rtx-3060-ti", name: "Nvidia GeForce RTX 3060 Ti 8GB", brand: "Nvidia", tier: 71, vramGb: 8, priceAvg: 9500 },
+  { id: "rtx-3060", name: "Nvidia GeForce RTX 3060 12GB", brand: "Nvidia", tier: 62, vramGb: 12, priceAvg: 8500 },
+  { id: "rtx-3050", name: "Nvidia GeForce RTX 3050 8GB", brand: "Nvidia", tier: 50, vramGb: 8, priceAvg: 6800 },
+  { id: "rtx-2060-super", name: "Nvidia GeForce RTX 2060 Super 8GB", brand: "Nvidia", tier: 56, vramGb: 8, priceAvg: 5800 },
+  { id: "rtx-2060", name: "Nvidia GeForce RTX 2060 6GB", brand: "Nvidia", tier: 49, vramGb: 6, priceAvg: 4800 },
+
+  // Nvidia GTX Efsaneleri (Milyonlarca Oyuncunun Elindeki Kartlar)
+  { id: "gtx-1660-super", name: "Nvidia GeForce GTX 1660 Super 6GB", brand: "Nvidia", tier: 44, vramGb: 6, priceAvg: 3800 },
+  { id: "gtx-1660-ti", name: "Nvidia GeForce GTX 1660 Ti 6GB", brand: "Nvidia", tier: 46, vramGb: 6, priceAvg: 4100 },
+  { id: "gtx-1650", name: "Nvidia GeForce GTX 1650 4GB", brand: "Nvidia", tier: 32, vramGb: 4, priceAvg: 2600 },
+  { id: "gtx-1060-6gb", name: "Nvidia GeForce GTX 1060 6GB", brand: "Nvidia", tier: 36, vramGb: 6, priceAvg: 2400 },
+  { id: "gtx-1050-ti", name: "Nvidia GeForce GTX 1050 Ti 4GB", brand: "Nvidia", tier: 24, vramGb: 4, priceAvg: 1800 },
+
+  // AMD Radeon RX 7000 & 6000 & 500 Serisi
+  { id: "rx-7900-xtx", name: "AMD Radeon RX 7900 XTX 24GB", brand: "AMD", tier: 96, vramGb: 24, priceAvg: 38000 },
+  { id: "rx-7900-gre", name: "AMD Radeon RX 7900 GRE 16GB", brand: "AMD", tier: 91, vramGb: 16, priceAvg: 25000 },
+  { id: "rx-7800-xt", name: "AMD Radeon RX 7800 XT 16GB", brand: "AMD", tier: 88, vramGb: 16, priceAvg: 21500 },
+  { id: "rx-7700-xt", name: "AMD Radeon RX 7700 XT 12GB", brand: "AMD", tier: 84, vramGb: 12, priceAvg: 17500 },
+  { id: "rx-7600-xt", name: "AMD Radeon RX 7600 XT 16GB", brand: "AMD", tier: 74, vramGb: 16, priceAvg: 14000 },
+  { id: "rx-7600", name: "AMD Radeon RX 7600 8GB", brand: "AMD", tier: 71, vramGb: 8, priceAvg: 10800 },
+  { id: "rx-6700-xt", name: "AMD Radeon RX 6700 XT 12GB", brand: "AMD", tier: 76, vramGb: 12, priceAvg: 10500 },
+  { id: "rx-6600-xt", name: "AMD Radeon RX 6600 XT 8GB", brand: "AMD", tier: 66, vramGb: 8, priceAvg: 7500 },
+  { id: "rx-6600", name: "AMD Radeon RX 6600 8GB", brand: "AMD", tier: 58, vramGb: 8, priceAvg: 6800 },
+  { id: "rx-580-8gb", name: "AMD Radeon RX 580 8GB", brand: "AMD", tier: 33, vramGb: 8, priceAvg: 2200 },
+  { id: "rx-570-4gb", name: "AMD Radeon RX 570 4GB", brand: "AMD", tier: 28, vramGb: 4, priceAvg: 1600 }
 ];
 
 export interface BottleneckAnalysisResult {

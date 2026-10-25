@@ -26,6 +26,8 @@ import { PriceHistoryModal } from "@/components/PriceHistoryModal";
 import { FreeGamesModal } from "@/components/FreeGamesModal";
 import { KazikSayarModal } from "@/components/KazikSayarModal";
 import { BottleneckModal } from "@/components/BottleneckModal";
+import { DdosShieldModal } from "@/components/DdosShieldModal";
+import { UpgradeAdvisorModal } from "@/components/UpgradeAdvisorModal";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
 import { TelegramGrowthFloatingBar } from "@/components/TelegramGrowthFloatingBar";
@@ -69,6 +71,8 @@ export default function Home() {
   const [isFreeGamesModalOpen, setIsFreeGamesModalOpen] = useState<boolean>(false);
   const [isKazikSayarOpen, setIsKazikSayarOpen] = useState<boolean>(false);
   const [isBottleneckOpen, setIsBottleneckOpen] = useState<boolean>(false);
+  const [isDdosShieldOpen, setIsDdosShieldOpen] = useState<boolean>(false);
+  const [isUpgradeAdvisorOpen, setIsUpgradeAdvisorOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -171,6 +175,14 @@ export default function Home() {
       }
       if (isBottleneckOpen) {
         setIsBottleneckOpen(false);
+        return;
+      }
+      if (isUpgradeAdvisorOpen) {
+        setIsUpgradeAdvisorOpen(false);
+        return;
+      }
+      if (isDdosShieldOpen) {
+        setIsDdosShieldOpen(false);
         return;
       }
       if (isAdInspectorOpen) {
@@ -318,6 +330,14 @@ export default function Home() {
           if (typeof window !== "undefined") window.history.pushState({ modal: "kazik" }, "", "#kazik-sayar");
           setIsKazikSayarOpen(true);
         }}
+        onOpenDdosShield={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "shield" }, "", "#guvenlik");
+          setIsDdosShieldOpen(true);
+        }}
+        onOpenUpgradeAdvisor={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "upgrade" }, "", "#yukseltme");
+          setIsUpgradeAdvisorOpen(true);
+        }}
       />
 
       {/* Main Content Area */}
@@ -386,6 +406,14 @@ export default function Home() {
           onOpenBottleneck={() => {
             if (typeof window !== "undefined") window.history.pushState({ modal: "bottleneck" }, "", "#darbogaz");
             setIsBottleneckOpen(true);
+          }}
+          onOpenUpgradeAdvisor={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "upgrade" }, "", "#yukseltme");
+            setIsUpgradeAdvisorOpen(true);
+          }}
+          onOpenDdosShield={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "shield" }, "", "#guvenlik");
+            setIsDdosShieldOpen(true);
           }}
         />
 
@@ -649,6 +677,18 @@ export default function Home() {
         onClose={() => setIsBottleneckOpen(false)}
         systems={PREBUILT_SYSTEMS}
         onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
+      />
+
+      {/* KILLER FEATURE 9: Sistemimi Yükselt (Upgrade Sihirbazı) Modalı */}
+      <UpgradeAdvisorModal
+        isOpen={isUpgradeAdvisorOpen}
+        onClose={() => setIsUpgradeAdvisorOpen(false)}
+      />
+
+      {/* SECURITY SHIELD: KasaRadar DDoS & WAF Kalkanı Güvenlik Modalı */}
+      <DdosShieldModal
+        isOpen={isDdosShieldOpen}
+        onClose={() => setIsDdosShieldOpen(false)}
       />
 
       {/* Sponsors & Brand Partnerships Section */}

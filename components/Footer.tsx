@@ -15,8 +15,11 @@ export const Footer: React.FC = () => {
             <p className="text-neutral-400 text-xs max-w-md leading-relaxed">
               KasaRadar, Türkiye&apos;deki tüm hazır oyuncu kasalarını, sıfır ve 2. el donanım piyasasını anlık tarayan bağımsız teknoloji radarıdır. Oyuncuların kazıklanmadan en yüksek F/P sistemlere ulaşmasını sağlamak amacıyla geliştirilmiştir.
             </p>
-            <div className="flex items-center gap-2 text-[11px] text-neutral-500">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="flex flex-wrap items-center gap-2 text-[11px] text-neutral-500">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>KasaRadar Shield v2.0 (DDoS &amp; WAF Korumalı)</span>
+              </div>
               <span>Algoritmik ve tarafsız donanım analizi • Python &amp; Node.js veri motoru.</span>
             </div>
           </div>

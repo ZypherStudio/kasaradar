@@ -17,6 +17,8 @@ interface HeroBannerProps {
   onOpenFreeGames?: () => void;
   onOpenKazikSayar?: () => void;
   onOpenBottleneck?: () => void;
+  onOpenUpgradeAdvisor?: () => void;
+  onOpenDdosShield?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -32,7 +34,9 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onOpenPriceHistory,
   onOpenFreeGames,
   onOpenKazikSayar,
-  onOpenBottleneck
+  onOpenBottleneck,
+  onOpenUpgradeAdvisor,
+  onOpenDdosShield
 }) => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 via-neutral-900/60 to-neutral-950 border border-neutral-800 p-6 sm:p-10 mb-8 shadow-2xl">
@@ -42,9 +46,22 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-5">
         {/* Live Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
-          <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Tüm Türk Mağazaları Canlı Taranıyor • Bugün 4 Fiyat İndirimi Yakalandı</span>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Tüm Türk Mağazaları Canlı Taranıyor • Bugün 4 Fiyat İndirimi Yakalandı</span>
+          </div>
+
+          {onOpenDdosShield && (
+            <button
+              onClick={onOpenDdosShield}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-neutral-900 hover:bg-neutral-800 border border-emerald-500/30 text-emerald-300 text-xs font-bold transition-all cursor-pointer shadow-sm"
+              title="KasaRadar DDoS Kalkanı Güvenlik Paneli"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span>DDoS Kalkanı: Aktif</span>
+            </button>
+          )}
         </div>
 
         {/* Main Title */}
@@ -64,6 +81,16 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
         {/* KILLER FEATURE QUICK BUTTONS ROW */}
         <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+          {onOpenUpgradeAdvisor && (
+            <button
+              onClick={onOpenUpgradeAdvisor}
+              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-cyan-500/10"
+            >
+              <span>🚀 Sistem Yükselt</span>
+              <span className="text-[10px] bg-cyan-500/30 px-1.5 py-0.2 rounded font-black text-cyan-200">Upgrade</span>
+            </button>
+          )}
+
           {onOpenKazikSayar && (
             <button
               onClick={onOpenKazikSayar}
