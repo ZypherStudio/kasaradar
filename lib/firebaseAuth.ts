@@ -9,7 +9,13 @@ import {
   onAuthStateChanged,
   User as FirebaseUser
 } from "firebase/auth";
-import { auth, googleProvider, isFirebaseConfigured } from "./firebase";
+import {
+  auth,
+  googleProvider,
+  getFirebaseAuth,
+  getGoogleProvider,
+  isFirebaseConfigured
+} from "./firebase";
 import { StoredUserAccount, getCurrentUser } from "./authStorage";
 
 export { isFirebaseConfigured };
@@ -36,9 +42,12 @@ export async function firebaseLoginWithGoogle(): Promise<{
   error?: string;
   isFirebase: boolean;
 }> {
-  if (isFirebaseConfigured && auth && googleProvider) {
+  const currentAuth = getFirebaseAuth() || auth;
+  const currentProvider = getGoogleProvider() || googleProvider;
+
+  if (isFirebaseConfigured && currentAuth && currentProvider) {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(currentAuth, currentProvider);
       const user = mapFirebaseUserToAccount(result.user);
       
       // Persist in localStorage for instant access
@@ -47,15 +56,22 @@ export async function firebaseLoginWithGoogle(): Promise<{
       return { success: true, user, isFirebase: true };
     } catch (err: any) {
       console.error("Firebase Google sign-in error:", err);
+      let errorMsg = "Google ile giriş yapılırken bir hata oluştu.";
+      if (err.code === "auth/popup-closed-by-user") {
+        errorMsg = "Giriş penceresi kapatıldı.";
+      } else if (err.code === "auth/unauthorized-domain") {
+        errorMsg = "Bu alan adı (domain) Firebase konsolunda yetkilendirilmemiş.";
+      } else if (err.message) {
+        errorMsg = err.message;
+      }
       return {
         success: false,
-        error: err.message || "Google ile giriş yapılırken bir hata oluştu.",
+        error: errorMsg,
         isFirebase: true
       };
     }
   }
 
-  // Graceful fallback if Firebase credentials are not yet added to .env.local
   return {
     success: false,
     error: "FIREBASE_NOT_CONFIGURED",
@@ -77,10 +93,11 @@ export async function firebaseRegisterEmail(params: {
 }> {
   const cleanEmail = params.email.trim().toLowerCase();
   const cleanName = params.name.trim() || cleanEmail.split("@")[0];
+  const currentAuth = getFirebaseAuth() || auth;
 
-  if (isFirebaseConfigured && auth) {
+  if (isFirebaseConfigured && currentAuth) {
     try {
-      const cred = await createUserWithEmailAndPassword(auth, cleanEmail, params.password);
+      const cred = await createUserWithEmailAndPassword(currentAuth, cleanEmail, params.password);
       if (cred.user) {
         await updateFirebaseProfile(cred.user, { displayName: cleanName });
       }
@@ -111,10 +128,11 @@ export async function firebaseLoginEmail(params: {
   isFirebase: boolean;
 }> {
   const cleanEmail = params.email.trim().toLowerCase();
+  const currentAuth = getFirebaseAuth() || auth;
 
-  if (isFirebaseConfigured && auth) {
+  if (isFirebaseConfigured && currentAuth) {
     try {
-      const cred = await signInWithEmailAndPassword(auth, cleanEmail, params.password);
+      const cred = await signInWithEmailAndPassword(currentAuth, cleanEmail, params.password);
       const user = mapFirebaseUserToAccount(cred.user);
       localStorage.setItem("kasaradar_user", JSON.stringify(user));
       return { success: true, user, isFirebase: true };
@@ -133,9 +151,10 @@ export async function firebaseLoginEmail(params: {
 
 // 4. REAL LOGOUT
 export async function firebaseLogout(): Promise<void> {
-  if (isFirebaseConfigured && auth) {
+  const currentAuth = getFirebaseAuth() || auth;
+  if (isFirebaseConfigured && currentAuth) {
     try {
-      await signOut(auth);
+      await signOut(currentAuth);
     } catch (e) {
       console.warn("Firebase sign out error:", e);
     }
