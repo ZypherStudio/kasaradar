@@ -224,22 +224,25 @@ export function loginWithProvider(
 ): { success: boolean; user: StoredUserAccount } {
   const users = getRegisteredUsers();
 
-  const defaultEmail =
-    provider === "google"
-      ? "zypher.radar@gmail.com"
-      : provider === "apple"
-      ? "zypher@icloud.com"
-      : "zypher#1337@discord.gg";
+  const cleanEmail = (customAccount?.email || "").trim().toLowerCase();
+  const cleanName = (customAccount?.name || "").trim() || (cleanEmail ? cleanEmail.split("@")[0] : "KasaRadar Üyesi");
 
-  const defaultName =
-    provider === "google"
-      ? "KasaRadar Üyesi"
-      : provider === "apple"
-      ? "Apple Kullanıcısı"
-      : "ZypherGamer";
+  if (!cleanEmail || !cleanEmail.includes("@")) {
+    return {
+      success: false,
+      user: {
+        name: "",
+        email: "",
+        isLoggedIn: false,
+        receiveEmailAlerts: false,
+        receiveTelegramAlerts: false,
+        createdAt: ""
+      }
+    };
+  }
 
-  const email = (customAccount?.email || defaultEmail).trim().toLowerCase();
-  const name = customAccount?.name?.trim() || defaultName;
+  const email = cleanEmail;
+  const name = cleanName;
 
   const existing = users.find((u) => u.email.toLowerCase() === email);
 

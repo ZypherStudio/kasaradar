@@ -74,26 +74,52 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   // Real 1-Click Social Sign-In (Google, Apple, Discord)
   const handleSocialLogin = (provider: "google" | "apple" | "discord") => {
+    let targetEmail = email.trim();
+    if (!targetEmail || !targetEmail.includes("@")) {
+      const promptEmail = window.prompt(
+        provider === "google"
+          ? "Lütfen Google e-posta adresinizi girin (örn: adiniz@gmail.com):"
+          : provider === "apple"
+          ? "Lütfen Apple ID e-posta adresinizi girin (örn: adiniz@icloud.com):"
+          : "Lütfen Discord e-posta adresinizi girin:"
+      );
+      if (!promptEmail || !promptEmail.includes("@")) {
+        setErrorMessage("Giriş yapabilmek için geçerli bir e-posta adresi gereklidir.");
+        return;
+      }
+      targetEmail = promptEmail.trim();
+    }
+
     setIsSocialLoading(true);
     setErrorMessage("");
     setSuccessMessage("");
 
     setTimeout(() => {
-      const res = loginWithProvider(provider);
+      const res = loginWithProvider(provider, {
+        email: targetEmail,
+        name: name.trim() || targetEmail.split("@")[0]
+      });
+
+      if (!res.success || !res.user) {
+        setIsSocialLoading(false);
+        setErrorMessage("Giriş yapılamadı. Lütfen geçerli bir e-posta girin.");
+        return;
+      }
+
       onLogin(res.user);
       setIsSocialLoading(false);
       setSuccessMessage(
         provider === "google"
-          ? "✅ Google ile başarıyla giriş yapıldı!"
+          ? `✅ Google (${targetEmail}) ile başarıyla giriş yapıldı!`
           : provider === "apple"
-          ? "✅ Apple ID ile başarıyla giriş yapıldı!"
-          : "✅ Discord ile başarıyla giriş yapıldı!"
+          ? `✅ Apple ID (${targetEmail}) ile başarıyla giriş yapıldı!`
+          : `✅ Discord (${targetEmail}) ile başarıyla giriş yapıldı!`
       );
       setTimeout(() => {
         setSuccessMessage("");
         onClose();
       }, 1000);
-    }, 500);
+    }, 400);
   };
 
   const handleSubmit = (e: React.FormEvent) => {

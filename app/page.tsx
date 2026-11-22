@@ -695,9 +695,9 @@ export default function Home() {
         onClose={() => setIsDdosShieldOpen(false)}
       />
 
-      {/* Alt Sponsor & Reklam Alanı */}
+      {/* Alt Sponsor & Reklam Alanı (Native Banner) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AdBanner format="leaderboard" />
+        <AdBanner format="native" />
       </div>
 
       {/* Sponsors & Brand Partnerships Section */}
