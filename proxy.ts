@@ -97,7 +97,10 @@ export function proxy(request: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/static") ||
     pathname.startsWith("/favicon.ico") ||
-    pathname.match(/\.(png|jpg|jpeg|svg|webp|gif|ico|css|js|woff|woff2)$/)
+    pathname === "/ads.txt" ||
+    pathname === "/robots.txt" ||
+    pathname === "/sitemap.xml" ||
+    pathname.match(/\.(png|jpg|jpeg|svg|webp|gif|ico|css|js|woff|woff2|txt|xml)$/)
   ) {
     return NextResponse.next();
   }

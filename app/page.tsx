@@ -28,6 +28,7 @@ import { KazikSayarModal } from "@/components/KazikSayarModal";
 import { BottleneckModal } from "@/components/BottleneckModal";
 import { DdosShieldModal } from "@/components/DdosShieldModal";
 import { UpgradeAdvisorModal } from "@/components/UpgradeAdvisorModal";
+import { AdBanner } from "@/components/AdBanner";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
 import { TelegramGrowthFloatingBar } from "@/components/TelegramGrowthFloatingBar";
@@ -420,6 +421,9 @@ export default function Home() {
         {/* Live Telegram Deal Feed Ticker */}
         <LiveTelegramTicker />
 
+        {/* Sponsorluk & Reklam Banner Alanı (Leaderboard) */}
+        <AdBanner format="leaderboard" />
+
         {/* Tab 1: Hazır Kasalar & F/P Radarı */}
         {activeTab === "systems" && (
           <SystemsModule
@@ -690,6 +694,11 @@ export default function Home() {
         isOpen={isDdosShieldOpen}
         onClose={() => setIsDdosShieldOpen(false)}
       />
+
+      {/* Alt Sponsor & Reklam Alanı */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AdBanner format="leaderboard" />
+      </div>
 
       {/* Sponsors & Brand Partnerships Section */}
       <SponsorsSection />

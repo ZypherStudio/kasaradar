@@ -1,0 +1,6 @@
+# KasaRadar ads.txt
+# Adsterra veya Google AdSense satırlarınızı buraya ekleyebilirsiniz.
+# Adsterra panelinizdeki "ads.txt" sekmesinden aldığınız kodu doğrudan bu dosyaya yapıştırabilirsiniz.
+#
+# Örnek Adsterra formatı:
+# adsterra.com, YOUR_PUBLISHER_ID, DIRECT
