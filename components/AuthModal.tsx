@@ -22,6 +22,13 @@ import {
   updateProfile,
   StoredUserAccount
 } from "@/lib/authStorage";
+import {
+  firebaseLoginWithGoogle,
+  firebaseRegisterEmail,
+  firebaseLoginEmail,
+  firebaseLogout,
+  isFirebaseConfigured
+} from "@/lib/firebaseAuth";
 
 export type UserAccount = StoredUserAccount;
 
@@ -72,8 +79,36 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   if (!isOpen) return null;
 
-  // Real 1-Click Social Sign-In (Google, Apple, Discord)
-  const handleSocialLogin = (provider: "google" | "apple" | "discord") => {
+  // Real 1-Click Social Sign-In (Firebase Google Auth & Providers)
+  const handleSocialLogin = async (provider: "google" | "apple" | "discord") => {
+    setIsSocialLoading(true);
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    // 1. Try Real Firebase Google Auth first if available
+    if (provider === "google" && isFirebaseConfigured) {
+      try {
+        const fbRes = await firebaseLoginWithGoogle();
+        if (fbRes.success && fbRes.user) {
+          onLogin(fbRes.user);
+          setIsSocialLoading(false);
+          setSuccessMessage(`✅ Google (${fbRes.user.email}) ile başarıyla giriş yapıldı!`);
+          setTimeout(() => {
+            setSuccessMessage("");
+            onClose();
+          }, 1000);
+          return;
+        } else if (fbRes.error && fbRes.error !== "FIREBASE_NOT_CONFIGURED") {
+          setIsSocialLoading(false);
+          setErrorMessage(fbRes.error);
+          return;
+        }
+      } catch (err: any) {
+        console.warn("Firebase Google popup fallback:", err);
+      }
+    }
+
+    // 2. Interactive account prompt fallback
     let targetEmail = email.trim();
     if (!targetEmail || !targetEmail.includes("@")) {
       const promptEmail = window.prompt(
@@ -84,15 +119,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           : "Lütfen Discord e-posta adresinizi girin:"
       );
       if (!promptEmail || !promptEmail.includes("@")) {
+        setIsSocialLoading(false);
         setErrorMessage("Giriş yapabilmek için geçerli bir e-posta adresi gereklidir.");
         return;
       }
       targetEmail = promptEmail.trim();
     }
-
-    setIsSocialLoading(true);
-    setErrorMessage("");
-    setSuccessMessage("");
 
     setTimeout(() => {
       const res = loginWithProvider(provider, {
@@ -122,12 +154,30 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     }, 400);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
     setSuccessMessage("");
 
     if (isRegisterMode) {
+      if (isFirebaseConfigured) {
+        const fbRes = await firebaseRegisterEmail({
+          name,
+          email,
+          password,
+          telegram
+        });
+        if (fbRes.success && fbRes.user) {
+          onLogin(fbRes.user);
+          setSuccessMessage("✅ Firebase hesabınız oluşturuldu ve giriş yapıldı!");
+          setTimeout(() => {
+            setSuccessMessage("");
+            onClose();
+          }, 1200);
+          return;
+        }
+      }
+
       const res = registerUser({
         name,
         email,
@@ -147,6 +197,22 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         onClose();
       }, 1200);
     } else {
+      if (isFirebaseConfigured) {
+        const fbRes = await firebaseLoginEmail({
+          email,
+          password
+        });
+        if (fbRes.success && fbRes.user) {
+          onLogin(fbRes.user);
+          setSuccessMessage("✅ Firebase ile başarıyla giriş yapıldı!");
+          setTimeout(() => {
+            setSuccessMessage("");
+            onClose();
+          }, 1200);
+          return;
+        }
+      }
+
       const res = loginUser({
         email,
         password
@@ -295,6 +361,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
             <button
               onClick={() => {
+                firebaseLogout();
                 onLogout();
                 onClose();
               }}

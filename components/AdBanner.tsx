@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Megaphone } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { Megaphone, AlertCircle } from "lucide-react";
 
 export type AdFormat = "leaderboard" | "native" | "rectangle";
 
@@ -15,6 +15,8 @@ export const AdBanner: React.FC<AdBannerProps> = ({
   customClass = ""
 }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [adBlocked, setAdBlocked] = useState<boolean>(false);
+  const adContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -25,114 +27,100 @@ export const AdBanner: React.FC<AdBannerProps> = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Leaderboard 728x90 Adsterra Code (User Key: 506395e460fcb46e874e350d092b860f)
-  if (format === "leaderboard") {
-    const width = isMobile ? 320 : 728;
-    const height = isMobile ? 50 : 90;
+  useEffect(() => {
+    const container = adContainerRef.current;
+    if (!container) return;
 
-    const leaderboardHtml = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            * { margin: 0; padding: 0; box-sizing: border-box; }
-            body { 
-              background: transparent; 
-              display: flex; 
-              justify-content: center; 
-              align-items: center; 
-              overflow: hidden; 
-            }
-          </style>
-        </head>
-        <body>
-          <script>
-            atOptions = {
-              'key' : '506395e460fcb46e874e350d092b860f',
-              'format' : 'iframe',
-              'height' : ${height},
-              'width' : ${width},
-              'params' : {}
-            };
-          </script>
-          <script src="https://bicea.org/22/506395e460fcb46e874e350d092b860f"></script>
-        </body>
-      </html>
-    `;
+    // Clear previous injections to avoid duplication
+    container.innerHTML = "";
 
-    return (
-      <div className={`w-full flex flex-col items-center justify-center my-3 ${customClass}`}>
-        <div className="flex items-center gap-1.5 mb-1 text-[10px] text-neutral-500 font-semibold uppercase tracking-wider">
-          <Megaphone className="w-3 h-3 text-emerald-400" />
-          <span>Sponsorlu Reklam</span>
-        </div>
+    try {
+      if (format === "leaderboard") {
+        const width = isMobile ? 320 : 728;
+        const height = isMobile ? 50 : 90;
 
-        <div
-          className="relative rounded-2xl bg-neutral-950/80 border border-neutral-800/80 p-1 flex items-center justify-center overflow-hidden shadow-lg"
-          style={{ width: `${width}px`, height: `${height}px` }}
-        >
-          <iframe
-            srcDoc={leaderboardHtml}
-            width={width}
-            height={height}
-            scrolling="no"
-            frameBorder="0"
-            className="border-0 overflow-hidden"
-            title="KasaRadar Leaderboard Banner"
-          />
-        </div>
+        // Container wrapper
+        const adWrapper = document.createElement("div");
+        adWrapper.id = "adsterra-leaderboard-wrapper";
+        adWrapper.style.width = `${width}px`;
+        adWrapper.style.height = `${height}px`;
+        adWrapper.style.overflow = "hidden";
+        adWrapper.style.display = "flex";
+        adWrapper.style.alignItems = "center";
+        adWrapper.style.justifyContent = "center";
+
+        // Set global options on window directly on host domain
+        (window as any).atOptions = {
+          key: "506395e460fcb46e874e350d092b860f",
+          format: "iframe",
+          height: height,
+          width: width,
+          params: {}
+        };
+
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://bicea.org/22/506395e460fcb46e874e350d092b860f";
+        script.async = true;
+
+        script.onerror = () => {
+          setAdBlocked(true);
+        };
+
+        adWrapper.appendChild(script);
+        container.appendChild(adWrapper);
+      } else if (format === "native") {
+        const nativeDiv = document.createElement("div");
+        nativeDiv.id = "container-8335dda75d0764b291243ec4d7c886c5";
+        nativeDiv.style.width = "100%";
+        nativeDiv.style.minHeight = "160px";
+
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.async = true;
+        script.setAttribute("data-cfasync", "false");
+        script.src = "https://bicea.org/21/8335dda75d0764b291243ec4d7c886c5";
+
+        script.onerror = () => {
+          setAdBlocked(true);
+        };
+
+        container.appendChild(nativeDiv);
+        container.appendChild(script);
+      }
+    } catch (err) {
+      console.warn("Adsterra load error:", err);
+      setAdBlocked(true);
+    }
+  }, [format, isMobile]);
+
+  const widthStyle = format === "leaderboard" ? (isMobile ? "320px" : "728px") : "100%";
+  const heightStyle = format === "leaderboard" ? (isMobile ? "50px" : "90px") : "160px";
+
+  return (
+    <div className={`w-full flex flex-col items-center justify-center my-4 ${customClass}`}>
+      <div className="flex items-center gap-1.5 mb-1 text-[10px] text-neutral-500 font-semibold uppercase tracking-wider">
+        <Megaphone className="w-3 h-3 text-emerald-400" />
+        <span>Sponsorlu Reklam</span>
       </div>
-    );
-  }
 
-  // Native Banner Adsterra Code (Container ID: container-8335dda75d0764b291243ec4d7c886c5)
-  if (format === "native") {
-    const nativeHtml = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            * { margin: 0; padding: 0; box-sizing: border-box; }
-            body { 
-              background: transparent; 
-              font-family: system-ui, -apple-system, sans-serif; 
-              overflow: hidden; 
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-          </style>
-        </head>
-        <body>
-          <script async="async" data-cfasync="false" src="https://bicea.org/21/8335dda75d0764b291243ec4d7c886c5"></script>
-          <div id="container-8335dda75d0764b291243ec4d7c886c5"></div>
-        </body>
-      </html>
-    `;
+      <div
+        className="relative rounded-2xl bg-neutral-950/80 border border-neutral-800/80 p-1 flex items-center justify-center overflow-hidden shadow-lg"
+        style={{ minWidth: widthStyle, minHeight: heightStyle }}
+      >
+        {/* Real Ad Container */}
+        <div ref={adContainerRef} className="flex items-center justify-center w-full" />
 
-    return (
-      <div className={`w-full flex flex-col items-center justify-center my-4 ${customClass}`}>
-        <div className="flex items-center gap-1.5 mb-1 text-[10px] text-neutral-500 font-semibold uppercase tracking-wider">
-          <Megaphone className="w-3 h-3 text-cyan-400" />
-          <span>Öne Çıkan Fırsatlar</span>
-        </div>
-
-        <div className="w-full max-w-4xl rounded-2xl bg-neutral-950/80 border border-neutral-800/80 p-2 flex items-center justify-center overflow-hidden shadow-lg min-h-[160px]">
-          <iframe
-            srcDoc={nativeHtml}
-            width="100%"
-            height="180"
-            scrolling="no"
-            frameBorder="0"
-            className="border-0 w-full overflow-hidden"
-            title="KasaRadar Native Banner"
-          />
-        </div>
+        {/* AdBlock Notice Fallback */}
+        {adBlocked && (
+          <div className="absolute inset-0 flex items-center justify-center bg-neutral-900/90 text-neutral-400 text-xs gap-2 p-3 text-center">
+            <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+            <span>
+              Tarayıcınızdaki <strong>AdBlock</strong> veya <strong>Brave Kalkanı</strong> reklamı engelliyor. Reklamları görmek için lütfen kapatın.
+            </span>
+          </div>
+        )}
       </div>
-    );
-  }
-
-  return null;
+    </div>
+  );
 };
