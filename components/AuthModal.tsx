@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   X,
   User,
@@ -13,7 +13,17 @@ import {
   Heart,
   Save,
   KeyRound,
-  ShieldCheck
+  ShieldCheck,
+  Camera,
+  Upload,
+  Check,
+  Edit2,
+  Sparkles,
+  RotateCcw,
+  Link as LinkIcon,
+  Trash2,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 import {
   registerUser,
@@ -31,6 +41,70 @@ import {
 } from "@/lib/firebaseAuth";
 
 export type UserAccount = StoredUserAccount;
+
+// High quality curated gamer avatars
+const GAMING_AVATARS = [
+  {
+    id: "mecha",
+    name: "Cyber Mecha",
+    url: "https://api.dicebear.com/7.x/bottts/svg?seed=Mecha&backgroundColor=0a0a0a"
+  },
+  {
+    id: "samurai",
+    name: "Neon Samurai",
+    url: "https://api.dicebear.com/7.x/bottts/svg?seed=Samurai&backgroundColor=064e3b"
+  },
+  {
+    id: "pro_gamer",
+    name: "Pro Esports",
+    url: "https://api.dicebear.com/7.x/adventurer/svg?seed=ProGamer&backgroundColor=111827"
+  },
+  {
+    id: "neon_cyber",
+    name: "Cyberpunk",
+    url: "https://api.dicebear.com/7.x/bottts/svg?seed=NeonCyber&backgroundColor=1e1b4b"
+  },
+  {
+    id: "pixel_knight",
+    name: "Pixel Knight",
+    url: "https://api.dicebear.com/7.x/pixel-art/svg?seed=PixelKnight&backgroundColor=09090b"
+  },
+  {
+    id: "phoenix",
+    name: "Neon Phoenix",
+    url: "https://api.dicebear.com/7.x/adventurer/svg?seed=Phoenix&backgroundColor=831843"
+  },
+  {
+    id: "anime_op",
+    name: "Anime Hacker",
+    url: "https://api.dicebear.com/7.x/lorelei/svg?seed=AnimeOp&backgroundColor=18181b"
+  },
+  {
+    id: "tactical",
+    name: "Ghost Operator",
+    url: "https://api.dicebear.com/7.x/bottts/svg?seed=Tactical&backgroundColor=0f172a"
+  },
+  {
+    id: "zypher_gold",
+    name: "Zypher Master",
+    url: "https://api.dicebear.com/7.x/bottts/svg?seed=ZypherGold&backgroundColor=18181b"
+  },
+  {
+    id: "cosmic",
+    name: "Cosmic Pilot",
+    url: "https://api.dicebear.com/7.x/adventurer/svg?seed=CosmicPilot&backgroundColor=172554"
+  },
+  {
+    id: "sniper",
+    name: "Sniper Elite",
+    url: "https://api.dicebear.com/7.x/bottts/svg?seed=SniperElite&backgroundColor=14532d"
+  },
+  {
+    id: "dragon",
+    name: "Dragon Slayer",
+    url: "https://api.dicebear.com/7.x/adventurer/svg?seed=DragonSlayer&backgroundColor=701a75"
+  }
+];
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -62,9 +136,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [isSocialLoading, setIsSocialLoading] = useState<boolean>(false);
 
-  // Edit telegram state in profile mode
-  const [editTelegram, setEditTelegram] = useState<string>("");
+  // Profile Edit States
+  const [isChangingAvatar, setIsChangingAvatar] = useState<boolean>(false);
+  const [customAvatarUrl, setCustomAvatarUrl] = useState<string>("");
+  const [isEditingName, setIsEditingName] = useState<boolean>(false);
+  const [editName, setEditName] = useState<string>("");
   const [isEditingTelegram, setIsEditingTelegram] = useState<boolean>(false);
+  const [editTelegram, setEditTelegram] = useState<string>("");
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (user?.telegram) {
@@ -72,9 +152,17 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     } else {
       setEditTelegram("");
     }
+    if (user?.name) {
+      setEditName(user.name);
+    } else {
+      setEditName("");
+    }
     setErrorMessage("");
     setSuccessMessage("");
     setIsSocialLoading(false);
+    setIsChangingAvatar(false);
+    setIsEditingName(false);
+    setIsEditingTelegram(false);
   }, [user, isOpen]);
 
   if (!isOpen) return null;
@@ -103,55 +191,27 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           setErrorMessage(fbRes.error);
           return;
         }
-      } catch (err: any) {
-        console.warn("Firebase Google popup fallback:", err);
+      } catch (e: any) {
+        console.warn("Firebase Google login error:", e);
       }
     }
 
-    // 2. Interactive account prompt fallback
-    let targetEmail = email.trim();
-    if (!targetEmail || !targetEmail.includes("@")) {
-      const promptEmail = window.prompt(
-        provider === "google"
-          ? "Lütfen Google e-posta adresinizi girin (örn: adiniz@gmail.com):"
-          : provider === "apple"
-          ? "Lütfen Apple ID e-posta adresinizi girin (örn: adiniz@icloud.com):"
-          : "Lütfen Discord e-posta adresinizi girin:"
-      );
-      if (!promptEmail || !promptEmail.includes("@")) {
+    // 2. Fallback provider sign-in
+    try {
+      const res = loginWithProvider(provider);
+      if (res.success) {
+        onLogin(res.user);
         setIsSocialLoading(false);
-        setErrorMessage("Giriş yapabilmek için geçerli bir e-posta adresi gereklidir.");
-        return;
+        setSuccessMessage(`✅ ${provider.toUpperCase()} ile başarıyla giriş yapıldı!`);
+        setTimeout(() => {
+          setSuccessMessage("");
+          onClose();
+        }, 1000);
       }
-      targetEmail = promptEmail.trim();
-    }
-
-    setTimeout(() => {
-      const res = loginWithProvider(provider, {
-        email: targetEmail,
-        name: name.trim() || targetEmail.split("@")[0]
-      });
-
-      if (!res.success || !res.user) {
-        setIsSocialLoading(false);
-        setErrorMessage("Giriş yapılamadı. Lütfen geçerli bir e-posta girin.");
-        return;
-      }
-
-      onLogin(res.user);
+    } catch {
       setIsSocialLoading(false);
-      setSuccessMessage(
-        provider === "google"
-          ? `✅ Google (${targetEmail}) ile başarıyla giriş yapıldı!`
-          : provider === "apple"
-          ? `✅ Apple ID (${targetEmail}) ile başarıyla giriş yapıldı!`
-          : `✅ Discord (${targetEmail}) ile başarıyla giriş yapıldı!`
-      );
-      setTimeout(() => {
-        setSuccessMessage("");
-        onClose();
-      }, 1000);
-    }, 400);
+      setErrorMessage(`${provider.toUpperCase()} ile giriş yapılırken bir sorun oluştu.`);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -159,79 +219,218 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     setErrorMessage("");
     setSuccessMessage("");
 
+    // REGISTER FLOW
     if (isRegisterMode) {
+      if (!name.trim()) {
+        setErrorMessage("Lütfen adınızı ve soyadınızı giriniz.");
+        return;
+      }
+      if (!email.trim() || !email.includes("@")) {
+        setErrorMessage("Lütfen geçerli bir e-posta adresi giriniz.");
+        return;
+      }
+      if (password.length < 6) {
+        setErrorMessage("Şifre en az 6 karakter olmalıdır.");
+        return;
+      }
+
       if (isFirebaseConfigured) {
-        const fbRes = await firebaseRegisterEmail({
-          name,
-          email,
-          password,
-          telegram
-        });
-        if (fbRes.success && fbRes.user) {
-          onLogin(fbRes.user);
-          setSuccessMessage("✅ Firebase hesabınız oluşturuldu ve giriş yapıldı!");
-          setTimeout(() => {
-            setSuccessMessage("");
-            onClose();
-          }, 1200);
-          return;
+        try {
+          const fbRes = await firebaseRegisterEmail({
+            name: name.trim(),
+            email: email.trim(),
+            password: password,
+            telegram: telegram.trim()
+          });
+
+          if (fbRes.success && fbRes.user) {
+            onLogin(fbRes.user);
+            setSuccessMessage("✅ Firebase hesabınız başarıyla oluşturuldu!");
+            setTimeout(() => {
+              setSuccessMessage("");
+              onClose();
+            }, 1200);
+            return;
+          } else if (fbRes.error && fbRes.error !== "FIREBASE_NOT_CONFIGURED") {
+            setErrorMessage(fbRes.error);
+            return;
+          }
+        } catch (err: any) {
+          console.warn("Firebase registration fallback:", err);
         }
       }
 
       const res = registerUser({
-        name,
-        email,
-        password,
-        telegram
+        name: name.trim(),
+        email: email.trim(),
+        password: password,
+        telegram: telegram.trim()
       });
 
-      if (!res.success || !res.user) {
-        setErrorMessage(res.error || "Kayıt işlemi başarısız oldu.");
+      if (!res.success) {
+        setErrorMessage(res.error || "Kayıt işlemi başarısız.");
         return;
       }
 
-      onLogin(res.user);
-      setSuccessMessage("✅ Hesabınız başarıyla oluşturuldu ve giriş yapıldı!");
-      setTimeout(() => {
-        setSuccessMessage("");
-        onClose();
-      }, 1200);
+      if (res.user) {
+        onLogin(res.user);
+        setSuccessMessage("Hesabınız başarıyla oluşturuldu!");
+        setTimeout(() => {
+          setSuccessMessage("");
+          onClose();
+        }, 1200);
+      }
     } else {
+      // LOGIN FLOW
+      if (!email.trim()) {
+        setErrorMessage("Lütfen e-posta adresinizi giriniz.");
+        return;
+      }
+
       if (isFirebaseConfigured) {
-        const fbRes = await firebaseLoginEmail({
-          email,
-          password
-        });
-        if (fbRes.success && fbRes.user) {
-          onLogin(fbRes.user);
-          setSuccessMessage("✅ Firebase ile başarıyla giriş yapıldı!");
-          setTimeout(() => {
-            setSuccessMessage("");
-            onClose();
-          }, 1200);
-          return;
+        try {
+          const fbRes = await firebaseLoginEmail({
+            email: email.trim(),
+            password: password
+          });
+
+          if (fbRes.success && fbRes.user) {
+            onLogin(fbRes.user);
+            setSuccessMessage("✅ Başarıyla giriş yapıldı!");
+            setTimeout(() => {
+              setSuccessMessage("");
+              onClose();
+            }, 1200);
+            return;
+          } else if (fbRes.error && fbRes.error !== "FIREBASE_NOT_CONFIGURED") {
+            setErrorMessage(fbRes.error);
+            return;
+          }
+        } catch (err: any) {
+          console.warn("Firebase login fallback:", err);
         }
       }
 
       const res = loginUser({
-        email,
-        password
+        email: email.trim(),
+        password: password
       });
 
-      if (!res.success || !res.user) {
-        setErrorMessage(res.error || "Giriş yapılamadı. Lütfen bilgilerinizi kontrol edin.");
+      if (!res.success) {
+        setErrorMessage(res.error || "Giriş başarısız.");
         return;
       }
 
-      onLogin(res.user);
-      setSuccessMessage("✅ Başarıyla giriş yapıldı!");
-      setTimeout(() => {
-        setSuccessMessage("");
-        onClose();
-      }, 1200);
+      if (res.user) {
+        onLogin(res.user);
+        setSuccessMessage("Başarıyla giriş yapıldı!");
+        setTimeout(() => {
+          setSuccessMessage("");
+          onClose();
+        }, 1200);
+      }
     }
   };
 
+  // Avatar Management
+  const handleSelectPresetAvatar = (url: string) => {
+    if (!user) return;
+    const updated = updateProfile({ avatar: url });
+    if (updated) {
+      onLogin(updated);
+      setSuccessMessage("Profil resmi güncellendi!");
+      setTimeout(() => setSuccessMessage(""), 2000);
+    }
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      setErrorMessage("Lütfen geçerli bir resim dosyası seçin (PNG, JPG, WEBP).");
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      setErrorMessage("Resim boyutu 5MB'dan küçük olmalıdır.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new window.Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const maxDim = 256;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxDim) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          }
+        } else {
+          if (height > maxDim) {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.88);
+          const updated = updateProfile({ avatar: dataUrl });
+          if (updated) {
+            onLogin(updated);
+            setSuccessMessage("Özel fotoğrafınız başarıyla yüklendi!");
+            setTimeout(() => setSuccessMessage(""), 2000);
+          }
+        }
+      };
+      img.src = event.target?.result as string;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleApplyCustomUrl = () => {
+    if (!user || !customAvatarUrl.trim()) return;
+    const updated = updateProfile({ avatar: customAvatarUrl.trim() });
+    if (updated) {
+      onLogin(updated);
+      setCustomAvatarUrl("");
+      setSuccessMessage("Resim bağlantısı uygulandı!");
+      setTimeout(() => setSuccessMessage(""), 2000);
+    }
+  };
+
+  const handleRemoveAvatar = () => {
+    if (!user) return;
+    const updated = updateProfile({ avatar: "" });
+    if (updated) {
+      onLogin(updated);
+      setSuccessMessage("Profil resmi varsayılana sıfırlandı.");
+      setTimeout(() => setSuccessMessage(""), 2000);
+    }
+  };
+
+  // Name Management
+  const handleSaveName = () => {
+    if (!user || !editName.trim()) return;
+    const updated = updateProfile({ name: editName.trim() });
+    if (updated) {
+      onLogin(updated);
+      setIsEditingName(false);
+      setSuccessMessage("Kullanıcı adınız güncellendi!");
+      setTimeout(() => setSuccessMessage(""), 2000);
+    }
+  };
+
+  // Telegram Management
   const handleSaveTelegram = () => {
     if (!user) return;
     const updated = updateProfile({ telegram: editTelegram });
@@ -245,11 +444,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-md bg-neutral-900 border border-neutral-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+      <div className="relative w-full max-w-lg bg-neutral-900 border border-neutral-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5 max-h-[92vh] overflow-y-auto no-scrollbar">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all cursor-pointer"
+          className="absolute top-5 right-5 p-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all cursor-pointer z-10"
         >
           <X className="w-5 h-5" />
         </button>
@@ -257,28 +456,192 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         {/* If user is already logged in, show Rich Profile Dashboard */}
         {user && user.isLoggedIn ? (
           <div className="space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-neutral-950 border border-emerald-400 flex items-center justify-center font-black text-2xl shadow-lg shadow-emerald-500/20">
-                {user.name.charAt(0).toUpperCase()}
-              </div>
-              <div className="overflow-hidden">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-lg font-black text-white truncate">{user.name}</h3>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold shrink-0">
-                    Aktif Üye
-                  </span>
+            {/* User Profile Header Card */}
+            <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800/90 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+              {/* Interactive Avatar */}
+              <div className="relative group shrink-0">
+                <div className="w-20 h-20 rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-500 to-teal-600 border-2 border-emerald-400/60 shadow-xl shadow-emerald-500/20 flex items-center justify-center">
+                  {user.avatar ? (
+                    <img
+                      src={user.avatar}
+                      alt={user.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  ) : (
+                    <span className="font-black text-3xl text-neutral-950">
+                      {user.name.charAt(0).toUpperCase()}
+                    </span>
+                  )}
                 </div>
-                <p className="text-xs text-neutral-400 truncate">{user.email}</p>
-                <div className="flex items-center gap-2 text-[10px] text-neutral-500 mt-0.5">
-                  <span>Kayıt: {user.createdAt || "Yeni"}</span>
+
+                {/* Camera Quick Edit Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsChangingAvatar(!isChangingAvatar)}
+                  className="absolute -bottom-1 -right-1 p-2 rounded-xl bg-neutral-900 hover:bg-emerald-500 border border-neutral-700 hover:border-emerald-400 text-neutral-200 hover:text-neutral-950 shadow-lg transition-all cursor-pointer"
+                  title="Profil Resmini Değiştir"
+                >
+                  <Camera className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Name & Details */}
+              <div className="flex-1 min-w-0">
+                {isEditingName ? (
+                  <div className="flex items-center gap-2 mb-1 justify-center sm:justify-start">
+                    <input
+                      type="text"
+                      value={editName}
+                      onChange={(e) => setEditName(e.target.value)}
+                      placeholder="Adınız"
+                      className="bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-1 text-sm font-bold text-white focus:outline-none focus:border-emerald-500 w-full max-w-[200px]"
+                    />
+                    <button
+                      onClick={handleSaveName}
+                      className="p-1.5 rounded-lg bg-emerald-500 text-neutral-950 hover:bg-emerald-400 font-bold transition-all cursor-pointer"
+                      title="Kaydet"
+                    >
+                      <Check className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditName(user.name);
+                        setIsEditingName(false);
+                      }}
+                      className="p-1.5 rounded-lg bg-neutral-800 text-neutral-400 hover:text-white transition-all cursor-pointer"
+                      title="İptal"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 justify-center sm:justify-start">
+                    <h3 className="text-lg font-black text-white truncate">{user.name}</h3>
+                    <button
+                      onClick={() => setIsEditingName(true)}
+                      className="p-1 rounded-lg text-neutral-500 hover:text-emerald-400 hover:bg-neutral-900 transition-all cursor-pointer"
+                      title="Kullanıcı Adını Değiştir"
+                    >
+                      <Edit2 className="w-3.5 h-3.5" />
+                    </button>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-bold shrink-0">
+                      Aktif Üye
+                    </span>
+                  </div>
+                )}
+
+                <p className="text-xs text-neutral-400 truncate mt-0.5">{user.email}</p>
+
+                <div className="flex flex-wrap items-center gap-2 text-[10px] text-neutral-500 mt-2 justify-center sm:justify-start">
+                  <span>Kayıt: {user.createdAt || "Bugün"}</span>
                   {user.provider && (
                     <span className="text-cyan-400 font-semibold uppercase">
                       • {user.provider} ile bağlı
                     </span>
                   )}
+                  <button
+                    onClick={() => setIsChangingAvatar(!isChangingAvatar)}
+                    className="text-emerald-400 font-bold hover:underline cursor-pointer flex items-center gap-1 ml-auto"
+                  >
+                    <span>Resmi Değiştir</span>
+                    {isChangingAvatar ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                  </button>
                 </div>
               </div>
             </div>
+
+            {/* AVATAR PICKER ACCORDION / DRAWER */}
+            {isChangingAvatar && (
+              <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-4 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-emerald-400" />
+                    <span className="text-xs font-bold text-white">Hazır Oyuncu Avatarları</span>
+                  </div>
+                  {user.avatar && (
+                    <button
+                      onClick={handleRemoveAvatar}
+                      className="text-[11px] text-rose-400 hover:text-rose-300 font-semibold flex items-center gap-1 cursor-pointer"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                      <span>Kaldır</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Preset Avatars Grid */}
+                <div className="grid grid-cols-4 sm:grid-cols-6 gap-2.5">
+                  {GAMING_AVATARS.map((av) => {
+                    const isSelected = user.avatar === av.url;
+                    return (
+                      <button
+                        key={av.id}
+                        type="button"
+                        onClick={() => handleSelectPresetAvatar(av.url)}
+                        className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all p-0.5 group cursor-pointer ${
+                          isSelected
+                            ? "border-emerald-400 shadow-lg shadow-emerald-500/30 scale-105 bg-emerald-500/20"
+                            : "border-neutral-800 hover:border-neutral-600 bg-neutral-900 hover:scale-105"
+                        }`}
+                        title={av.name}
+                      >
+                        <img src={av.url} alt={av.name} className="w-full h-full object-cover rounded-lg" />
+                        {isSelected && (
+                          <div className="absolute top-1 right-1 bg-emerald-500 text-neutral-950 rounded-full p-0.5">
+                            <Check className="w-2.5 h-2.5 stroke-[3]" />
+                          </div>
+                        )}
+                        <span className="absolute bottom-0 inset-x-0 bg-neutral-950/80 text-[8px] font-semibold text-neutral-300 text-center py-0.5 truncate opacity-0 group-hover:opacity-100 transition-opacity">
+                          {av.name}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Custom File Upload & URL Input */}
+                <div className="pt-2 border-t border-neutral-800/80 space-y-2.5">
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                  />
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="w-full py-2 px-3 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 hover:border-emerald-500/50 text-neutral-200 text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                    >
+                      <Upload className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Fotoğraf Yükle</span>
+                    </button>
+
+                    <div className="flex items-center gap-1.5">
+                      <input
+                        type="url"
+                        placeholder="Resim URL'si (Discord/Steam)"
+                        value={customAvatarUrl}
+                        onChange={(e) => setCustomAvatarUrl(e.target.value)}
+                        className="flex-1 bg-neutral-900 border border-neutral-700 rounded-xl px-2.5 py-1.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-500"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleApplyCustomUrl}
+                        className="px-3 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-bold text-xs transition-all cursor-pointer shrink-0"
+                      >
+                        Uygula
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Quick Action: Favorites status */}
             <div className="p-3.5 rounded-2xl bg-neutral-950 border border-neutral-800 flex items-center justify-between">
@@ -353,9 +716,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             {successMessage && (
-              <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2 font-bold">
+              <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2 font-bold animate-in fade-in">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                 <span>{successMessage}</span>
+              </div>
+            )}
+
+            {errorMessage && (
+              <div className="p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2 font-semibold">
+                <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                <span>{errorMessage}</span>
               </div>
             )}
 
@@ -403,7 +773,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 disabled={isSocialLoading}
                 className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-neutral-100 text-neutral-900 font-bold text-xs flex items-center justify-center gap-2.5 transition-all cursor-pointer shadow-md shadow-white/5 active:scale-[0.99] disabled:opacity-60"
               >
-                {/* Official 4-color Google G Logo */}
                 <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
                   <path
                     fill="#4285F4"

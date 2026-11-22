@@ -151,6 +151,7 @@ export function loginUser(params: {
 export function updateProfile(params: {
   name?: string;
   telegram?: string;
+  avatar?: string;
 }): StoredUserAccount | null {
   const current = getCurrentUser();
   if (!current) return null;
@@ -161,6 +162,7 @@ export function updateProfile(params: {
   const updated: StoredUserAccount = {
     ...current,
     name: params.name !== undefined ? params.name : current.name,
+    avatar: params.avatar !== undefined ? params.avatar : current.avatar,
     telegram:
       params.telegram !== undefined
         ? params.telegram
