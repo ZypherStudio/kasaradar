@@ -68,18 +68,22 @@ export const TelegramGrowthFloatingBar: React.FC = () => {
 
         {/* Content */}
         <div className="space-y-1">
-          <p className="text-xs text-white font-bold leading-snug">
-            🌙 Gece Fırsatlarını İlk Sen Yakala!
+          <p className="text-xs text-white font-bold leading-snug flex items-center gap-1.5">
+            <span>🎉 Telegram Ailemiz 30 Kişi Oldu!</span>
           </p>
-          <p className="text-[11px] text-neutral-400 leading-relaxed">
-            Botumuz 16+ mağazada fiyatı düşen kelepir kasaları anında Telegram kanalına atıyor.
+          <p className="text-[11px] text-neutral-300 leading-relaxed">
+            Botumuz 16+ mağazadaki gece indirimlerini ve bedava oyunları ilk Telegram&apos;a atıyor.
           </p>
+          <div className="text-[10px] text-amber-300 font-semibold bg-amber-500/15 border border-amber-500/30 rounded-lg px-2 py-1 flex items-center gap-1">
+            <span>🎁 50. Üyede İlk Steam Cüzdan Kodu Çekilişi Başlayacak!</span>
+          </div>
         </div>
 
         {/* CTA */}
         <div className="flex items-center justify-between gap-2 pt-1">
-          <span className="text-[10px] text-neutral-500 font-semibold">
-            👥 2.450+ Donanımcı
+          <span className="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            30+ Donanımcı Aktif
           </span>
 
           <a

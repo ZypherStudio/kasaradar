@@ -752,14 +752,15 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
 
             <button
               onClick={() => {
-                const text = `🔥 ${system.title} (${formatTL(system.price)}) - KasaRadar F/P Radarı`;
+                const savings = Math.max(0, system.individualZeroPrice - system.price);
+                const text = `🔥 ${system.title}\n💰 Fiyat: ${formatTL(system.price)}\n💎 Parça Fiyatına Göre: +${formatTL(savings)} TL Daha Ucuz!\n⭐ F/P Skoru: ${system.fpScore}/10\n\n👉 KasaRadar'da İncele: https://kasaradar.com\n📢 Gece İndirimleri Telegram Kanalımız (30+ Donanımcı): https://t.me/+Voua-sJ4TVJiZjc8`;
                 window.open(`https://t.me/share/url?url=${encodeURIComponent(system.directUrl)}&text=${encodeURIComponent(text)}`, "_blank");
               }}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-sky-950/70 hover:bg-sky-900 border border-sky-500/30 text-sky-300 hover:text-white transition-all cursor-pointer"
-              title="Telegram'da Paylaş"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-sky-950/70 hover:bg-sky-900 border border-sky-500/30 text-sky-300 hover:text-white transition-all cursor-pointer font-bold"
+              title="Telegram'da Arkadaşına Sor / Gruba Gönder"
             >
               <Send className="w-3.5 h-3.5 text-sky-400" />
-              <span>Telegram</span>
+              <span>Telegram&apos;da Paylaş</span>
             </button>
 
             <button

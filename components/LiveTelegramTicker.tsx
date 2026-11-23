@@ -66,7 +66,7 @@ export const LiveTelegramTicker: React.FC = () => {
         {/* Live Badge */}
         <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-sky-500/20 text-sky-300 text-[11px] font-bold shrink-0">
           <Send className="w-3 h-3 text-sky-400" />
-          <span>CANLI TELEGRAM RADARI</span>
+          <span>CANLI TELEGRAM (30+ Üye)</span>
         </div>
 
         {/* Rotating Deal Info */}

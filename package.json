@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "live": "bash scripts/start_live.sh",
+    "telegram:broadcast": "node scripts/telegram_auto_poster.js --now",
     "lint": "eslint"
   },
   "dependencies": {

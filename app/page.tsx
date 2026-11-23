@@ -28,6 +28,8 @@ import { KazikSayarModal } from "@/components/KazikSayarModal";
 import { BottleneckModal } from "@/components/BottleneckModal";
 import { DdosShieldModal } from "@/components/DdosShieldModal";
 import { UpgradeAdvisorModal } from "@/components/UpgradeAdvisorModal";
+import { TelegramGrowthModal } from "@/components/TelegramGrowthModal";
+import { TelegramAdminModal } from "@/components/TelegramAdminModal";
 import { AdBanner } from "@/components/AdBanner";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
@@ -74,6 +76,8 @@ export default function Home() {
   const [isBottleneckOpen, setIsBottleneckOpen] = useState<boolean>(false);
   const [isDdosShieldOpen, setIsDdosShieldOpen] = useState<boolean>(false);
   const [isUpgradeAdvisorOpen, setIsUpgradeAdvisorOpen] = useState<boolean>(false);
+  const [isTelegramModalOpen, setIsTelegramModalOpen] = useState<boolean>(false);
+  const [isTelegramAdminOpen, setIsTelegramAdminOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -184,6 +188,14 @@ export default function Home() {
       }
       if (isDdosShieldOpen) {
         setIsDdosShieldOpen(false);
+        return;
+      }
+      if (isTelegramModalOpen) {
+        setIsTelegramModalOpen(false);
+        return;
+      }
+      if (isTelegramAdminOpen) {
+        setIsTelegramAdminOpen(false);
         return;
       }
       if (isAdInspectorOpen) {
@@ -338,6 +350,10 @@ export default function Home() {
         onOpenUpgradeAdvisor={() => {
           if (typeof window !== "undefined") window.history.pushState({ modal: "upgrade" }, "", "#yukseltme");
           setIsUpgradeAdvisorOpen(true);
+        }}
+        onOpenTelegramModal={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "telegram" }, "", "#telegram");
+          setIsTelegramModalOpen(true);
         }}
       />
 
@@ -693,6 +709,19 @@ export default function Home() {
       <DdosShieldModal
         isOpen={isDdosShieldOpen}
         onClose={() => setIsDdosShieldOpen(false)}
+      />
+
+      {/* TELEGRAM VIRAL GROWTH & VIP KULÜBÜ MODALI */}
+      <TelegramGrowthModal
+        isOpen={isTelegramModalOpen}
+        onClose={() => setIsTelegramModalOpen(false)}
+        onOpenAdmin={() => setIsTelegramAdminOpen(true)}
+      />
+
+      {/* TELEGRAM ADMIN YAYINCI KONSOLU */}
+      <TelegramAdminModal
+        isOpen={isTelegramAdminOpen}
+        onClose={() => setIsTelegramAdminOpen(false)}
       />
 
       {/* Alt Sponsor & Reklam Alanı (Native Banner) */}

@@ -16,7 +16,8 @@ import {
   ShieldCheck,
   ChevronDown,
   LayoutGrid,
-  ChevronRight
+  ChevronRight,
+  Send
 } from "lucide-react";
 import { UserAccount } from "./AuthModal";
 import { Logo } from "./Logo";
@@ -38,6 +39,7 @@ interface NavbarProps {
   onOpenKazikSayar?: () => void;
   onOpenDdosShield?: () => void;
   onOpenUpgradeAdvisor?: () => void;
+  onOpenTelegramModal?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -54,7 +56,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenFreeGames,
   onOpenKazikSayar,
   onOpenDdosShield,
-  onOpenUpgradeAdvisor
+  onOpenUpgradeAdvisor,
+  onOpenTelegramModal
 }) => {
   const [isToolsOpen, setIsToolsOpen] = useState<boolean>(false);
   const toolsRef = useRef<HTMLDivElement>(null);
@@ -338,6 +341,35 @@ export const Navbar: React.FC<NavbarProps> = ({
                             </div>
                             <div className="text-[11px] text-neutral-400 line-clamp-1">
                               WAF &amp; Burst Rate Limiter kalkan durumunu gör
+                            </div>
+                          </div>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-neutral-600 group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all" />
+                      </button>
+                    )}
+
+                    {/* Telegram VIP Kulübü */}
+                    {onOpenTelegramModal && (
+                      <button
+                        onClick={() => {
+                          setIsToolsOpen(false);
+                          onOpenTelegramModal();
+                        }}
+                        className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-neutral-800/80 text-left transition-all group cursor-pointer bg-sky-500/5 hover:bg-sky-500/10 border border-sky-500/20 rounded-xl mt-1"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center border border-sky-500/40 group-hover:bg-sky-500/30 transition-colors">
+                            <Send className="w-4 h-4 text-sky-400" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-white group-hover:text-sky-300 flex items-center gap-1.5">
+                              <span>Telegram VIP Kulübü</span>
+                              <span className="text-[10px] px-1.5 py-0.2 rounded bg-sky-500/30 text-sky-300 font-bold">
+                                30+ Üye
+                              </span>
+                            </div>
+                            <div className="text-[11px] text-neutral-400 line-clamp-1">
+                              Gece fırsatları &amp; 50 üyede Steam çekilişi
                             </div>
                           </div>
                         </div>
