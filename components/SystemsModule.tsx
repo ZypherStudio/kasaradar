@@ -4,6 +4,8 @@ import React, { useState, useMemo } from "react";
 import { PrebuiltSystem } from "@/lib/types";
 import { formatTL } from "@/lib/calculator";
 import { ComponentPriceInfo } from "./ComponentPriceModal";
+import { MarketTrendsBar } from "./MarketTrendsBar";
+import { SponsorSpotlightCard } from "./SponsorSpotlightCard";
 import {
   Cpu,
   Tv,
@@ -41,6 +43,7 @@ interface SystemsModuleProps {
   onOpenComponentPrice: (comp: ComponentPriceInfo) => void;
   isLoggedIn?: boolean;
   onRequireAuth?: () => void;
+  onOpenMediaKit?: () => void;
 }
 
 type QuickCategory = "all" | "today" | "amd_cpu" | "intel_cpu" | "nvidia_gpu" | "amd_gpu" | "fp_champ" | "high_end";
@@ -57,7 +60,8 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
   onToggleFavorite,
   onOpenComponentPrice,
   isLoggedIn = false,
-  onRequireAuth
+  onRequireAuth,
+  onOpenMediaKit
 }) => {
   const [selectedQuickCategory, setSelectedQuickCategory] = useState<QuickCategory>("all");
   const [selectedBudgetTier, setSelectedBudgetTier] = useState<BudgetTier>("all");
@@ -400,6 +404,12 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
           </div>
         </div>
       </div>
+
+      {/* 1. Türkiye Hazır Sistem Piyasası & Canlı Borsa Endeksi */}
+      <MarketTrendsBar />
+
+      {/* 2. Haftanın Sponsorlu F/P Vitrini (Marka & Satış Partneri) */}
+      <SponsorSpotlightCard onOpenMediaKit={onOpenMediaKit} />
 
       {/* Systems Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

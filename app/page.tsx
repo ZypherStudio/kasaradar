@@ -30,6 +30,7 @@ import { DdosShieldModal } from "@/components/DdosShieldModal";
 import { UpgradeAdvisorModal } from "@/components/UpgradeAdvisorModal";
 import { TelegramGrowthModal } from "@/components/TelegramGrowthModal";
 import { TelegramAdminModal } from "@/components/TelegramAdminModal";
+import { MediaKitModal } from "@/components/MediaKitModal";
 import { AdBanner } from "@/components/AdBanner";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
@@ -78,6 +79,7 @@ export default function Home() {
   const [isUpgradeAdvisorOpen, setIsUpgradeAdvisorOpen] = useState<boolean>(false);
   const [isTelegramModalOpen, setIsTelegramModalOpen] = useState<boolean>(false);
   const [isTelegramAdminOpen, setIsTelegramAdminOpen] = useState<boolean>(false);
+  const [isMediaKitOpen, setIsMediaKitOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -196,6 +198,10 @@ export default function Home() {
       }
       if (isTelegramAdminOpen) {
         setIsTelegramAdminOpen(false);
+        return;
+      }
+      if (isMediaKitOpen) {
+        setIsMediaKitOpen(false);
         return;
       }
       if (isAdInspectorOpen) {
@@ -468,6 +474,7 @@ export default function Home() {
             onOpenComponentPrice={(comp) => setSelectedComponentForPrice(comp)}
             isLoggedIn={!!user?.isLoggedIn}
             onRequireAuth={() => setIsAuthModalOpen(true)}
+            onOpenMediaKit={() => setIsMediaKitOpen(true)}
           />
         )}
 
@@ -722,6 +729,12 @@ export default function Home() {
       <TelegramAdminModal
         isOpen={isTelegramAdminOpen}
         onClose={() => setIsTelegramAdminOpen(false)}
+      />
+
+      {/* MEDYA KİTİ & SPONSORLUK BAŞVURU MODALI */}
+      <MediaKitModal
+        isOpen={isMediaKitOpen}
+        onClose={() => setIsMediaKitOpen(false)}
       />
 
       {/* Alt Sponsor & Reklam Alanı (Native Banner) */}
