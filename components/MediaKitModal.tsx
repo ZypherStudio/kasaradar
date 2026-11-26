@@ -70,27 +70,27 @@ export const MediaKitModal: React.FC<MediaKitModalProps> = ({
         {/* 4 Key Platform Metrics */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
           <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-1">
-            <span className="text-[10px] text-neutral-400 font-medium">Hedef Kitle</span>
-            <div className="text-lg font-black text-emerald-400">%94</div>
-            <p className="text-[10px] text-neutral-500 leading-tight">Satın Alma Niyetli Oyuncu</p>
+            <span className="text-[10px] text-neutral-400 font-medium">Haftalık Kitle</span>
+            <div className="text-lg font-black text-emerald-400">430+ Oyuncu</div>
+            <p className="text-[10px] text-neutral-500 leading-tight">Doğrudan Türk Oyuncu Kitlesi</p>
+          </div>
+
+          <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-1">
+            <span className="text-[10px] text-neutral-400 font-medium">Etkileşim</span>
+            <div className="text-lg font-black text-sky-400">2.800+ Event</div>
+            <p className="text-[10px] text-neutral-500 leading-tight">Kasa &amp; FPS Test Etkileşimi</p>
+          </div>
+
+          <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-1">
+            <span className="text-[10px] text-neutral-400 font-medium">AI Trafiği</span>
+            <div className="text-lg font-black text-amber-400">419 Tavsiye</div>
+            <p className="text-[10px] text-neutral-500 leading-tight">ChatGPT &amp; Perplexity Yönlendirmesi</p>
           </div>
 
           <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-1">
             <span className="text-[10px] text-neutral-400 font-medium">Mağaza Ağı</span>
-            <div className="text-lg font-black text-sky-400">22+ Mağaza</div>
-            <p className="text-[10px] text-neutral-500 leading-tight">7/24 Taranan Sistemler</p>
-          </div>
-
-          <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-1">
-            <span className="text-[10px] text-neutral-400 font-medium">Topluluk</span>
-            <div className="text-lg font-black text-amber-400">30+ Üye</div>
-            <p className="text-[10px] text-neutral-500 leading-tight">Canlı Telegram Radarı</p>
-          </div>
-
-          <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-1">
-            <span className="text-[10px] text-neutral-400 font-medium">Dönüşüm</span>
-            <div className="text-lg font-black text-purple-400">Yüksek Tıklama</div>
-            <p className="text-[10px] text-neutral-500 leading-tight">Doğrudan Mağaza Yönlendirme</p>
+            <div className="text-lg font-black text-purple-400">22+ Mağaza</div>
+            <p className="text-[10px] text-neutral-500 leading-tight">7/24 Anlık F/P Taraması</p>
           </div>
         </div>
 
