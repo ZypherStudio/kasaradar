@@ -27,7 +27,8 @@ import {
   Wrench,
   Gauge,
   CheckCheck,
-  Camera
+  Camera,
+  Swords
 } from "lucide-react";
 
 import { ComponentPriceInfo } from "./ComponentPriceModal";
@@ -41,6 +42,7 @@ interface SystemDetailModalProps {
   onTestFps: (system: PrebuiltSystem) => void;
   onOpenComponentPrice?: (comp: ComponentPriceInfo) => void;
   user?: UserAccount | null;
+  onOpenCustomVsPrebuilt?: () => void;
 }
 
 export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
@@ -48,7 +50,8 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
   onClose,
   onTestFps,
   onOpenComponentPrice,
-  user
+  user,
+  onOpenCustomVsPrebuilt
 }) => {
   const [dailyGamingHours, setDailyGamingHours] = useState<number>(4);
   const [copiedLink, setCopiedLink] = useState<boolean>(false);
@@ -185,7 +188,21 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            {onOpenCustomVsPrebuilt && (
+              <button
+                onClick={() => {
+                  onClose();
+                  onOpenCustomVsPrebuilt();
+                }}
+                className="py-2.5 px-3.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-emerald-400 font-semibold text-xs flex items-center gap-1.5 border border-emerald-500/30 transition-all cursor-pointer"
+                title="PCPartPicker tarzı tek tek parça vs hazır kasa fiyat savaşı"
+              >
+                <Swords className="w-4 h-4 text-emerald-400" />
+                <span>Parça vs Kasa Kıyası</span>
+              </button>
+            )}
+
             <button
               onClick={() => {
                 onTestFps(system);

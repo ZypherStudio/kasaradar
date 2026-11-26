@@ -17,7 +17,9 @@ import {
   ChevronDown,
   LayoutGrid,
   ChevronRight,
-  Send
+  Send,
+  Swords,
+  Target
 } from "lucide-react";
 import { UserAccount } from "./AuthModal";
 import { Logo } from "./Logo";
@@ -40,6 +42,8 @@ interface NavbarProps {
   onOpenDdosShield?: () => void;
   onOpenUpgradeAdvisor?: () => void;
   onOpenTelegramModal?: () => void;
+  onOpenCustomVsPrebuilt?: () => void;
+  onOpenPcRecommender?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -57,7 +61,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenKazikSayar,
   onOpenDdosShield,
   onOpenUpgradeAdvisor,
-  onOpenTelegramModal
+  onOpenTelegramModal,
+  onOpenCustomVsPrebuilt,
+  onOpenPcRecommender
 }) => {
   const [isToolsOpen, setIsToolsOpen] = useState<boolean>(false);
   const toolsRef = useRef<HTMLDivElement>(null);
@@ -228,10 +234,68 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="absolute right-0 mt-2 w-72 rounded-2xl bg-neutral-900/95 backdrop-blur-2xl border border-neutral-700/80 p-2 shadow-2xl shadow-black/80 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                   <div className="px-3 py-2 border-b border-neutral-800 text-[11px] font-bold text-neutral-400 uppercase tracking-wider flex items-center justify-between">
                     <span>Özel Araçlar</span>
-                    <span className="text-[10px] text-emerald-400 font-semibold lowercase">4 aktif araç</span>
+                    <span className="text-[10px] text-emerald-400 font-semibold lowercase">6 aktif araç</span>
                   </div>
 
                   <div className="p-1 space-y-1">
+                    {/* Parça Parça vs Hazır Kasa Savaşı (PCPartPicker Stili) */}
+                    {onOpenCustomVsPrebuilt && (
+                      <button
+                        onClick={() => {
+                          setIsToolsOpen(false);
+                          onOpenCustomVsPrebuilt();
+                        }}
+                        className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-neutral-800/80 text-left transition-all group cursor-pointer bg-emerald-500/5 hover:bg-emerald-500/10 border border-emerald-500/20"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-400 flex items-center justify-center border border-emerald-500/30 group-hover:bg-emerald-500/25 transition-colors">
+                            <Swords className="w-4 h-4 text-emerald-400" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-white group-hover:text-emerald-300 flex items-center gap-1.5">
+                              <span>Parça vs Kasa Savaşı</span>
+                              <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-black">
+                                Fiyat Kıyası
+                              </span>
+                            </div>
+                            <div className="text-[11px] text-neutral-400 line-clamp-1">
+                              Tek tek toplamaya göre net kâr hesaplayıcı
+                            </div>
+                          </div>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-neutral-600 group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all" />
+                      </button>
+                    )}
+
+                    {/* Akıllı PC Öneri Sihirbazı */}
+                    {onOpenPcRecommender && (
+                      <button
+                        onClick={() => {
+                          setIsToolsOpen(false);
+                          onOpenPcRecommender();
+                        }}
+                        className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-neutral-800/80 text-left transition-all group cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-400 flex items-center justify-center border border-teal-500/30 group-hover:bg-teal-500/25 transition-colors">
+                            <Target className="w-4 h-4 text-teal-400" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-white group-hover:text-teal-300 flex items-center gap-1.5">
+                              <span>Bana PC Öner</span>
+                              <span className="text-[10px] px-1.5 py-0.2 rounded bg-teal-500/20 text-teal-300 font-semibold">
+                                Sihirbaz
+                              </span>
+                            </div>
+                            <div className="text-[11px] text-neutral-400 line-clamp-1">
+                              Bütçe ve oynadığın oyuna göre 30sn&apos;de kasa bul
+                            </div>
+                          </div>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-neutral-600 group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all" />
+                      </button>
+                    )}
+
                     {/* Upgrade Advisor */}
                     {onOpenUpgradeAdvisor && (
                       <button

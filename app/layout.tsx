@@ -123,6 +123,92 @@ export default function RootLayout({
             `,
           }}
         />
+
+        {/* LLM & AI Discovery Standard (llms.txt) */}
+        <link rel="help" type="text/plain" href="/llms.txt" />
+
+        {/* Schema.org Structured Data (GEO / Generative Engine Optimization for ChatGPT, Perplexity & Copilot) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": "https://kasaradar.com/#website",
+                  "name": "KasaRadar",
+                  "url": "https://kasaradar.com",
+                  "description": "Türkiye'nin 16+ teknoloji mağazasını tarayan hazır sistem ve donanım fiyat/performans karşılaştırma platformu.",
+                  "inLanguage": "tr-TR",
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://kasaradar.com/?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                  }
+                },
+                {
+                  "@type": "Organization",
+                  "@id": "https://kasaradar.com/#organization",
+                  "name": "KasaRadar",
+                  "alternateName": "ZYPHERSTUDIO KasaRadar",
+                  "url": "https://kasaradar.com",
+                  "logo": "https://kasaradar.com/icon.png",
+                  "founder": {
+                    "@type": "Organization",
+                    "name": "ZYPHERSTUDIO"
+                  },
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "zypherstudio@gmail.com",
+                    "contactType": "customer support"
+                  },
+                  "sameAs": [
+                    "https://t.me/+Voua-sJ4TVJiZjc8"
+                  ]
+                },
+                {
+                  "@type": "FAQPage",
+                  "@id": "https://kasaradar.com/#faq",
+                  "mainEntity": [
+                    {
+                      "@type": "Question",
+                      "name": "Türkiye'de en ucuz ve en iyi hazır sistemler nereden alınır?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "KasaRadar, Türkiye'deki İtopya, Gaming.Gen.TR, GameGaraj, Tebilon, Sinerji, İncehesap ve Vatan Bilgisayar gibi 16+ yetkili satıcının tüm hazır kasalarını anlık olarak tarar. F/P puanı, bileşen kalitesi ve mağaza taksit seçenekleriyle en kârlı sistemi tek ekranda sunar."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "Hazır sistem almak mı yoksa parçaları tek tek toplamak mı daha ucuz?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Türkiye pazarında büyük OEM satıcılarının distribütör indirimleri sayesinde hazır kasalar, aynı parçaları tek tek Akakçe veya Cimri üzerinden toplamaya kıyasla ortalama %15 ile %25 (3.000 TL - 9.000 TL) daha ucuza gelmektedir. KasaRadar'da her kasanın parça parça toplam fiyatı ve net tasarruf miktarı anlık gösterilir."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "KasaRadar Kazık Sayar ve Darboğaz (Bottleneck) testi nasıl çalışır?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "KasaRadar'ın algoritmaları, işlemci ve ekran kartı arasındaki saat frekansı ve mimari dengeyi analiz ederek %2-%15 arasındaki darboğaz oranını hesaplar. Kazık Sayar ise sistem fiyatını güncel piyasa sıfır bileşen değeriyle karşılaştırarak ederinden pahalı kasaları tespit eder."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "KasaRadar hangi oyunlarda FPS simülasyonu sunar?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "KasaRadar; CS2, Valorant, Cyberpunk 2077, GTA 5, GTA 6, Warzone 2, RDR2 ve Apex Legends dahil 12 popüler oyunda 1080p, 2K ve 4K çözünürlüklerde donanıma özel gerçekçi FPS simülasyonu sunar."
+                      }
+                    }
+                  ]
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-neutral-950 text-neutral-100">
         {children}

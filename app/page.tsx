@@ -31,6 +31,8 @@ import { UpgradeAdvisorModal } from "@/components/UpgradeAdvisorModal";
 import { TelegramGrowthModal } from "@/components/TelegramGrowthModal";
 import { TelegramAdminModal } from "@/components/TelegramAdminModal";
 import { MediaKitModal } from "@/components/MediaKitModal";
+import { CustomVsPrebuiltModal } from "@/components/CustomVsPrebuiltModal";
+import { KnowledgeHubFaq } from "@/components/KnowledgeHubFaq";
 import { AdBanner } from "@/components/AdBanner";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { LiveTelegramTicker } from "@/components/LiveTelegramTicker";
@@ -80,6 +82,7 @@ export default function Home() {
   const [isTelegramModalOpen, setIsTelegramModalOpen] = useState<boolean>(false);
   const [isTelegramAdminOpen, setIsTelegramAdminOpen] = useState<boolean>(false);
   const [isMediaKitOpen, setIsMediaKitOpen] = useState<boolean>(false);
+  const [isCustomVsPrebuiltOpen, setIsCustomVsPrebuiltOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -204,6 +207,10 @@ export default function Home() {
         setIsMediaKitOpen(false);
         return;
       }
+      if (isCustomVsPrebuiltOpen) {
+        setIsCustomVsPrebuiltOpen(false);
+        return;
+      }
       if (isAdInspectorOpen) {
         setIsAdInspectorOpen(false);
         return;
@@ -260,6 +267,7 @@ export default function Home() {
     isAuthModalOpen,
     isRewardsModalOpen,
     isEmailModalOpen,
+    isCustomVsPrebuiltOpen,
     activeTab
   ]);
 
@@ -361,6 +369,14 @@ export default function Home() {
           if (typeof window !== "undefined") window.history.pushState({ modal: "telegram" }, "", "#telegram");
           setIsTelegramModalOpen(true);
         }}
+        onOpenCustomVsPrebuilt={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "vs" }, "", "#parca-savas");
+          setIsCustomVsPrebuiltOpen(true);
+        }}
+        onOpenPcRecommender={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "recommender" }, "", "#sihirbaz");
+          setIsPcRecommenderOpen(true);
+        }}
       />
 
       {/* Main Content Area */}
@@ -437,6 +453,10 @@ export default function Home() {
           onOpenDdosShield={() => {
             if (typeof window !== "undefined") window.history.pushState({ modal: "shield" }, "", "#guvenlik");
             setIsDdosShieldOpen(true);
+          }}
+          onOpenCustomVsPrebuilt={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "vs" }, "", "#parca-savas");
+            setIsCustomVsPrebuiltOpen(true);
           }}
         />
 
@@ -541,6 +561,18 @@ export default function Home() {
             }}
           />
         )}
+
+        {/* AI & SEO Knowledge Hub: Sıkça Sorulan Sorular & Donanım Kılavuzu */}
+        <KnowledgeHubFaq
+          onOpenCustomVsPrebuilt={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "vs" }, "", "#parca-savas");
+            setIsCustomVsPrebuiltOpen(true);
+          }}
+          onOpenPcRecommender={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "recommender" }, "", "#sihirbaz");
+            setIsPcRecommenderOpen(true);
+          }}
+        />
       </main>
 
       {/* System Deep Detail Modal */}
@@ -550,6 +582,10 @@ export default function Home() {
         onTestFps={handleTestFps}
         onOpenComponentPrice={(comp) => setSelectedComponentForPrice(comp)}
         user={user}
+        onOpenCustomVsPrebuilt={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "vs" }, "", "#parca-savas");
+          setIsCustomVsPrebuiltOpen(true);
+        }}
       />
 
       {/* Component Price Comparison Modal */}
@@ -735,6 +771,15 @@ export default function Home() {
       <MediaKitModal
         isOpen={isMediaKitOpen}
         onClose={() => setIsMediaKitOpen(false)}
+      />
+
+      {/* KILLER FEATURE: Parça Parça Toplama vs Hazır Kasa Canlı Fiyat Savaşı (PCPartPicker Stili) */}
+      <CustomVsPrebuiltModal
+        isOpen={isCustomVsPrebuiltOpen}
+        onClose={() => setIsCustomVsPrebuiltOpen(false)}
+        systems={PREBUILT_SYSTEMS}
+        onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
+        onSelectSystemForFps={handleTestFps}
       />
 
       {/* Alt Sponsor & Reklam Alanı (Native Banner) */}

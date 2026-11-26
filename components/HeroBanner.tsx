@@ -19,6 +19,7 @@ interface HeroBannerProps {
   onOpenBottleneck?: () => void;
   onOpenUpgradeAdvisor?: () => void;
   onOpenDdosShield?: () => void;
+  onOpenCustomVsPrebuilt?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -36,7 +37,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onOpenKazikSayar,
   onOpenBottleneck,
   onOpenUpgradeAdvisor,
-  onOpenDdosShield
+  onOpenDdosShield,
+  onOpenCustomVsPrebuilt
 }) => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 via-neutral-900/60 to-neutral-950 border border-neutral-800 p-6 sm:p-10 mb-8 shadow-2xl">
@@ -118,6 +120,16 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             >
               <span>🎁 Bedava Oyunlar</span>
               <span className="text-[10px] bg-amber-500/30 px-1.5 py-0.2 rounded font-black text-amber-200">Epic &amp; Steam</span>
+            </button>
+          )}
+
+          {onOpenCustomVsPrebuilt && (
+            <button
+              onClick={onOpenCustomVsPrebuilt}
+              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500/25 to-teal-500/25 hover:from-emerald-500/35 hover:to-teal-500/35 text-emerald-300 border border-emerald-500/50 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-emerald-500/10"
+            >
+              <span>⚔️ Parça vs Kasa Savaşı</span>
+              <span className="text-[10px] bg-emerald-500/30 px-1.5 py-0.2 rounded font-black text-emerald-200">Kâr Kıyasla</span>
             </button>
           )}
 
