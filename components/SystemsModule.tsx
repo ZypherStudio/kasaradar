@@ -28,7 +28,8 @@ import {
   Clock,
   RefreshCw,
   Sparkles,
-  ShieldCheck
+  ShieldCheck,
+  Crown
 } from "lucide-react";
 
 interface SystemsModuleProps {
@@ -413,7 +414,7 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
 
       {/* Systems Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredSystems.map((system) => {
+        {filteredSystems.map((system, index) => {
           const savings = system.individualZeroPrice - system.price;
           const isComparing = comparisonList.some((c) => c.id === system.id);
           const isFavorite = favoriteIds.includes(system.id);
@@ -425,8 +426,40 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
           const noPercent = 100 - yesPercent;
 
           return (
-            <div
-              key={system.id}
+            <React.Fragment key={system.id}>
+              {/* Sponsor Slot Card (Right at Position #2) */}
+              {index === 1 && onOpenMediaKit && (
+                <div
+                  onClick={onOpenMediaKit}
+                  className="group relative rounded-3xl border-2 border-dashed border-amber-500/40 hover:border-amber-400 bg-gradient-to-b from-amber-500/10 via-neutral-900 to-neutral-950 p-6 flex flex-col justify-between items-center text-center transition-all cursor-pointer shadow-xl hover:shadow-amber-500/10 active:scale-[0.98]"
+                >
+                  <div className="space-y-3 my-auto">
+                    <div className="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <Crown className="w-7 h-7" />
+                    </div>
+                    <div className="space-y-1">
+                      <span className="text-[10px] px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 font-bold uppercase tracking-wider">
+                        Sponsorluk Alanı • Rezervasyona Açık
+                      </span>
+                      <h3 className="text-lg font-black text-white group-hover:text-amber-300 transition-colors">
+                        Kendi Mağazanızın Kasasını Buraya Ekleyin
+                      </h3>
+                      <p className="text-xs text-neutral-400 max-w-xs mx-auto leading-relaxed">
+                        İtopya, GamingGen, Tebilon veya GameGaraj... Hazır sisteminizi haftalık 430+ Türk oyuncunun önüne sabitleyin.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="w-full pt-4 border-t border-amber-500/20 mt-4">
+                    <div className="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-neutral-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all">
+                      <span>Vitrin Başvurusu Yap &amp; Fiyat Al</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div
               className="group relative flex flex-col justify-between rounded-2xl bg-neutral-900/80 border border-neutral-800 hover:border-neutral-700/90 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/5 overflow-hidden"
             >
               {/* Top Banner Tag & Favorite Button */}
@@ -716,6 +749,7 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
                 </div>
               </div>
             </div>
+            </React.Fragment>
           );
         })}
       </div>

@@ -377,6 +377,7 @@ export default function Home() {
           if (typeof window !== "undefined") window.history.pushState({ modal: "recommender" }, "", "#sihirbaz");
           setIsPcRecommenderOpen(true);
         }}
+        onOpenMediaKit={() => setIsMediaKitOpen(true)}
       />
 
       {/* Main Content Area */}

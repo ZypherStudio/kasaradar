@@ -46,8 +46,6 @@ export const BottleneckModal: React.FC<BottleneckModalProps> = ({
   const [gameType, setGameType] = useState<"esports" | "aaa">("esports");
   const [copiedText, setCopiedText] = useState<boolean>(false);
 
-  if (!isOpen) return null;
-
   const selectedCpu = POPULAR_CPUS.find((c) => c.id === selectedCpuId) || POPULAR_CPUS[0];
   const selectedGpu = POPULAR_GPUS.find((g) => g.id === selectedGpuId) || POPULAR_GPUS[0];
 
@@ -92,6 +90,8 @@ Canlı darboğaz testi yap: https://www.kasaradar.com#darbogaz`;
     if (analysis.status === "acceptable") return "#eab308"; // amber
     return "#ef4444"; // rose
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-neutral-950/85 backdrop-blur-md overflow-y-auto animate-fade-in">

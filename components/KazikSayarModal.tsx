@@ -48,8 +48,6 @@ export const KazikSayarModal: React.FC<KazikSayarModalProps> = ({
   const [priceInput, setPriceInput] = useState<string>("27500");
   const [copiedText, setCopiedText] = useState<boolean>(false);
 
-  if (!isOpen) return null;
-
   const currentPrice = Number(priceInput.replace(/\D/g, "")) || 20000;
 
   const result: KazikScoreResult = useMemo(() => {
@@ -96,6 +94,8 @@ Canlı donanım ekspertizi: https://www.kasaradar.com#kazik-sayar`;
       setTimeout(() => setCopiedText(false), 3000);
     }
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-neutral-950/85 backdrop-blur-md overflow-y-auto animate-fade-in">

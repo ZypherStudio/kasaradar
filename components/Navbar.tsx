@@ -19,7 +19,8 @@ import {
   ChevronRight,
   Send,
   Swords,
-  Target
+  Target,
+  Crown
 } from "lucide-react";
 import { UserAccount } from "./AuthModal";
 import { Logo } from "./Logo";
@@ -44,6 +45,7 @@ interface NavbarProps {
   onOpenTelegramModal?: () => void;
   onOpenCustomVsPrebuilt?: () => void;
   onOpenPcRecommender?: () => void;
+  onOpenMediaKit?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -63,7 +65,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenUpgradeAdvisor,
   onOpenTelegramModal,
   onOpenCustomVsPrebuilt,
-  onOpenPcRecommender
+  onOpenPcRecommender,
+  onOpenMediaKit
 }) => {
   const [isToolsOpen, setIsToolsOpen] = useState<boolean>(false);
   const toolsRef = useRef<HTMLDivElement>(null);
@@ -440,10 +443,51 @@ export const Navbar: React.FC<NavbarProps> = ({
                         <ChevronRight className="w-4 h-4 text-neutral-600 group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all" />
                       </button>
                     )}
+
+                    {/* Mağaza & Sponsorluk Başvurusu */}
+                    {onOpenMediaKit && (
+                      <button
+                        onClick={() => {
+                          setIsToolsOpen(false);
+                          onOpenMediaKit();
+                        }}
+                        className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-neutral-800/80 text-left transition-all group cursor-pointer bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-xl mt-1"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/40 group-hover:bg-amber-500/30 transition-colors">
+                            <Crown className="w-4 h-4 text-amber-400" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-white group-hover:text-amber-300 flex items-center gap-1.5">
+                              <span>Kasanızı Listeleyin</span>
+                              <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-500/30 text-amber-300 font-bold">
+                                Sponsorluk
+                              </span>
+                            </div>
+                            <div className="text-[11px] text-neutral-400 line-clamp-1">
+                              Mağazanızın kasasını haftalık 430+ oyuncuya sunun
+                            </div>
+                          </div>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-neutral-600 group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all" />
+                      </button>
+                    )}
                   </div>
                 </div>
               )}
             </div>
+
+            {/* Kasanızı Listeleyin Sponsorluk Butonu (Masaüstü) */}
+            {onOpenMediaKit && (
+              <button
+                onClick={onOpenMediaKit}
+                className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/15 to-yellow-500/10 hover:from-amber-500/25 hover:to-yellow-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold transition-all cursor-pointer shadow-sm active:scale-95 shrink-0"
+                title="Mağazanızı veya Hazır Sisteminizi KasaRadar'da Öne Çıkarın"
+              >
+                <Crown className="w-3.5 h-3.5 text-amber-400" />
+                <span>Kasanızı Listeleyin</span>
+              </button>
+            )}
 
             {/* AI Assistant Button (Flagship Gradient CTA) */}
             <button

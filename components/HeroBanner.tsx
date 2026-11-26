@@ -81,117 +81,116 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
           karşılaştırıyoruz. Parçaları tek tek toplasan kaç TL, hazır alsan kaç TL kâr edersin anında gör.
         </p>
 
-        {/* KILLER FEATURE QUICK BUTTONS ROW */}
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-          {onOpenUpgradeAdvisor && (
-            <button
-              onClick={onOpenUpgradeAdvisor}
-              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-cyan-500/10"
-            >
-              <span>🚀 Sistem Yükselt</span>
-              <span className="text-[10px] bg-cyan-500/30 px-1.5 py-0.2 rounded font-black text-cyan-200">Upgrade</span>
-            </button>
-          )}
+        {/* KILLER FEATURE QUICK BUTTONS - CLEANLY ORGANIZED & PRIORITIZED */}
+        <div className="space-y-2.5 pt-1">
+          {/* Top Priority: Ana F/P Araçları */}
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {onOpenPcRecommender && (
+              <button
+                onClick={onOpenPcRecommender}
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-neutral-950 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-lg shadow-emerald-500/25 active:scale-95"
+              >
+                <span>🎯 Bana PC Öner</span>
+                <span className="text-[10px] bg-neutral-950/20 px-1.5 py-0.2 rounded font-bold">Sihirbaz</span>
+              </button>
+            )}
 
-          {onOpenKazikSayar && (
-            <button
-              onClick={onOpenKazikSayar}
-              className="px-3.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-rose-500/10"
-            >
-              <span>🚨 Kazık Sayar</span>
-              <span className="text-[10px] bg-rose-500/30 px-1.5 py-0.2 rounded font-black text-rose-200">Alınır Mı?</span>
-            </button>
-          )}
+            {onOpenCustomVsPrebuilt && (
+              <button
+                onClick={onOpenCustomVsPrebuilt}
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500/25 to-teal-500/25 hover:from-emerald-500/35 hover:to-teal-500/35 text-emerald-300 border border-emerald-500/50 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-emerald-500/10 active:scale-95"
+              >
+                <span>⚔️ Parça vs Kasa Savaşı</span>
+                <span className="text-[10px] bg-emerald-500/30 px-1.5 py-0.2 rounded font-black text-emerald-200">Kâr Kıyasla</span>
+              </button>
+            )}
 
-          {onOpenBottleneck && (
-            <button
-              onClick={onOpenBottleneck}
-              className="px-3.5 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-cyan-500/10"
-            >
-              <span>⚡ Darboğaz Testi</span>
-              <span className="text-[10px] bg-cyan-500/30 px-1.5 py-0.2 rounded font-black text-cyan-200">Bottleneck</span>
-            </button>
-          )}
+            {onOpenUpgradeAdvisor && (
+              <button
+                onClick={onOpenUpgradeAdvisor}
+                className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-cyan-500/10 active:scale-95"
+              >
+                <span>🚀 Sistem Yükselt</span>
+                <span className="text-[10px] bg-cyan-500/30 px-1.5 py-0.2 rounded font-black text-cyan-200">Upgrade</span>
+              </button>
+            )}
 
-          {onOpenFreeGames && (
-            <button
-              onClick={onOpenFreeGames}
-              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm animate-pulse"
-            >
-              <span>🎁 Bedava Oyunlar</span>
-              <span className="text-[10px] bg-amber-500/30 px-1.5 py-0.2 rounded font-black text-amber-200">Epic &amp; Steam</span>
-            </button>
-          )}
+            {onOpenKazikSayar && (
+              <button
+                onClick={onOpenKazikSayar}
+                className="px-3.5 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/40 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-rose-500/10 active:scale-95"
+              >
+                <span>🚨 Kazık Sayar</span>
+                <span className="text-[10px] bg-rose-500/30 px-1.5 py-0.2 rounded font-black text-rose-200">Alınır Mı?</span>
+              </button>
+            )}
+          </div>
 
-          {onOpenCustomVsPrebuilt && (
-            <button
-              onClick={onOpenCustomVsPrebuilt}
-              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500/25 to-teal-500/25 hover:from-emerald-500/35 hover:to-teal-500/35 text-emerald-300 border border-emerald-500/50 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-emerald-500/10"
-            >
-              <span>⚔️ Parça vs Kasa Savaşı</span>
-              <span className="text-[10px] bg-emerald-500/30 px-1.5 py-0.2 rounded font-black text-emerald-200">Kâr Kıyasla</span>
-            </button>
-          )}
+          {/* Secondary Utilities Row */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 text-xs">
+            {onOpenBottleneck && (
+              <button
+                onClick={onOpenBottleneck}
+                className="px-3 py-1.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-cyan-300 border border-cyan-500/30 text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+              >
+                <span>⚡ Darboğaz Testi</span>
+              </button>
+            )}
 
-          {onOpenPcRecommender && (
-            <button
-              onClick={onOpenPcRecommender}
-              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-neutral-950 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-emerald-500/20"
-            >
-              <span>🎯 Bana PC Öner</span>
-              <span className="text-[10px] bg-neutral-950/20 px-1.5 py-0.2 rounded font-bold">Sihirbaz</span>
-            </button>
-          )}
+            {onOpenVersusArena && (
+              <button
+                onClick={onOpenVersusArena}
+                className="px-3 py-1.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-purple-300 border border-purple-500/30 text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+              >
+                <span>🥊 Kasa Kapışması</span>
+              </button>
+            )}
 
-          {onOpenVersusArena && (
-            <button
-              onClick={onOpenVersusArena}
-              className="px-3.5 py-1.5 rounded-xl bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
-            >
-              <span>🥊 Kasa Kapışması</span>
-              <span className="text-[10px] bg-purple-500/30 px-1.5 py-0.2 rounded font-semibold">Versus</span>
-            </button>
-          )}
+            {onOpenPriceHistory && (
+              <button
+                onClick={onOpenPriceHistory}
+                className="px-3 py-1.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+              >
+                <span>📈 30 Günlük Fiyat</span>
+              </button>
+            )}
 
-          {onOpenPriceHistory && (
-            <button
-              onClick={onOpenPriceHistory}
-              className="px-3.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
-            >
-              <span>📈 30 Günlük Fiyat Grafiği</span>
-              <span className="text-[10px] bg-emerald-500/20 px-1.5 py-0.2 rounded font-normal">Dip Fiyat</span>
-            </button>
-          )}
+            {onOpenFreeGames && (
+              <button
+                onClick={onOpenFreeGames}
+                className="px-3 py-1.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-amber-300 border border-amber-500/30 text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+              >
+                <span>🎁 Bedava Oyunlar</span>
+              </button>
+            )}
 
-          {onOpenAdInspector && (
-            <button
-              onClick={onOpenAdInspector}
-              className="px-3.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
-            >
-              <span>🔍 2. El İlan Ekspertizi</span>
-              <span className="text-[10px] bg-amber-500/20 px-1.5 py-0.2 rounded font-normal">Link Yapıştır</span>
-            </button>
-          )}
+            {onOpenAdInspector && (
+              <button
+                onClick={onOpenAdInspector}
+                className="px-3 py-1.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-amber-300 border border-amber-500/30 text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+              >
+                <span>🔍 2. El Ekspertiz</span>
+              </button>
+            )}
 
-          {onOpenGameSettings && (
-            <button
-              onClick={onOpenGameSettings}
-              className="px-3.5 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
-            >
-              <span>🎮 Espor Ayarları</span>
-              <span className="text-[10px] bg-cyan-500/20 px-1.5 py-0.2 rounded font-normal">CS2 / Valo</span>
-            </button>
-          )}
+            {onOpenGameSettings && (
+              <button
+                onClick={onOpenGameSettings}
+                className="px-3 py-1.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-cyan-300 border border-cyan-500/30 text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+              >
+                <span>🎮 Espor Ayarları</span>
+              </button>
+            )}
 
-          <a
-            href="https://t.me/+Voua-sJ4TVJiZjc8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3.5 py-1.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
-          >
-            <span>📢 Telegram Kanalı</span>
-            <span className="text-[10px] bg-sky-500/30 px-1.5 py-0.2 rounded font-semibold">Canlı Bot</span>
-          </a>
+            <a
+              href="https://t.me/+Voua-sJ4TVJiZjc8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-sky-300 border border-sky-500/30 text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+            >
+              <span>📢 Telegram Kanalı</span>
+            </a>
+          </div>
         </div>
 
         {/* Search Bar */}

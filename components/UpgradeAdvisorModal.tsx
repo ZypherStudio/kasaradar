@@ -45,8 +45,6 @@ export const UpgradeAdvisorModal: React.FC<UpgradeAdvisorModalProps> = ({
   const [goal, setGoal] = useState<"esports" | "aaa" | "general">("esports");
   const [copiedPlan, setCopiedPlan] = useState<boolean>(false);
 
-  if (!isOpen) return null;
-
   const currentCpu = POPULAR_CPUS.find((c) => c.id === currentCpuId) || POPULAR_CPUS[0];
   const currentGpu = POPULAR_GPUS.find((g) => g.id === currentGpuId) || POPULAR_GPUS[0];
 
@@ -165,6 +163,8 @@ Mevcut: ${currentCpu.name} • ${currentGpu.name} (${currentRam}GB RAM)
     setCopiedPlan(true);
     setTimeout(() => setCopiedPlan(false), 2500);
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-neutral-950/80 backdrop-blur-md animate-in fade-in duration-200">
