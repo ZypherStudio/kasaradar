@@ -802,7 +802,7 @@ export default function Home() {
         onSelectSystemForFps={handleTestFps}
       />
 
-      {/* KILLER FEATURE: Kendi Sistemini Puanlat & GTA 6 Testi */}
+      {/* KILLER FEATURE: Kendi Sistemini Puanlat & Oyun Performans Karnesi */}
       <RigRaterModal
         isOpen={isRigRaterOpen}
         onClose={() => setIsRigRaterOpen(false)}

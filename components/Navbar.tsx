@@ -261,7 +261,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                             <div className="text-xs font-bold text-white group-hover:text-amber-300 flex items-center gap-1.5">
                               <span>Sistemini Puanlat</span>
                               <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-black">
-                                GTA 6
+                                Oyun Testi
                               </span>
                             </div>
                             <div className="text-[11px] text-neutral-400 line-clamp-1">

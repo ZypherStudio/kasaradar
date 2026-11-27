@@ -133,7 +133,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                 className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 border border-amber-500/40 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-amber-500/10 active:scale-95"
               >
                 <span>🏆 Sistemini Puanlat</span>
-                <span className="text-[10px] bg-amber-500/30 px-1.5 py-0.2 rounded font-black text-amber-200">GTA 6</span>
+                <span className="text-[10px] bg-amber-500/30 px-1.5 py-0.2 rounded font-black text-amber-200">Oyun Karnesi</span>
               </button>
             )}
           </div>

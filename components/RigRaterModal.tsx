@@ -2,8 +2,9 @@
 
 import React, { useState, useMemo } from "react";
 import { POPULAR_CPUS, POPULAR_GPUS, calculateBottleneck } from "@/lib/hardwareBenchmarkData";
+import { GAMES } from "@/lib/games";
+import { calculateGameFps, formatTL } from "@/lib/calculator";
 import { PrebuiltSystem } from "@/lib/types";
-import { formatTL } from "@/lib/calculator";
 import {
   buildWhatsAppShareUrl,
   buildFacebookShareUrl,
@@ -21,7 +22,7 @@ import {
   Share2,
   ExternalLink,
   ArrowUpRight,
-  Flame,
+  Gamepad2,
   AlertTriangle,
   CheckCircle2,
   Sparkles
@@ -43,6 +44,8 @@ const RAM_OPTIONS: { id: RamOption; label: string; gb: number; bonus: number }[]
   { id: "32gb_ddr5", label: "32 GB DDR5 (6000MHz+)", gb: 32, bonus: 8 }
 ];
 
+const FEATURED_GAME_IDS = ["rdr2", "cs2", "cyberpunk", "wukong", "warzone", "valorant"];
+
 export const RigRaterModal: React.FC<RigRaterModalProps> = ({
   isOpen,
   onClose,
@@ -52,58 +55,69 @@ export const RigRaterModal: React.FC<RigRaterModalProps> = ({
   const [selectedCpuId, setSelectedCpuId] = useState<string>("r5-5600");
   const [selectedGpuId, setSelectedGpuId] = useState<string>("gtx-1660-super");
   const [selectedRamId, setSelectedRamId] = useState<RamOption>("16gb_ddr4");
+  const [selectedGameId, setSelectedGameId] = useState<string>("rdr2");
   const [copiedCard, setCopiedCard] = useState<boolean>(false);
+
+  const playableGames = useMemo(
+    () => GAMES.filter((g) => g.id !== "gta6"),
+    []
+  );
 
   const analysis = useMemo(() => {
     const cpu = POPULAR_CPUS.find((c) => c.id === selectedCpuId) || POPULAR_CPUS[0];
     const gpu = POPULAR_GPUS.find((g) => g.id === selectedGpuId) || POPULAR_GPUS[0];
     const ram = RAM_OPTIONS.find((r) => r.id === selectedRamId) || RAM_OPTIONS[1];
+    const targetGame =
+      playableGames.find((g) => g.id === selectedGameId) || playableGames[0];
 
     const rawScore = Math.round(gpu.tier * 0.62 + cpu.tier * 0.34 + ram.bonus);
     const score = Math.max(12, Math.min(99, rawScore));
 
     let rankTitle = "D — Emeklilik Vakti Gelmiş";
     let rankBadgeCls = "bg-rose-500/20 text-rose-300 border-rose-500/40";
-    let summary = "Güncel AAA oyunlarda ve GTA 6'da ciddi FPS düşüşleri yaşanır. Hazır kasaya geçmek tam zamanı.";
+    let summary =
+      "Güncel AAA oyunlarda ciddi FPS düşüşleri yaşanır. Yeni bir hazır sisteme geçmenin tam zamanı.";
 
     if (score >= 88) {
       rankTitle = "S+ Efsane Canavar";
       rankBadgeCls = "bg-amber-500/20 text-amber-300 border-amber-500/40";
-      summary = "Piyasadaki en güçlü sistemlerden biri! GTA 6 dahil tüm oyunları 2K/4K Ultra ayarlarda ezer geçer.";
+      summary =
+        "Piyasadaki en güçlü sistemlerden biri! Ağır AAA yapımları 2K/4K Ultra ayarlarda akıcı çalıştırır.";
     } else if (score >= 75) {
       rankTitle = "A+ Üst Segment Oyuncu";
       rankBadgeCls = "bg-emerald-500/20 text-emerald-300 border-emerald-500/40";
-      summary = "Harika bir denge! Güncel oyunları 1080p/2K yüksek ayarlarda akıcı oynatır.";
+      summary =
+        "Harika bir donanım dengesi! Güncel oyunları 1080p ve 2K yüksek ayarlarda rahatça oynatır.";
     } else if (score >= 60) {
       rankTitle = "B+ Sağlam F/P Sistemi";
       rankBadgeCls = "bg-cyan-500/20 text-cyan-300 border-cyan-500/40";
-      summary = "Rekabetçi oyunlarda çok iyi, yeni AAA oyunlarda ise DLSS/FSR desteğiyle rahatlıkla iş görür.";
+      summary =
+        "Rekabetçi oyunlarda yüksek FPS verir, hikayeli AAA oyunlarda da orta-yüksek ayarlarda tatmin eder.";
     } else if (score >= 44) {
       rankTitle = "C Orta Segment / Sınırda";
       rankBadgeCls = "bg-orange-500/20 text-orange-300 border-orange-500/40";
-      summary = "CS2 ve Valorant'ta akıcı ancak GTA 6 gibi yeni nesil oyunlar için ekran kartı nefessiz kalıyor.";
+      summary =
+        "CS2 ve Valorant'ta akıcı ancak Cyberpunk 2077, Wukong veya RDR2 gibi oyunlarda ayar kısmak gerekir.";
     }
 
     const bottleneck = calculateBottleneck(cpu.id, gpu.id, "1080p", "aaa");
 
-    // Game readiness estimates
-    const gta6Fps =
-      gpu.tier >= 72 && gpu.vramGb >= 8 && ram.gb >= 16
-        ? Math.round(gpu.tier * 0.85 + cpu.tier * 0.15)
-        : gpu.tier >= 55 && ram.gb >= 16
-        ? Math.round(gpu.tier * 0.68 + cpu.tier * 0.1)
-        : Math.max(18, Math.round(gpu.tier * 0.52));
+    const focusUltra = calculateGameFps(targetGame, cpu.tier, gpu.tier, ram.gb, "1080p_ultra");
+    const focusLow = calculateGameFps(targetGame, cpu.tier, gpu.tier, ram.gb, "1080p_low");
 
-    const gta6Status: { text: string; tone: "good" | "warn" | "bad" } =
-      gta6Fps >= 60
-        ? { text: "Akıcı Hazır (Yüksek Ayar)", tone: "good" }
-        : gta6Fps >= 40
-        ? { text: "Orta/Düşük Ayar Kurtarır", tone: "warn" }
-        : { text: "Zorlanır / Drop Yersin", tone: "bad" };
-
-    const cs2Fps = Math.round(gpu.tier * 2.4 + cpu.tier * 1.9 + (ram.gb >= 32 ? 15 : 0));
-    const valoFps = Math.round(cpu.tier * 4.1 + gpu.tier * 0.9);
-    const cp2077Fps = Math.round(gpu.tier * 1.15 + cpu.tier * 0.25);
+    const featuredBenchmarks = FEATURED_GAME_IDS.map((id) => {
+      const game = playableGames.find((g) => g.id === id);
+      if (!game) return null;
+      const preset = id === "cs2" || id === "valorant" ? "1080p_low" : "1080p_ultra";
+      const res = calculateGameFps(game, cpu.tier, gpu.tier, ram.gb, preset);
+      return {
+        game,
+        fps: res.avgFps,
+        lowFps: res.lowFps,
+        label: preset === "1080p_low" ? "1080p Rekabetçi" : "1080p Ultra",
+        status: res.verdict.status
+      };
+    }).filter((x): x is NonNullable<typeof x> => x !== null);
 
     const rigPower = gpu.tier * 0.65 + cpu.tier * 0.35;
     const recommendedUpgrades = [...systems]
@@ -120,23 +134,24 @@ export const RigRaterModal: React.FC<RigRaterModalProps> = ({
       cpu,
       gpu,
       ram,
+      targetGame,
+      focusUltra,
+      focusLow,
       score,
       rankTitle,
       rankBadgeCls,
       summary,
       bottleneck,
-      gta6Fps,
-      gta6Status,
-      cs2Fps,
-      valoFps,
-      cp2077Fps,
+      featuredBenchmarks,
       recommendedUpgrades
     };
-  }, [selectedCpuId, selectedGpuId, selectedRamId, systems]);
+  }, [selectedCpuId, selectedGpuId, selectedRamId, selectedGameId, playableGames, systems]);
 
   if (!isOpen) return null;
 
-  const shareMessage = `🏆 KasaRadar Sistem Karnem: ${analysis.score}/100 (${analysis.rankTitle})\n🖥️ Donanım: ${analysis.gpu.name} + ${analysis.cpu.name} (${analysis.ram.label})\n🎮 GTA 6 Tahmini: ~${analysis.gta6Fps} FPS (${analysis.gta6Status.text})\n🔫 CS2: ~${analysis.cs2Fps} FPS | Valorant: ~${analysis.valoFps} FPS\n\nSenin kasa kaç puan alıyor? Hemen test et 👇\n${SITE_URL}/#sistem-puanla`;
+  const cs2Bench = analysis.featuredBenchmarks.find((b) => b.game.id === "cs2");
+  const cpBench = analysis.featuredBenchmarks.find((b) => b.game.id === "cyberpunk");
+  const shareMessage = `🏆 KasaRadar Sistem Karnem: ${analysis.score}/100 (${analysis.rankTitle})\n🖥️ Donanım: ${analysis.gpu.name} + ${analysis.cpu.name} (${analysis.ram.label})\n🎮 ${analysis.targetGame.title} (1080p Ultra): ~${analysis.focusUltra.avgFps} FPS (${analysis.focusUltra.verdict.label})\n🔫 CS2: ~${cs2Bench?.fps ?? "-"} FPS | Cyberpunk 2077: ~${cpBench?.fps ?? "-"} FPS\n\nSenin kasa kaç puan alıyor? Hemen test et 👇\n${SITE_URL}/#sistem-puanla`;
 
   const handleCopyScoreCard = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
@@ -158,14 +173,14 @@ export const RigRaterModal: React.FC<RigRaterModalProps> = ({
             <div>
               <div className="flex items-center gap-2 flex-wrap">
                 <h2 className="text-lg sm:text-xl font-black text-white">
-                  Kendi Sistemini Puanlat &amp; GTA 6 Testi
+                  Kendi Sistemini Puanlat &amp; Oyun Performans Karnesi
                 </h2>
                 <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-black">
                   Canlı Karne
                 </span>
               </div>
               <p className="text-xs text-neutral-400">
-                Mevcut bilgisayarının parçalarını seç; 100 üzerinden puanını, GTA 6 / CS2 performansını ve yükseltme fırsatını gör.
+                Mevcut bilgisayarının parçalarını ve test etmek istediğin oyunu seç; 100 üzerinden puanını ve gerçekçi FPS tahminlerini gör.
               </p>
             </div>
           </div>
@@ -179,7 +194,7 @@ export const RigRaterModal: React.FC<RigRaterModalProps> = ({
         </div>
 
         {/* Selectors */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 rounded-2xl bg-neutral-950/80 border border-neutral-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 p-4 rounded-2xl bg-neutral-950/80 border border-neutral-800">
           <div>
             <label className="text-xs font-bold text-neutral-300 flex items-center gap-1.5 mb-1.5">
               <Tv className="w-3.5 h-3.5 text-emerald-400" />
@@ -233,13 +248,31 @@ export const RigRaterModal: React.FC<RigRaterModalProps> = ({
               ))}
             </select>
           </div>
+
+          <div>
+            <label className="text-xs font-bold text-neutral-300 flex items-center gap-1.5 mb-1.5">
+              <Gamepad2 className="w-3.5 h-3.5 text-amber-400" />
+              <span>Test Edilecek Oyun</span>
+            </label>
+            <select
+              value={selectedGameId}
+              onChange={(e) => setSelectedGameId(e.target.value)}
+              className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500"
+            >
+              {playableGames.map((g) => (
+                <option key={g.id} value={g.id}>
+                  {g.title}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Scorecard Result */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           {/* Big Score Gauge */}
           <div className="lg:col-span-5 p-5 rounded-2xl bg-gradient-to-br from-neutral-950 via-neutral-900 to-emerald-950/30 border border-emerald-500/30 flex flex-col justify-between space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2 flex-wrap">
               <span className="text-xs uppercase font-black tracking-wider text-neutral-400">
                 KasaRadar Sistem Skoru
               </span>
@@ -281,55 +314,71 @@ export const RigRaterModal: React.FC<RigRaterModalProps> = ({
             </div>
           </div>
 
-          {/* Game Readiness Cards */}
+          {/* Selected Game Spotlight + 6 Popular Games */}
           <div className="lg:col-span-7 space-y-3">
-            {/* GTA 6 Hero Check */}
+            {/* Selected Game Check */}
             <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-950/30 via-neutral-950 to-neutral-950 border border-amber-500/30 space-y-2">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div className="flex items-center gap-2">
-                  <Flame className="w-4 h-4 text-amber-400" />
-                  <span className="text-sm font-black text-white">GTA 6 Hazırlık Durumu</span>
+                  <Gamepad2 className="w-4 h-4 text-amber-400" />
+                  <span className="text-sm font-black text-white">
+                    {analysis.targetGame.title} Performansı
+                  </span>
                 </div>
                 <span
-                  className={`px-2.5 py-0.5 rounded-full text-xs font-bold flex items-center gap-1 ${
-                    analysis.gta6Status.tone === "good"
-                      ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
-                      : analysis.gta6Status.tone === "warn"
-                      ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
-                      : "bg-rose-500/20 text-rose-300 border border-rose-500/40"
-                  }`}
+                  className={`px-2.5 py-0.5 rounded-full border text-xs font-bold flex items-center gap-1 ${analysis.focusUltra.verdict.badgeColor}`}
                 >
-                  {analysis.gta6Status.tone === "good" ? (
+                  {analysis.focusUltra.avgFps >= 60 ? (
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   ) : (
                     <AlertTriangle className="w-3.5 h-3.5" />
                   )}
-                  <span>{analysis.gta6Status.text}</span>
+                  <span>{analysis.focusUltra.verdict.label}</span>
                 </span>
               </div>
-              <div className="text-xs text-neutral-400">
-                1080p tahmini ortalama: <strong className="text-amber-300">~{analysis.gta6Fps} FPS</strong> • VRAM:{" "}
-                <strong className="text-white">{analysis.gpu.vramGb} GB</strong>
+              <div className="flex flex-wrap items-center gap-4 text-xs text-neutral-300">
+                <span>
+                  1080p Ultra: <strong className="text-amber-300">~{analysis.focusUltra.avgFps} FPS</strong>{" "}
+                  <span className="text-neutral-500">(%1 Low: {analysis.focusUltra.lowFps})</span>
+                </span>
+                <span>
+                  1080p Düşük/Orta: <strong className="text-emerald-300">~{analysis.focusLow.avgFps} FPS</strong>
+                </span>
               </div>
+              <p className="text-[11px] text-neutral-400">{analysis.focusUltra.verdict.description}</p>
             </div>
 
-            {/* Other Benchmark Grid */}
-            <div className="grid grid-cols-3 gap-2.5">
-              <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-1">
-                <div className="text-[11px] text-neutral-400 font-semibold">Counter-Strike 2</div>
-                <div className="text-lg font-black text-emerald-400">~{analysis.cs2Fps} FPS</div>
-                <div className="text-[10px] text-neutral-500">1080p Rekabetçi</div>
-              </div>
-              <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-1">
-                <div className="text-[11px] text-neutral-400 font-semibold">Valorant</div>
-                <div className="text-lg font-black text-cyan-400">~{analysis.valoFps} FPS</div>
-                <div className="text-[10px] text-neutral-500">1080p Düşük/Orta</div>
-              </div>
-              <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-1">
-                <div className="text-[11px] text-neutral-400 font-semibold">Cyberpunk 2077</div>
-                <div className="text-lg font-black text-amber-400">~{analysis.cp2077Fps} FPS</div>
-                <div className="text-[10px] text-neutral-500">1080p High</div>
-              </div>
+            {/* 6 Popular Games Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {analysis.featuredBenchmarks.map((b) => (
+                <button
+                  key={b.game.id}
+                  onClick={() => setSelectedGameId(b.game.id)}
+                  className={`text-left p-3 rounded-2xl border transition-all cursor-pointer space-y-1 ${
+                    selectedGameId === b.game.id
+                      ? "bg-amber-500/10 border-amber-500/50"
+                      : "bg-neutral-950 border-neutral-800 hover:border-neutral-700"
+                  }`}
+                >
+                  <div className="text-[11px] text-neutral-300 font-bold truncate" title={b.game.title}>
+                    {b.game.title}
+                  </div>
+                  <div
+                    className={`text-lg font-black ${
+                      b.fps >= 120
+                        ? "text-emerald-400"
+                        : b.fps >= 60
+                        ? "text-cyan-400"
+                        : b.fps >= 35
+                        ? "text-amber-400"
+                        : "text-rose-400"
+                    }`}
+                  >
+                    ~{b.fps} FPS
+                  </div>
+                  <div className="text-[10px] text-neutral-500">{b.label}</div>
+                </button>
+              ))}
             </div>
 
             {/* Share Buttons */}
@@ -377,7 +426,7 @@ export const RigRaterModal: React.FC<RigRaterModalProps> = ({
         {/* Upgrade Suggestions if stronger systems exist */}
         {analysis.recommendedUpgrades.length > 0 && (
           <div className="space-y-2.5 pt-2 border-t border-neutral-800">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-wrap gap-2">
               <span className="text-xs font-black text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
                 <Zap className="w-4 h-4" />
                 <span>Bu Sistemlerden Birine Geçersen FPS Uçuşa Geçer</span>
