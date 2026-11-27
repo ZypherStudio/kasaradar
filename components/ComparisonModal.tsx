@@ -1,8 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { PrebuiltSystem } from "@/lib/types";
 import { formatTL } from "@/lib/calculator";
+import {
+  generateComparisonForumText,
+  generateComparisonChatText,
+  buildWhatsAppShareUrl,
+  buildTelegramShareUrl,
+  buildFacebookShareUrl,
+  SITE_URL
+} from "@/lib/community";
 import {
   X,
   ExternalLink,
@@ -10,10 +18,11 @@ import {
   Trophy,
   TrendingDown,
   Zap,
-  Cpu,
-  Tv,
-  CheckCircle2,
-  Gauge
+  Copy,
+  Check,
+  Share2,
+  Send,
+  Sparkles
 } from "lucide-react";
 
 interface ComparisonModalProps {
@@ -33,6 +42,8 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
   onClearAll,
   onTestFps
 }) => {
+  const [copiedForum, setCopiedForum] = useState<boolean>(false);
+
   if (!isOpen) return null;
 
   // Find the FP score winner
@@ -308,6 +319,70 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                 </tr>
               </tbody>
             </table>
+
+            {/* Viral Forum / WhatsApp / Facebook Comparison Share Bar */}
+            <div className="p-4 rounded-2xl bg-neutral-950/90 border border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <div className="text-xs font-black text-white flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Kararsız Mısın? Tek Tıkla Topluluğa / Arkadaşına Sor</span>
+                </div>
+                <p className="text-[11px] text-neutral-400">
+                  Technopat &amp; Donanım Arşivi forum formatını kopyala veya WhatsApp / Facebook / Telegram&apos;da kıyaslamayı paylaş.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2 shrink-0">
+                <button
+                  onClick={() => {
+                    const bbcode = generateComparisonForumText(systems);
+                    if (typeof navigator !== "undefined" && navigator.clipboard) {
+                      navigator.clipboard.writeText(bbcode);
+                      setCopiedForum(true);
+                      setTimeout(() => setCopiedForum(false), 3000);
+                    }
+                  }}
+                  className="px-3 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold flex items-center gap-1.5 border border-neutral-700 transition-all cursor-pointer"
+                >
+                  {copiedForum ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5 text-cyan-400" />
+                  )}
+                  <span>{copiedForum ? "Forum Tablosu Kopyalandı!" : "Technopat / DA Forum Kodu"}</span>
+                </button>
+
+                <a
+                  href={buildWhatsAppShareUrl(generateComparisonChatText(systems))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-bold flex items-center gap-1.5 transition-all"
+                >
+                  <Share2 className="w-3.5 h-3.5" />
+                  <span>WhatsApp&apos;ta Sor</span>
+                </a>
+
+                <a
+                  href={buildTelegramShareUrl(SITE_URL, generateComparisonChatText(systems))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/40 text-xs font-bold flex items-center gap-1.5 transition-all"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Telegram</span>
+                </a>
+
+                <a
+                  href={buildFacebookShareUrl(SITE_URL, generateComparisonChatText(systems))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/40 text-xs font-bold flex items-center gap-1.5 transition-all"
+                >
+                  <Share2 className="w-3.5 h-3.5" />
+                  <span>Facebook</span>
+                </a>
+              </div>
+            </div>
           </div>
         )}
       </div>

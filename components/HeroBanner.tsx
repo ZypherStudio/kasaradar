@@ -20,6 +20,7 @@ interface HeroBannerProps {
   onOpenUpgradeAdvisor?: () => void;
   onOpenDdosShield?: () => void;
   onOpenCustomVsPrebuilt?: () => void;
+  onOpenRigRater?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -38,7 +39,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onOpenBottleneck,
   onOpenUpgradeAdvisor,
   onOpenDdosShield,
-  onOpenCustomVsPrebuilt
+  onOpenCustomVsPrebuilt,
+  onOpenRigRater
 }) => {
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 via-neutral-900/60 to-neutral-950 border border-neutral-800 p-6 sm:p-10 mb-8 shadow-2xl">
@@ -122,6 +124,16 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               >
                 <span>🚨 Kazık Sayar</span>
                 <span className="text-[10px] bg-rose-500/30 px-1.5 py-0.2 rounded font-black text-rose-200">Alınır Mı?</span>
+              </button>
+            )}
+
+            {onOpenRigRater && (
+              <button
+                onClick={onOpenRigRater}
+                className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 border border-amber-500/40 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-amber-500/10 active:scale-95"
+              >
+                <span>🏆 Sistemini Puanlat</span>
+                <span className="text-[10px] bg-amber-500/30 px-1.5 py-0.2 rounded font-black text-amber-200">GTA 6</span>
               </button>
             )}
           </div>

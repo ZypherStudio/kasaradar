@@ -6,6 +6,9 @@ import { formatTL } from "@/lib/calculator";
 import { ComponentPriceInfo } from "./ComponentPriceModal";
 import { MarketTrendsBar } from "./MarketTrendsBar";
 import { SponsorSpotlightCard } from "./SponsorSpotlightCard";
+import { DailyDealSpotlight } from "./DailyDealSpotlight";
+import { StoreLeaderboard } from "./StoreLeaderboard";
+import { SITE_URL } from "@/lib/community";
 import {
   Cpu,
   Tv,
@@ -29,7 +32,8 @@ import {
   RefreshCw,
   Sparkles,
   ShieldCheck,
-  Crown
+  Crown,
+  Share2
 } from "lucide-react";
 
 interface SystemsModuleProps {
@@ -45,6 +49,7 @@ interface SystemsModuleProps {
   isLoggedIn?: boolean;
   onRequireAuth?: () => void;
   onOpenMediaKit?: () => void;
+  onOpenCustomVsPrebuilt?: () => void;
 }
 
 type QuickCategory = "all" | "today" | "amd_cpu" | "intel_cpu" | "nvidia_gpu" | "amd_gpu" | "fp_champ" | "high_end";
@@ -62,7 +67,8 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
   onOpenComponentPrice,
   isLoggedIn = false,
   onRequireAuth,
-  onOpenMediaKit
+  onOpenMediaKit,
+  onOpenCustomVsPrebuilt
 }) => {
   const [selectedQuickCategory, setSelectedQuickCategory] = useState<QuickCategory>("all");
   const [selectedBudgetTier, setSelectedBudgetTier] = useState<BudgetTier>("all");
@@ -77,8 +83,9 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
   const [lastScanTime, setLastScanTime] = useState<string>("2 dakika önce");
   const [scanToast, setScanToast] = useState<string | null>(null);
 
-  // Community votes state
+  // Community votes & quick share copy state
   const [userVotes, setUserVotes] = useState<Record<string, "yes" | "no">>({});
+  const [copiedCardId, setCopiedCardId] = useState<string | null>(null);
 
   const sellers = useMemo(
     () => [
@@ -154,7 +161,7 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
         }
         return 0;
       });
-  }, [systems, selectedQuickCategory, selectedSeller, selectedGpu, selectedRamType, maxPrice, sortBy]);
+  }, [systems, selectedQuickCategory, selectedBudgetTier, selectedSeller, selectedGpu, selectedRamType, maxPrice, sortBy]);
 
   const handleVote = (systemId: string, vote: "yes" | "no") => {
     setUserVotes((prev) => ({
@@ -406,10 +413,26 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
         </div>
       </div>
 
+      {/* 0. Günün Kelepiri & Canlı Geri Sayım Vitrini */}
+      <DailyDealSpotlight
+        systems={systems}
+        onOpenDetail={onOpenDetail}
+        onTestFps={onTestFps}
+        onOpenCustomVsPrebuilt={onOpenCustomVsPrebuilt}
+      />
+
       {/* 1. Türkiye Hazır Sistem Piyasası & Canlı Borsa Endeksi */}
       <MarketTrendsBar />
 
-      {/* 2. Haftanın Sponsorlu F/P Vitrini (Marka & Satış Partneri) */}
+      {/* 2. Haftanın F/P Şampiyonu Mağazaları Liderlik Tablosu */}
+      <StoreLeaderboard
+        systems={systems}
+        selectedSeller={selectedSeller}
+        onSelectSeller={setSelectedSeller}
+        onOpenMediaKit={onOpenMediaKit}
+      />
+
+      {/* 3. Haftanın Sponsorlu F/P Vitrini (Marka & Satış Partneri) */}
       <SponsorSpotlightCard onOpenMediaKit={onOpenMediaKit} />
 
       {/* Systems Grid */}
@@ -719,14 +742,14 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
                   </a>
                 </div>
 
-                {/* Sub actions (FPS Test + Compare + Price Alert) */}
+                {/* Sub actions (FPS Test + Compare + Price Alert + Share) */}
                 <div className="flex items-center justify-between text-xs text-neutral-400 pt-1 border-t border-neutral-800/60 mt-1">
                   <button
                     onClick={() => onTestFps(system)}
                     className="flex items-center gap-1 text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold transition-colors cursor-pointer"
                   >
                     <Zap className="w-3 h-3" />
-                    <span>FPS Testi</span>
+                    <span>FPS</span>
                   </button>
 
                   <button
@@ -736,7 +759,7 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
                     }`}
                   >
                     {isComparing ? <Check className="w-3 h-3" /> : <Layers className="w-3 h-3" />}
-                    <span>{isComparing ? "Karşılaştırmada" : "Karşılaştır"}</span>
+                    <span>{isComparing ? "Kıyasta" : "Kıyasla"}</span>
                   </button>
 
                   <button
@@ -745,6 +768,26 @@ export const SystemsModule: React.FC<SystemsModuleProps> = ({
                   >
                     <Bell className="w-3 h-3" />
                     <span>Alarm</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      const shareSnippet = `🔥 ${system.title} (${system.seller}) — ${formatTL(system.price)} (+${formatTL(Math.max(0, savings))} TL kâr!) | F/P: ${system.fpScore}/10\n👉 Sence alınır mı? ${SITE_URL}`;
+                      if (typeof navigator !== "undefined" && navigator.clipboard) {
+                        navigator.clipboard.writeText(shareSnippet);
+                        setCopiedCardId(system.id);
+                        setTimeout(() => setCopiedCardId((prev) => (prev === system.id ? null : prev)), 2200);
+                      }
+                    }}
+                    className={`flex items-center gap-1 text-[11px] transition-colors cursor-pointer ${
+                      copiedCardId === system.id
+                        ? "text-emerald-400 font-bold"
+                        : "text-neutral-400 hover:text-emerald-400"
+                    }`}
+                    title="Forum / WhatsApp / Facebook için tek tıkla kopyala"
+                  >
+                    {copiedCardId === system.id ? <Check className="w-3 h-3" /> : <Share2 className="w-3 h-3" />}
+                    <span>{copiedCardId === system.id ? "Kopyalandı!" : "Paylaş"}</span>
                   </button>
                 </div>
               </div>

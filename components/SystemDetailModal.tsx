@@ -35,6 +35,11 @@ import { ComponentPriceInfo } from "./ComponentPriceModal";
 import { PriceHistoryChart } from "./PriceHistoryChart";
 import { UserAccount } from "./AuthModal";
 import { StoryShareModal } from "./StoryShareModal";
+import {
+  buildWhatsAppShareUrl,
+  buildFacebookShareUrl,
+  SITE_URL
+} from "@/lib/community";
 
 interface SystemDetailModalProps {
   system: PrebuiltSystem | null;
@@ -779,6 +784,33 @@ export const SystemDetailModal: React.FC<SystemDetailModalProps> = ({
               <Send className="w-3.5 h-3.5 text-sky-400" />
               <span>Telegram&apos;da Paylaş</span>
             </button>
+
+            <a
+              href={buildWhatsAppShareUrl(
+                `🔥 *${system.title}* (${system.seller})\n💰 Fiyat: ${formatTL(system.price)} (+${formatTL(Math.max(0, system.individualZeroPrice - system.price))} TL kâr!)\n⭐ F/P Skoru: ${system.fpScore}/10\n👉 Sence alınır mı? ${SITE_URL}`
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-950/70 hover:bg-emerald-900 border border-emerald-500/30 text-emerald-300 hover:text-white transition-all font-bold"
+              title="WhatsApp'ta Arkadaşına Sor"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+              <span>WhatsApp&apos;ta Sor</span>
+            </a>
+
+            <a
+              href={buildFacebookShareUrl(
+                SITE_URL,
+                `🔥 ${system.title} (${system.seller}) — ${formatTL(system.price)} (+${formatTL(Math.max(0, system.individualZeroPrice - system.price))} TL kâr) | F/P Skoru: ${system.fpScore}/10`
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-blue-950/70 hover:bg-blue-900 border border-blue-500/30 text-blue-300 hover:text-white transition-all font-bold"
+              title="Facebook Grubu / Akışta Paylaş"
+            >
+              <Share2 className="w-3.5 h-3.5 text-blue-400" />
+              <span>Facebook&apos;ta Sor</span>
+            </a>
 
             <button
               onClick={handleCopyForumCode}

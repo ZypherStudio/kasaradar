@@ -32,6 +32,7 @@ import { TelegramGrowthModal } from "@/components/TelegramGrowthModal";
 import { TelegramAdminModal } from "@/components/TelegramAdminModal";
 import { MediaKitModal } from "@/components/MediaKitModal";
 import { CustomVsPrebuiltModal } from "@/components/CustomVsPrebuiltModal";
+import { RigRaterModal } from "@/components/RigRaterModal";
 import { KnowledgeHubFaq } from "@/components/KnowledgeHubFaq";
 import { AdBanner } from "@/components/AdBanner";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
@@ -83,6 +84,7 @@ export default function Home() {
   const [isTelegramAdminOpen, setIsTelegramAdminOpen] = useState<boolean>(false);
   const [isMediaKitOpen, setIsMediaKitOpen] = useState<boolean>(false);
   const [isCustomVsPrebuiltOpen, setIsCustomVsPrebuiltOpen] = useState<boolean>(false);
+  const [isRigRaterOpen, setIsRigRaterOpen] = useState<boolean>(false);
 
   const [emailModalData, setEmailModalData] = useState<{
     productName: string;
@@ -211,6 +213,10 @@ export default function Home() {
         setIsCustomVsPrebuiltOpen(false);
         return;
       }
+      if (isRigRaterOpen) {
+        setIsRigRaterOpen(false);
+        return;
+      }
       if (isAdInspectorOpen) {
         setIsAdInspectorOpen(false);
         return;
@@ -268,6 +274,7 @@ export default function Home() {
     isRewardsModalOpen,
     isEmailModalOpen,
     isCustomVsPrebuiltOpen,
+    isRigRaterOpen,
     activeTab
   ]);
 
@@ -378,6 +385,10 @@ export default function Home() {
           setIsPcRecommenderOpen(true);
         }}
         onOpenMediaKit={() => setIsMediaKitOpen(true)}
+        onOpenRigRater={() => {
+          if (typeof window !== "undefined") window.history.pushState({ modal: "rig" }, "", "#sistem-puanla");
+          setIsRigRaterOpen(true);
+        }}
       />
 
       {/* Main Content Area */}
@@ -459,6 +470,10 @@ export default function Home() {
             if (typeof window !== "undefined") window.history.pushState({ modal: "vs" }, "", "#parca-savas");
             setIsCustomVsPrebuiltOpen(true);
           }}
+          onOpenRigRater={() => {
+            if (typeof window !== "undefined") window.history.pushState({ modal: "rig" }, "", "#sistem-puanla");
+            setIsRigRaterOpen(true);
+          }}
         />
 
         {/* Live Telegram Deal Feed Ticker */}
@@ -496,6 +511,10 @@ export default function Home() {
             isLoggedIn={!!user?.isLoggedIn}
             onRequireAuth={() => setIsAuthModalOpen(true)}
             onOpenMediaKit={() => setIsMediaKitOpen(true)}
+            onOpenCustomVsPrebuilt={() => {
+              if (typeof window !== "undefined") window.history.pushState({ modal: "vs" }, "", "#parca-savas");
+              setIsCustomVsPrebuiltOpen(true);
+            }}
           />
         )}
 
@@ -781,6 +800,14 @@ export default function Home() {
         systems={PREBUILT_SYSTEMS}
         onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
         onSelectSystemForFps={handleTestFps}
+      />
+
+      {/* KILLER FEATURE: Kendi Sistemini Puanlat & GTA 6 Testi */}
+      <RigRaterModal
+        isOpen={isRigRaterOpen}
+        onClose={() => setIsRigRaterOpen(false)}
+        systems={PREBUILT_SYSTEMS}
+        onSelectSystemDetail={(s) => setSelectedDetailSystem(s)}
       />
 
       {/* Alt Sponsor & Reklam Alanı (Native Banner) */}
